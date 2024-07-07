@@ -3,7 +3,7 @@ let config = {
   route: "/devTools/page/index", // 调试页面的路由，不建议更改
   bubble: { //调试弹窗气泡设置
     status: true, // 气泡标签是否显示，生产环境建议关闭
-    text: "调试工具", // 气泡上展示的文字
+    text: "DevTools", // 气泡上展示的文字
     color: "#ffffff", // 气泡文字颜色
     bgColor: "rgba(250, 53, 52,0.7)", // 气泡背景颜色
   },
