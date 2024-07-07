@@ -1,0 +1,40 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例"></tm-text>
+			<tm-divider color="black" realColor align="left" label="我在左边"></tm-divider>
+			<tm-divider align="left" label="我在左边"></tm-divider>
+			<tm-divider align="center" label="我在中间"></tm-divider>
+			<tm-divider align="right" label="我在右边"></tm-divider>
+			<tm-divider :border="10" label="改变粗细"></tm-divider>
+			<tm-divider color="red" font-color="red" :border="10" label="改变颜色"></tm-divider>
+			<tm-divider color="red" font-color="red" :border="10" show-label>
+				<template v-slot:label>
+					<tm-text :font-size="24" _class="text-weight-b px-32" label="自带义插槽布局"></tm-text>
+				</template>
+			</tm-divider>
+			<tm-text :font-size="24" _class="text-weight-b" label="下方不带文本分割线"></tm-text>
+			<tm-divider color="green"></tm-divider>
+		</tm-sheet>
+		<tm-sheet>
+			<view class="mb-24">
+				<tm-text :font-size="24" _class="text-weight-b" label="竖向分割线，不允许 携带文本标签。"></tm-text>
+			</view>
+			<view class="flex flex-row flex-center">
+				<tm-divider vertical :height="200"></tm-divider>
+				<tm-divider color="green" vertical :height="200"></tm-divider>
+				<tm-divider color="red" vertical :height="200"></tm-divider>
+				<tm-divider color="primary" vertical :height="200"></tm-divider>
+				<tm-divider color="black" :border="10" real-color vertical :height="200"></tm-divider>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+</script>

@@ -1,0 +1,24 @@
+<template>
+	<tm-app>
+		<view class="ma-32 overflow">
+			<tm-cell :round="index==0?[3,3]:(index==list.length-1?[0,0,3,3]:0)"  v-for="(item, index) in list" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title"> </tm-cell>
+		</view>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+const list = ref([
+	{ path: '/pages/layout/divider', title: '分割线 Divider' },
+	{ path: '/pages/layout/grid', title: '宫格 Grid' },
+	{ path: '/pages/layout/row', title: '布局 Row' },
+	{ path: '/pages/layout/sheet', title: '基础容器 Sheet' }
+])
+</script>

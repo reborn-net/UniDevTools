@@ -1,0 +1,46 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-avatar img="https://picsum.photos/200/300"></tm-avatar>
+				<tm-avatar :font-size="42" :margin="[10, 0]" icon="tmicon-QQ"></tm-avatar>
+				<tm-avatar :font-size="42" :round="12" color="pink" linear="top" icon="tmicon-QQ"></tm-avatar>
+				<tm-avatar trigger triggerIcon="tmicon-check" :round="12" text :margin="[10, 0]" label="QQ"></tm-avatar>
+				<tm-avatar
+					color="orange"
+					trigger
+					triggerColor="red"
+					triggerIcon="tmicon-check"
+					:round="4"
+					text
+					:margin="[10, 0]"
+					img="https://picsum.photos/200/300?id=99"
+				></tm-avatar>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="更多自定义属性"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-badge count="5" color="orange">
+					<tm-avatar color="green" :font-size="42" :margin="[10, 0]" icon="tmicon-QQ"></tm-avatar>
+				</tm-badge>
+				<tm-avatar outlined :round="12" :font-size="52" color="pink" icon="tmicon-weixin"></tm-avatar>
+				<tm-avatar :round="12" text :margin="[10, 0]" label="王"></tm-avatar>
+				<tm-avatar outlined text color="grey" :round="12" :margin="[10, 0]" label="王"></tm-avatar>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmAvatar from '@/tmui/components/tm-avatar/tm-avatar.vue'
+import tmBadge from '@/tmui/components/tm-badge/tm-badge.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+</script>

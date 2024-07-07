@@ -1,0 +1,25 @@
+<template>
+	<tm-app>
+		<view class="ma-32  overflow">
+			<tm-cell :round="index==0?[3,3]:(index==list.length-1?[0,0,3,3]:0)"  v-for="(item, index) in list" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title"> </tm-cell>
+		</view>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance, onMounted, inject } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import logoimg from '@/static/logo.png'
+
+const list = ref([
+	{ path: '/pages/changyong/app', title: '根节点 App' },
+	{ path: '/pages/changyong/button', title: '按钮 Button' },
+	{ path: '/pages/changyong/icon', title: '图标 Icon' },
+	{ path: '/pages/changyong/text', title: '文本标签 Text' }
+])
+</script>

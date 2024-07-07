@@ -1,0 +1,20 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="32"
+				_class="text-weight-b"
+				label="打开日历后,将打印null目前在所有平台有问题.bug说明:我在tm-calendar中套入了tm-drawer ref=drawer,然后在tm-drawer中又套入了tm-calendar-view组件 ref=calendarView,此时drawer可以获取到ref方法.而组件中的组件calendarView无法获取方法表现为null"
+			>
+			</tm-text>
+			<!-- https://ask.dcloud.net.cn/question/144998 -->
+			<view><text @click="showCal = true">点击我打开日历</text></view>
+			<tm-calendar v-model:show="showCal"></tm-calendar>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+const showCal = ref(false)
+</script>

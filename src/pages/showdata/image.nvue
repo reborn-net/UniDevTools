@@ -1,0 +1,62 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view>
+				<tm-image preview :width="300" :height="200" src="https://store.tmui.design/api_v2/public/random_picture"></tm-image>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="关闭按钮"></tm-text>
+			<tm-divider></tm-divider>
+			<view>
+				<tm-image delete preview :width="300" :height="200" src="https://store.tmui.design/api_v2/public/random_picture?random=2"> </tm-image>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="展示额外的内容"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-image extra preview :width="300" :height="200" src="https://store.tmui.design/api_v2/public/random_picture?random=3">
+				<template v-slot:extra>
+					<tm-sheet :margin="[0, 0]" :padding="[12, 10]" _class="flex-row flex-between " parenClass="opacity-6">
+						<view class="flex flex-row flex-center pl-16">
+							<tm-icon :font-size="24" name="tmicon-comment-dots"></tm-icon>
+							<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+						</view>
+						<view class="flex flex-row flex-center pl-16">
+							<tm-icon :font-size="24" name="tmicon-md-heart"></tm-icon>
+							<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+						</view>
+					</tm-sheet>
+				</template>
+			</tm-image>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="图片组，组成简单的相册集"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-image-group>
+				<tm-image
+					:padding="[2, 2]"
+					preview
+					:width="155"
+					:height="156"
+					:src="'https://store.tmui.design/api_v2/public/random_picture?random=' + item"
+					v-for="item in 14"
+					:key="item"
+				></tm-image>
+			</tm-image-group>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmImageGroup from '@/tmui/components/tm-image-group/tm-image-group.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+</script>

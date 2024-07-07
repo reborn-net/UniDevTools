@@ -1,0 +1,40 @@
+<template>
+	<tm-app>
+		<view class="ma-32 overflow">
+			<tm-cell :round="index==0?[3,3]:(index==list.length-1?[0,0,3,3]:0)"  v-for="(item, index) in list" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title"> </tm-cell>
+		</view>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance, reactive } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+
+
+
+const list = ref([
+	{ path: '/pages/form/cascader', title: '级联器(点选) Cascader' },
+	{ path: '/pages/form/checkbox', title: '复选框 Checkbox' },
+	{ path: '/pages/form/calendar', title: '日历 Calendar' },
+	{ path: '/pages/form/city', title: '城市选择 City' },
+	{ path: '/pages/form/form', title: '表单 Form' },
+	{ path: '/pages/form/input', title: '输入框 Input' },
+	{ path: '/pages/form/keyboard', title: '键盘 keyboard' },
+	{ path: '/pages/form/picker', title: '选择器 Picker' },
+	{ path: '/pages/form/rate', title: '评分 Rate' },
+	{ path: '/pages/form/radio', title: '单选框 Radio' },
+	{ path: '/pages/form/stepper', title: '步进器 Stepper' },
+	{ path: '/pages/form/slider', title: '滑块 Slider' },
+	{ path: '/pages/form/switch', title: '开关 Switch' },
+	{ path: '/pages/form/time', title: '时间选择器 Time' },
+	{ path: '/pages/form/upload', title: '图片上传 Upload' },
+	{ path: '/pages/form/uploadFile', title: '文件上传 UploadFile' },
+	{ path: '/pages/form/weekbar', title: '时间周 Weekbar' },
+	{ path: '/pages/form/timebetween', title: '时间范围 Timebetween' }
+])
+</script>

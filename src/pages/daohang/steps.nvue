@@ -1,0 +1,45 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :fontSize="24" _class="text-weight-b" label="基础属性,更多玩法请前往文档。"></tm-text>
+		</tm-sheet>
+		<tm-sheet :padding="[0, 24]" :margin="[0, 0]">
+			<tm-steps color="primary" :defaultCurrent="1">
+				<tm-steps-item :label="item.label" :width="150" :title="item.title" v-for="(item, index) in list" :key="index"> </tm-steps-item>
+			</tm-steps>
+		</tm-sheet>
+
+		<tm-sheet :padding="[0, 24]" :margin="[0, 0]">
+			<tm-steps type="number" activeColor="green" :defaultCurrent="2">
+				<tm-steps-item :width="200" :title="item.title" v-for="(item, index) in list2" :key="index"> </tm-steps-item>
+			</tm-steps>
+		</tm-sheet>
+
+		<tm-sheet :padding="[0, 24]" :margin="[0, 0]">
+			<tm-steps changeable @step-click="test" activeColor="green" status="error" :defaultCurrent="1">
+				<tm-steps-item :title="item.title" v-for="(item, index) in list2" :key="index"> </tm-steps-item>
+			</tm-steps>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmSteps from '@/tmui/components/tm-steps/tm-steps.vue'
+import tmStepsItem from '@/tmui/components/tm-steps-item/tm-steps-item.vue'
+const list = ref([
+	{ title: '开始', label: '33' },
+	{ title: '投放中', label: '' },
+	{ title: '审核', label: '' },
+	{ title: '最后审查', label: '' },
+	{ title: '完成', label: '' }
+])
+const list2 = ref([{ title: '开始' }, { title: '投放中' }, { title: '审核' }])
+function test() {
+	console.log(11)
+}
+</script>

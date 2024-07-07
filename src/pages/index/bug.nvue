@@ -1,0 +1,66 @@
+<template>
+	<tm-app ref="app">
+		<tm-sheet darkBgColor="#050505" _class="flex-row flex-row-center-start" :margin="[0, 0]">
+			<tm-image :width="108" :height="67.5" :src="logoimg"></tm-image>
+			<view class="pl-16">
+				<tm-text _class="text-weight-b" :font-size="36" label="TMUI 3.0.0"></tm-text>
+				<tm-text color="grey" label="全端兼容vue3 TypeScript pinia组件库"></tm-text>
+			</view>
+		</tm-sheet>
+		<tm-sheet :round="3" :margin="[32, 32]">
+			<tm-text :font-size="24" _class="text-weight-b" label="分类导航"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-grid :col="3" :width="630">
+				<tm-grid-item url="../uniappbug/bug1" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG1"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="IOS下sticky引起"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item url="../uniappbug/bug2" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG2"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="style赋值问题"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item url="../uniappbug/bug3" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG3"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="ios12变量问题"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item url="../uniappbug/bug4" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG4"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="安卓端scroll滚动"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item url="../uniappbug/bug5" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG5"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="安卓端input事件穿透"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item url="../uniappbug/bug6" :height="180" count="hot">
+					<tm-icon color="primary" _class="pb-10" :font-size="52" name="tmicon-layergroup-fill"></tm-icon>
+					<tm-text :font-size="28" _class="text-weight-b" label="BUG6"></tm-text>
+					<tm-text color="grey" :font-size="22" _class="text-weight-b" label="ref方法问题"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+		</tm-sheet>
+		<tm-cell showAvatar :round="3" :titleFontSize="30" title="行动支持" rightText="看广告赚积分">
+			<template v-slot:avatar>
+				<tm-icon color="orange" :font-size="38" name="tmicon-heart-fill"></tm-icon>
+			</template>
+		</tm-cell>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+		<tm-floatButton @click="onChangeDark" :btn="{ icon: 'tmicon-ios-sunny', fontColor: 'white' }"></tm-floatButton>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import logoimg from '@/static/logo.png'
+const { proxy } = getCurrentInstance()
+
+function onChangeDark() {
+	proxy.$refs.app.setDark()
+}
+</script>

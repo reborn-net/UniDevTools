@@ -1,0 +1,35 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-slider :min="50" color="primary" :width="600" :height="6" :defaultValue="80"></tm-slider>
+			<tm-slider color="red" :width="600" :height="6" :defaultValue="20"></tm-slider>
+			<tm-slider color="white" :width="600" :height="6" :defaultValue="50"></tm-slider>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="双向滑块"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-row-cneter-center">
+				<tm-slider color="white" :width="300" :height="6" :defaultValue="[10, 50]"></tm-slider>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="标签,格式化显示,拖动将显示百分比"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-slider  :formart="formart" :step="5" showLabel color="green" :width="600" :height="6" :defaultValue="[5, 50]"></tm-slider>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmSlider from '@/tmui/components/tm-slider/tm-slider.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+function formart(val) {
+	return val + '%'
+}
+</script>

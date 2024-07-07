@@ -1,0 +1,61 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-switch offIcon="tmicon-times" size="mini"></tm-switch>
+				<tm-switch size="normal" color="red" :defaultValue="true" :margin="[12, 0]"></tm-switch>
+				<tm-switch size="large" color="green" :defaultValue="true" :margin="[12, 0]"></tm-switch>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="其它样式属性"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-switch linear="left" linearDeep="accent" :defaultValue="true" :margin="[12, 0]"></tm-switch>
+				<tm-switch unCheckedColor="red" color="red" text :label="['开', '关']"></tm-switch>
+				<tm-switch
+					:label="['形状', '方形']"
+					:width="200"
+					:height="58"
+					:round="2"
+					color="green"
+					:defaultValue="true"
+					:margin="[12, 0]"
+				></tm-switch>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="加载和禁用"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-switch load linear="left" linearDeep="accent" color="red" :defaultValue="true" :margin="[12, 0]"></tm-switch>
+				<tm-switch disabled linear="left" linearDeep="accent" color="green" :defaultValue="true" :margin="[12, 0]"></tm-switch>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="异步开关"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-switch :beforeChecked="beforeChecked" linear="left" linearDeep="accent" color="blue" :margin="[12, 0]"></tm-switch>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmSwitch from '@/tmui/components/tm-switch/tm-switch.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+function beforeChecked() {
+	return new Promise((res) => {
+		setTimeout(function () {
+			res(true)
+		}, 1000)
+	})
+}
+</script>

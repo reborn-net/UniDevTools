@@ -1,0 +1,56 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,默认是精确到毫秒级"></tm-text>
+			<tm-divider></tm-divider>
+			<view>
+				<tm-countdown ref="cu" :autoStart="false"></tm-countdown>
+			</view>
+			<view class="mt-32 flex flex-row flex-around">
+				<tm-button @click="actions('resinit')" size="small" label="重置"></tm-button>
+				<tm-button @click="actions('start')" size="small" :width="140" :font-size="22" label="开始/继续"
+					color="green"></tm-button>
+				<tm-button @click="actions('pause')" size="small" label="暂停" color="orange"></tm-button>
+				<tm-button @click="actions('stop')" size="small" label="结束" color="red"></tm-button>
+			</view>
+		</tm-sheet>
+
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="useTimer,使用useHooks来自定布局或者定时等更加的自由"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="py-32">
+				{{formattedTime()}}
+			</view>
+			<tm-button @click="cafn" size="small" block :font-size="22" :label="status==1?'暂停':'开始'"
+				:color="status==1?'red':'primary'"></tm-button>
+		</tm-sheet>
+
+	</tm-app>
+</template>
+<script lang="ts" setup>
+	import { ref, getCurrentInstance } from 'vue'
+	import { onShow, onLoad } from '@dcloudio/uni-app'
+	import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+	import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+	import tmText from '@/tmui/components/tm-text/tm-text.vue'
+	import tmCountdown from '@/tmui/components/tm-countdown/tm-countdown.vue'
+	import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+	import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+	import { useTimer } from '@/tmui/tool/useFun/useTimer'
+	const cu = ref<InstanceType<typeof tmCountdown> | null>(null)
+
+	const { start, stop, formattedTime, status, restart, timeObj, times, change } = useTimer({ totalTime: 10 * 1000, unit: 'ms', format: 'dd天hh时mm分ss秒ms毫秒' });
+	function actions(fun : string) {
+		cu.value[fun]()
+	}
+	function cafn() {
+		if (status.value == 1) {
+			stop();
+		} else {
+			restart();
+		}
+	}
+	change((n) => {
+		// console.log(n)
+	})
+</script>

@@ -1,0 +1,17 @@
+<template>
+	<tm-app>
+		<!-- https://ask.dcloud.net.cn/question/145414 -->
+		<tm-sheet>
+			<tm-text :font-size="32" _class="text-weight-b" label="本页面你将在ios12点点击按钮数值无变化,其它平台正常出现100"></tm-text>
+			<tm-button label="点我测试" @click="abc = 100"></tm-button>
+			<tm-sheet color="red">
+				<tm-text :label="abc"></tm-text>
+			</tm-sheet>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+const abc = ref(0)
+</script>

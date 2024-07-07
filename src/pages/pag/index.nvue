@@ -1,0 +1,17 @@
+<template>
+	<tm-app>
+		<tm-pag unit="px" :width="350" :height="500" url="https://cdn.tmui.design/pag/tmuiyear.pag"></tm-pag>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmPag from '@/tmui/components/tm-pag/tm-pag.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+</script>
+
+<style></style>

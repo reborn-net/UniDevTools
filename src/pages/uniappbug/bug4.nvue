@@ -1,0 +1,21 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="32"
+				_class="text-weight-b"
+				label="本页面下面红色区域在安卓端(其它端正常)无法滚动!.如果在page.json中设置disableScroll:true,就可以滚动"
+			></tm-text>
+			<!-- https://ask.dcloud.net.cn/question/143654 -->
+			<scroll-view style="height: 200rpx; width: 300rpx" :scroll-y="true">
+				<view :style="{ background: 'red', height: '80rpx', width: '200rpx' }" v-for="item in 120" :key="item">
+					<text>{{ item }}</text>
+				</view>
+			</scroll-view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+</script>

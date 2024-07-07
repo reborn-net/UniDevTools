@@ -1,0 +1,77 @@
+<template>
+  <view class="nvue">
+    <mainView ref="mainView" />
+  </view>
+</template>
+<script>
+import mainView from "./components/main.vue";
+export default {
+  components: {
+    mainView,
+  },
+  onLoad(options) {
+    let that = this;
+    that.$nextTick(() => {
+      that.$refs.mainView.pageOnLoad(options);
+    });
+  },
+  onBackPress(e) {
+    if (e.from == "navigateBack") {
+      return false;
+    }
+    this.$refs.mainView.hide();
+    return true;
+  },
+};
+</script>
+<style lang="scss" scoped>
+.nvue {
+  width: 750rpx;
+  /* #ifndef APP-PLUS */
+  height: 100vh;
+  /* #endif */
+  /* #ifdef APP-PLUS */
+  flex: 1;
+  /* #endif */
+}
+
+/* #ifdef H5 */
+@media only screen and (pointer: fine) {
+  .showScrollbars {
+    ::-webkit-scrollbar-thumb:horizontal {
+      /*水平滚动条的样式*/
+      width: 4px;
+      background-color: rgba(0, 0, 0, 0.1);
+      -webkit-border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-track-piece {
+      background-color: #fff;
+      /*滚动条的背景颜色*/
+      -webkit-border-radius: 0;
+      /*滚动条的圆角宽度*/
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      /*滚动条的宽度*/
+      height: 5px;
+      /*滚动条的高度*/
+      display: block !important;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+      display: none;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      /*滚动条的hover样式*/
+      height: 50px;
+      background-color: rgba(0, 0, 0, 0.25);
+      -webkit-border-radius: 4px;
+    }
+  }
+}
+
+/* #endif */
+</style>

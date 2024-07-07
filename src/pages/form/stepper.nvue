@@ -1,0 +1,62 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper @change="changeVal" v-model="test.a" :defaultValue="20"></tm-stepper>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="一些其它常见属性"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper v-model="val" color="primary" bgColor="primary" circular :defaultValue="20"></tm-stepper>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="步幅3"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper color="red" bgColor="red" :step="3" circular :defaultValue="0"></tm-stepper>
+			<tm-text _class="pt-24 text-weight-b" :font-size="24" label="小数点,步幅step:0.01,小数点fixed:2"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper :step="0.01" :min="0" :round="0" bgColor="green" color="green" :fixed="2" :defaultValue="0.3"></tm-stepper>
+			<tm-text _class="pt-24 text-weight-b" :font-size="24" label="最大值10，最小值-3"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper :max="10" :min="-3" :defaultValue="1"></tm-stepper>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="异步增减,尺寸的改变"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-stepper
+				:width="200"
+				:height="62"
+				:beforeEnter="beforeEnter"
+				color="red"
+				linear="bottom"
+				bgColor="red"
+				circular
+				:defaultValue="20"
+			></tm-stepper>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, reactive } from 'vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmStepper from '@/tmui/components/tm-stepper/tm-stepper.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const val = ref(0)
+const test = reactive({ a: 1 })
+setTimeout(() => {
+	test.a = 100
+}, 1000)
+function beforeEnter() {
+	return new Promise((res) => {
+		setTimeout(function () {
+			res(true)
+		}, 1000)
+	})
+}
+function changeVal(e) {
+	console.log(e)
+}
+</script>

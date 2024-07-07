@@ -1,0 +1,40 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-more>
+				<tm-text :label="text"></tm-text>
+			</tm-more>
+			<tm-divider></tm-divider>
+			<tm-text :font-size="24" _class="text-weight-b" label="下面是打开前的勾子，不允许查看"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-more :beforeOpen="beforeOpen">
+				<tm-image :width="636" :height="120" src="https://picsum.photos/636/120"></tm-image>
+				<tm-text :label="text"></tm-text>
+			</tm-more>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmMore from '@/tmui/components/tm-more/tm-more.vue'
+const text =
+	'英国广播公司（BBC）24日再次“爆料”，称黑客从新疆警方电存数据，其中包括“存数据，其中包括“存数据，其中包括“存数据，其中包括“脑服务器中获取了大量缓存数据，其中包括“再教育中心”“囚犯”照片。该报道刚刚发出，美国国务院和英国外交部就一齐上阵，夸张地表示“震惊”和“愤慨”。不得不说，在编造涉疆谎言方面，美西方舆论和政客的相互配合，已经熟练到“肌肉记忆”的程度。'
+function beforeOpen() {
+	uni.showLoading({ title: '...' })
+	return new Promise((res, rej) => {
+		setTimeout(function () {
+			uni.hideLoading()
+			rej()
+			uni.showToast({ title: '不允许阅读', icon: 'none' })
+		}, 1500)
+	})
+}
+</script>

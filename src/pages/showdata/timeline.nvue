@@ -1,0 +1,43 @@
+<template>
+	<tm-app>
+		<tm-sheet _class="flex-col">
+			<tm-text :font-size="30" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view>
+				<tm-timeline>
+					<tm-timeline-item color="green" :size="32" type="fill" icon="tmicon-check" time="20222-3-25">
+						<tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
+							<tm-text
+								label="已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收"
+							></tm-text>
+						</tm-sheet>
+					</tm-timeline-item>
+					<tm-timeline-item color="red" time="20222-3-25">
+						<tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
+							<tm-text
+								label="已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收"
+							></tm-text>
+						</tm-sheet>
+					</tm-timeline-item>
+					<tm-timeline-item color="blue" time="20222-3-25">
+						<tm-sheet no-level :shadow="2" :round="3" :margin="[0, 10]">
+							<tm-text
+								label="已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收已经到了中转站，请注意查收"
+							></tm-text>
+						</tm-sheet>
+					</tm-timeline-item>
+				</tm-timeline>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmTimeline from '@/tmui/components/tm-timeline/tm-timeline.vue'
+import tmTimelineItem from '@/tmui/components/tm-timeline-item/tm-timeline-item.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+</script>

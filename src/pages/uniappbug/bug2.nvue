@@ -1,0 +1,18 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="32"
+				_class="text-weight-b"
+				label="本页面你将在ios和安卓端看不到红色方块,只能看到橙色方块,但其它平台可见,style无法以数据对象形式赋值.注:如果是动态切换数组对象样式,又有效,只有静态时失效."
+			></tm-text>
+		</tm-sheet>
+
+		<view :style="[{ background: 'red', height: '80rpx', width: '200rpx' }]"></view>
+		<view :style="{ background: 'orange', height: '80rpx', width: '200rpx' }"></view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+</script>

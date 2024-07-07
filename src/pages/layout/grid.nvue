@@ -1,0 +1,89 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例(点击项目减少)"></tm-text>
+
+			<tm-divider></tm-divider>
+			<tm-grid :width="638" :col="3">
+				<tm-grid-item @click="del(index)" v-for="(item, index) in testNum" :key="index">
+					<tm-text :label="item"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 32]">
+			<tm-text :font-size="24" _class="text-weight-b mb-24" label="含有边线(点击项目新增)"></tm-text>
+			<tm-grid showBorder :width="638" :col="5">
+				<tm-grid-item @click="add(index)" v-for="(item, index) in testNum" :key="index">
+					<tm-text :label="item"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 0]" :padding="[24]">
+			<tm-text :font-size="24" _class="text-weight-b" label="带角标的宫格"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-grid :width="638" :col="4">
+				<tm-grid-item dot>
+					<tm-text label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item count="HOT">
+					<tm-text label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item :count="55">
+					<tm-text label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item icon="tmicon-gem">
+					<tm-text label="宫格文本"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="自定更多内容"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-grid :width="638" :col="3">
+				<tm-grid-item :height="120" dot>
+					<tm-icon name="tmicon-user-fill" :font-size="42"></tm-icon>
+					<tm-text _class="pt-10" :font-size="22" label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item color="orange" :height="120" count="积分">
+					<tm-icon name="tmicon-cog-fill" :font-size="42"></tm-icon>
+					<tm-text _class="pt-10" :font-size="22" label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item color="green" :height="120" :count="55">
+					<tm-icon name="tmicon-heart-fill" :font-size="42"></tm-icon>
+					<tm-text :font-size="22" label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item color="pink" :height="120" icon="tmicon-gem">
+					<tm-icon name="tmicon-layergroup-fill" :font-size="42"></tm-icon>
+					<tm-text _class="pt-10" :font-size="22" label="宫格文本"></tm-text>
+				</tm-grid-item>
+				<tm-grid-item :height="120">
+					<tm-icon color="blue" name="tmicon-lightbulb-fill" :font-size="42"></tm-icon>
+					<tm-text _class="pt-10" :font-size="22" label="宫格文本"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmGridItem from '@/tmui/components/tm-grid-item/tm-grid-item.vue'
+import tmGrid from '@/tmui/components/tm-grid/tm-grid.vue'
+import tmCheckbox from '@/tmui/components/tm-checkbox/tm-checkbox.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+const testNum = ref([])
+for (let i = 0; i < 10; i++) {
+	testNum.value.push(i)
+}
+const del = (index) => {
+	testNum.value.splice(index, 1)
+}
+const add = (index) => {
+	testNum.value.push(index)
+}
+</script>

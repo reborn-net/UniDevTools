@@ -1,0 +1,45 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-rate :defaultValue="2"></tm-rate>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="只读"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-rate color="green" readonly :defaultValue="4" showLabel></tm-rate>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="根据星数不同颜色不一样"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-rate :color="['red', 'orange', 'primary', 'pink', 'green']" showLabel></tm-rate>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="更换不同的图标"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-rate :defaultValue="1" icon="tmicon-smile-fill" :color="['red', 'orange', 'primary', 'pink', 'green']" showLabel></tm-rate>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="禁用"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-rate :defaultValue="1" disabled></tm-rate>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmRate from '@/tmui/components/tm-rate/tm-rate.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+function beforeEnter() {
+	return new Promise((res) => {
+		setTimeout(function () {
+			res(true)
+		}, 1000)
+	})
+}
+</script>

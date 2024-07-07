@@ -1,0 +1,106 @@
+<template>
+	<tm-app>
+		<tm-sheet :margin="[32, 32, 32, 0]">
+			<tm-text :font-size="24" _class="text-weight-b" label="基本示例"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-button color="pink" :margin="[10]" :shadow="0" size="large" label="按钮"> </tm-button>
+				<tm-button :margin="[10]" :shadow="0" size="normal" label="按钮"></tm-button>
+				<tm-button :margin="[10]" size="small" :shadow="0" label="按钮"></tm-button>
+				<tm-button :margin="[10]" size="mini" :shadow="0" label="按钮"></tm-button>
+
+				<tm-button :margin="[10]" :shadow="0" text size="normal" outlined label="浅边框"></tm-button>
+				<tm-button :margin="[10]" :shadow="0" :border="6" outlined size="normal" label="深边框"></tm-button>
+				<tm-button :margin="[10]" transprent text :shadow="0" size="normal" label="透明背景"></tm-button>
+			</view>
+			<tm-button block label="block"></tm-button>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="带图标"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-button icon="tmicon-tongzhifill" size="normal" label="按钮"></tm-button>
+				<tm-button
+					color="red"
+					icon="tmicon-account"
+					:width="86"
+					:round="10"
+					:height="86"
+					:fontSize="40"
+					:margin="[10]"
+					:shadow="0"
+					size="normal"
+				></tm-button>
+				<tm-button
+					color="green"
+					icon="tmicon-account"
+					:width="86"
+					:round="10"
+					:height="86"
+					:fontSize="40"
+					:margin="[10]"
+					:shadow="0"
+					text
+					size="normal"
+				></tm-button>
+				<tm-button
+					icon="tmicon-account"
+					color="pink"
+					:margin="[10]"
+					:shadow="0"
+					text
+					:border="2"
+					borderStyle="dashed"
+					size="normal"
+					label="按钮"
+				></tm-button>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="带图标"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-button :margin="[0]" disabled icon="tmicon-tongzhifill" size="normal" label="禁用"></tm-button>
+				<tm-button :margin="[24, 0]" loading icon="tmicon-tongzhifill" size="normal" label="加载中"></tm-button>
+				<tm-button :margin="[0, 24]" icon="tmicon-tongzhifill" size="normal" label="正常"></tm-button>
+			</view>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 32]">
+			<tm-text :font-size="24" _class="text-weight-b" label="渐变样式,更多属性见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-button
+				:linear-color="['#ea3c2d', '#ff9d14']"
+				color="orange"
+				font-color="white"
+				linear="left"
+				block
+				label="自定义渐变背景"
+			></tm-button>
+			<tm-button linear="right" block label="light"></tm-button>
+			<tm-button linear="right" linearDeep="dark" block label="dark"></tm-button>
+			<tm-button linear="right" linearDeep="accent" block label="accent"></tm-button>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import { useTmpiniaStore } from '@/tmui/tool/lib/tmpinia'
+
+import tmApp from '../../tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmButton from '../../tmui/components/tm-button/tm-button.vue'
+import tmDivider from '../../tmui/components/tm-divider/tm-divider.vue'
+import tmRow from '../../tmui/components/tm-row/tm-row.vue'
+import tmCol from '../../tmui/components/tm-col/tm-col.vue'
+
+const store = useTmpiniaStore()
+
+// setTimeout(()=>{
+//     if(typeof store.tmuiConfig.themeConfig?.component?.button?.round !='undefined'){
+//         store.tmuiConfig.themeConfig.component.button.round = 24
+//         console.log(store.tmuiConfig.themeConfig)
+//     }
+// },2000)
+</script>

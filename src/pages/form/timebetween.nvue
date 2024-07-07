@@ -1,0 +1,39 @@
+<template>
+	<tm-app>
+		<tm-sheet :margin="[0, 0]" :padding="[16, 24]" :round="0">
+			<tm-text label="平铺式,这是一个时间范围选择器,主要应用于数据查询"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-time-between
+				:asyncModel="false"
+				format="MM月DD日"
+				v-model="datevalue"
+				v-model:model-str="datevalue_str_ar"
+				:default-value="datevalue"
+			></tm-time-between>
+		</tm-sheet>
+
+		<tm-cell @click="show = true" :margin="[16, 16]" :round="6" :right-text="datevalue_str || '请选择时间'" title="弹层式选择时间"></tm-cell>
+		<tm-drawer v-model:show="show" :height="900" hideHeader>
+			<view class="pa-16">
+				<tm-time-between @confirm="show = false" :asyncModel="false"></tm-time-between>
+			</view>
+		</tm-drawer>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmDrawer from '@/tmui/components/tm-drawer/tm-drawer.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmTimeBetween from '@/tmui/components/tm-time-between/tm-time-between.vue'
+import { computed, ref } from 'vue'
+const datevalue = ref([])
+const datevalue_str_ar = ref([])
+const datevalue_str = computed(() => datevalue_str_ar.value.join('~'))
+const show = ref(false)
+</script>
+
+<style></style>

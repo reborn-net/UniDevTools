@@ -1,0 +1,42 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" color="red" _class="text-weight-b" label="从3.0.9开始不向下兼容,老项目请继续使用3.0.89的版本即可"></tm-text>
+			<tm-text
+				:font-size="28"
+				label="从3.0.9开始,table组件进行了改版,主要是为了解决非nvue端的性能问题.
+			由于nvue是使用nvue原生组件实现,所以性能这块不用担心.并且支持头部固定的功能,左侧固定功能删除了.
+			非nvue端没有固定的头部,并且取消了scroll-view,而采用原始的view组件生成滚动.
+			3.0.9开始采用同阿里的antv/S2数据结构,方便后续的功能更新迭代.
+			"
+			></tm-text>
+			<view class="flex flex-row">
+				<tm-tag checkable v-model:checked="showFixed" @click="showFixed = !showFixed" label="显示/隐藏头部"></tm-tag>
+				<tm-tag checkable v-model:checked="stripe" @click="stripe = !stripe" label="显示/隐藏条纹"></tm-tag>
+			</view>
+			<tm-divider></tm-divider>
+			<tm-table :table-data="data" :stripe="stripe" :showHeader="showFixed" @rowClick="onClick" :height="650" :width="638"></tm-table>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmTable from '@/tmui/components/tm-table/tm-table.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmTag from '@/tmui/components/tm-tag/tm-tag.vue'
+import { testData, testData2 } from './smpledata'
+
+const showFixed = ref(true)
+const stripe = ref(false)
+const data = ref(testData)
+
+function onClick(row: number, col: number) {
+	uni.$tm.u.toast('行:' + String(row) + ',列' + String(col))
+}
+</script>
+
+<style></style>

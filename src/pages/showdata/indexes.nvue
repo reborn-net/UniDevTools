@@ -1,0 +1,48 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="30" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-text
+				:font-size="24"
+				_class="text-weight-b"
+				label="为了切实解决复杂索引布局,
+			与官方(或者说同类索引组件)的拉开差距,我重新升级了,子项目不再要求设定高度,
+			你可以随意的布局复杂的子项目来提供快速索引功能.
+			请注意子项目:不一定是要列表型,可以随意表单啊,城市列表哈,单选,多选之类的复杂布局轻松应付
+			"
+			></tm-text>
+		</tm-sheet>
+
+		<tm-indexes>
+			<tm-indexes-item title="热门热门" navTitle="热">
+				<view class="my-10 flex flex-row flex-wrap" style="height: 150rpx">
+					<tm-tag outlined label="北京"></tm-tag>
+					<tm-tag outlined label="南昌"></tm-tag>
+					<tm-tag outlined label="长沙"></tm-tag>
+					<tm-tag outlined label="广东"></tm-tag>
+					<tm-tag outlined label="福建"></tm-tag>
+					<tm-tag outlined label="安徽"></tm-tag>
+					<tm-tag outlined label="长沙"></tm-tag>
+					<tm-tag outlined label="广东"></tm-tag>
+					<tm-tag outlined label="福建"></tm-tag>
+					<tm-tag label="安徽"></tm-tag>
+				</view>
+			</tm-indexes-item>
+			<tm-indexes-item :title="index % 10 == 0 ? index : ''" :navTitle="index" v-for="(item, index) in 60" :key="index">
+				<view class="my-16">
+					<tm-text :label="'想要什么的.-' + index"></tm-text>
+				</view>
+			</tm-indexes-item>
+		</tm-indexes>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIndexesItem from '@/tmui/components/tm-indexes-item/tm-indexes-item.vue'
+import tmIndexes from '@/tmui/components/tm-indexes/tm-indexes.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmTag from '@/tmui/components/tm-tag/tm-tag.vue'
+</script>

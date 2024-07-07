@@ -1,0 +1,79 @@
+<template>
+	<tm-app>
+		<tm-sheet :margin="[0, 32]">
+			<tm-text :font-size="24" _class="text-weight-b" label="可展开多个,不建议嵌套使用,尽管兼容,但影响性能."></tm-text>
+		</tm-sheet>
+		<tm-collapse :defaultActiveKey="['2']">
+			<tm-collapse-item title="面板标题1" name="1">
+				<view class="pa-24">
+					<tm-text :font-size="28" _class="text-weight-b" label="这是折叠面板这是折叠面板这是折叠面板这是折叠面板这是折叠面板"></tm-text>
+				</view>
+			</tm-collapse-item>
+			<tm-collapse-item title="面板标题2" name="2">
+				<view class="pa-24">
+					<tm-text :font-size="28" _class="text-weight-b" label="这是折叠面板这是折叠面板这是折叠面板这是折叠面板这是折叠面板"></tm-text>
+					<image :src="item" v-for="(item, index) in listimg" :key="index"></image>
+				</view>
+			</tm-collapse-item>
+			<tm-collapse-item left-icon="tmicon-check-circle-fill" title="面板标题3，允许嵌套使用，展开嵌套面板" name="3">
+				<view class="pa-24">
+					<tm-image
+						:width="300"
+						:height="200"
+						src="https://img1.baidu.com/it/u=275574909,2468810396&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=750"
+					>
+					</tm-image>
+				</view>
+			</tm-collapse-item>
+		</tm-collapse>
+
+		<tm-sheet :margin="[0, 32]">
+			<tm-text :font-size="24" _class="text-weight-b" label="只允许单个展开"></tm-text>
+		</tm-sheet>
+
+		<tm-collapse :accordion="true" :defaultActiveKey="['1']">
+			<tm-collapse-item title="只能展开一个1" name="1">
+				<view class="pa-24">
+					<tm-text :font-size="28" _class="text-weight-b" label="这是折叠面板这是折叠面板这是折叠面板这是折叠面板这是折叠面板"></tm-text>
+				</view>
+			</tm-collapse-item>
+			<tm-collapse-item color="primary" linear="right" activeColor="white" title="随便更改背景" name="2">
+				<view class="pa-24">
+					<tm-text :font-size="28" _class="text-weight-b" label="这是折叠面板这是折叠面板这是折叠面板这是折叠面板这是折叠面板"></tm-text>
+				</view>
+			</tm-collapse-item>
+			<tm-collapse-item title="只能展开一个3" name="3">
+				<view class="pa-24">
+					<tm-text :font-size="28" _class="text-weight-b" label="这是折叠面板这是折叠面板这是折叠面板这是折叠面板这是折叠面板"></tm-text>
+				</view>
+			</tm-collapse-item>
+		</tm-collapse>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmCollapse from '@/tmui/components/tm-collapse/tm-collapse.vue'
+import tmCollapseItem from '@/tmui/components/tm-collapse-item/tm-collapse-item.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+const listimg = ref([
+	'https://picsum.photos/200/300?id=43335',
+	'https://picsum.photos/200/300?id=433',
+	'https://picsum.photos/200/300?id=439',
+	'https://picsum.photos/200/300?id=459'
+])
+
+const listvedio = [
+	'https://picsum.photos/200/300?id=43335',
+	{
+		url: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+		img: 'https://picsum.photos/200/300?id=43335',
+		type: 'video'
+	},
+	'https://picsum.photos/200/300?id=433'
+]
+</script>

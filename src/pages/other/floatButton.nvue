@@ -1,0 +1,51 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="24"
+				_class="text-weight-b"
+				label="悬浮按钮一共4*6=24个位置可选.从3.0.89开始已经重构,兼容性得到完美适配.但注意在h5使用时,显示顶部时,注意要自己让出导航条高度."
+			></tm-text>
+		</tm-sheet>
+		<tm-sheet :shadow="3" :round="3" :height="1600" :margin="[32, 0, 32, 0]">
+			<tm-text :font-size="24" _class="text-weight-b pb-24" label="主按钮位置"></tm-text>
+			<tm-radio-group v-model="pos">
+				<tm-radio :value="item" :label="item" v-for="(item, index) in ['bc', 'bl', 'br', 'tc', 'tl', 'tr']"></tm-radio>
+			</tm-radio-group>
+			<tm-text :font-size="24" _class="text-weight-b py-24" label="子菜单弹出方向"></tm-text>
+			<tm-radio-group v-model="ac_pos">
+				<tm-radio :value="item" :label="item" v-for="(item, index) in ['top', 'left', 'bottom', 'right']"></tm-radio>
+			</tm-radio-group>
+
+			<tm-text :font-size="24" _class="text-weight-b py-32" label="请滚动页面到尾部,点击右下角按钮置顶页面功能."></tm-text>
+		</tm-sheet>
+		<tm-float-button
+			:disabledScrollTo="false"
+			position="br"
+			:btn="{ icon: 'tmicon-angle-up', linear: '', color: 'white', label: '置顶' }"
+		></tm-float-button>
+
+		<tm-float-button
+			showActions
+			:actions="fabActions"
+			:actionsPos="ac_pos"
+			:position="pos"
+			:btn="{ icon: 'tmicon-plus', linear: 'bottom', color: 'green' }"
+		></tm-float-button>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmFloatButton from '@/tmui/components/tm-float-button/tm-float-button.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+const pos = ref('bc')
+const ac_pos = ref('top')
+const fabActions = [
+	{ icon: 'tmicon-ios-sunny', color: 'pink', linear: 'top', label: '文字' },
+	{ icon: 'tmicon-md-power', color: 'red', label: '关闭' }
+]
+</script>

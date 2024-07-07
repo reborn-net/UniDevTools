@@ -1,0 +1,28 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="下面是基础演示属性,更多玩法请前往文档。更多属性动画时长这些请前文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-button block @click="showWin = true" label="显示"></tm-button>
+		</tm-sheet>
+		<tm-overlay v-model:show="showWin" contentAnimation>
+			<view @click.stop="">
+				<tm-sheet :width="500" :height="500">
+					<tm-text label="更多属性动画时长这些请前文档"></tm-text>
+				</tm-sheet>
+			</view>
+		</tm-overlay>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmOverlay from '@/tmui/components/tm-overlay/tm-overlay.vue'
+const showWin = ref(false)
+const pos = ref('bottom')
+</script>

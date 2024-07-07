@@ -1,0 +1,119 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="下面是基础演示属性,更多玩法请前往文档。"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-button
+					:margin="[12, 12]"
+					@click="changPos('bottom')"
+					color="white"
+					:width="120"
+					:height="56"
+					:font-size="24"
+					label="底部"
+				></tm-button>
+				<tm-button :margin="[12, 12]" @click="changPos('top')" color="red" :width="120" :height="56" :font-size="24" label="顶部"></tm-button>
+				<tm-button
+					:margin="[12, 12]"
+					@click="changPos('left')"
+					color="orange"
+					:width="120"
+					:height="56"
+					:font-size="24"
+					label="左边"
+				></tm-button>
+				<tm-button
+					:margin="[12, 12]"
+					@click="changPos('right')"
+					color="pink"
+					:width="120"
+					:height="56"
+					:font-size="24"
+					label="右边"
+				></tm-button>
+				<tm-button
+					:margin="[12, 12]"
+					@click="changPos('center')"
+					color="green"
+					:width="120"
+					:height="56"
+					:font-size="24"
+					label="居中"
+				></tm-button>
+				<tm-drawer :beforeOk="beforeOk">
+					<template v-slot:trigger>
+						<tm-button
+							block
+							:margin="[12, 12]"
+							:padding="[24, 0]"
+							color="cyan"
+							:height="56"
+							:font-size="24"
+							label="通过插槽触发弹层"
+						></tm-button>
+					</template>
+				</tm-drawer>
+			</view>
+		</tm-sheet>
+
+		<tm-drawer ref="calendarView" :placement="pos" v-model:show="showWin">
+			<tm-button
+				:margin="[12, 12]"
+				@click="showWin2 = true"
+				color="green"
+				:width="160"
+				:height="56"
+				:font-size="24"
+				label="内弹出盖内部"
+			></tm-button>
+			<tm-button
+				:margin="[12, 12]"
+				@click="showWin3 = true"
+				color="green"
+				:width="160"
+				:height="56"
+				:font-size="24"
+				label="内弹出盖全屏"
+			></tm-button>
+			<tm-drawer inContent :width="300" :height="300" ref="calendarView" :placement="pos" v-model:show="showWin2"> </tm-drawer>
+			<tm-drawer :width="300" :height="300" ref="calendarView" :placement="pos" v-model:show="showWin3"> </tm-drawer>
+			<!-- inContent -->
+			<!-- <tm-picker :height="500" inContent v-model:show="showWin2" :columns="citydate"></tm-picker> -->
+		</tm-drawer>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance, nextTick } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmDrawer from '@/tmui/components/tm-drawer/tm-drawer.vue'
+import tmCalendarView from '@/tmui/components/tm-calendar-view/tm-calendar-view.vue'
+const calendarView = ref<InstanceType<typeof tmCalendarView> | null>(null)
+const citydate = ref([
+	{ text: '苹果', id: 0 },
+	{ text: '香蕉', id: 1 },
+	{ text: '其它水果', id: 2 },
+	{ text: '越南水果', id: 4 }
+])
+const showWin = ref(false)
+const showWin2 = ref(false)
+const showWin3 = ref(false)
+const pos = ref('bottom')
+function changPos(params: string) {
+	pos.value = params
+	showWin.value = true
+}
+
+function beforeOk() {
+	return new Promise((res) => {
+		setTimeout(() => {
+			res(true)
+		}, 2000)
+	})
+}
+</script>

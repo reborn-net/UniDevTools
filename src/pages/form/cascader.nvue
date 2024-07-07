@@ -1,0 +1,86 @@
+<template>
+	<tm-app color="white">
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-button @click="testValue = []" label="清空选择"></tm-button>
+			<tm-text :label="str ? str : '请选择'"></tm-text>
+		</tm-sheet>
+		<tm-cascader
+			ref="textCascader"
+			:beforeCellClick="loadData"
+			@cell-click="test"
+			v-model="testValue"
+			:defaultValue="testValue"
+			:data="dlist"
+		></tm-cascader>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmCascader from '@/tmui/components/tm-cascader/tm-cascader.vue'
+const textCascader = ref<InstanceType<typeof tmCascader> | null>(null)
+const dlist = ref([
+	{
+		text: '选项0-0',
+		id: '0-0',
+		disabled: false,
+		children: []
+	},
+	{
+		text: '选项0-1',
+		id: '0-1',
+		disabled: true,
+		children: []
+	},
+	{
+		text: '选项0-2',
+		id: '0-2',
+		disabled: false
+	}
+])
+const testValue = ref([])
+
+const str = computed(() => testValue.value.join('/'))
+function loop(path = '0', max = 3, level = 0) {
+	const list = []
+	for (let i = 0; i < max; i += 1) {
+		const key = `${path}-${i}`
+		const treeNode = {
+			text: '选项' + key,
+			id: key,
+			disabled: i == 1
+		}
+
+		if (level > 0) {
+			treeNode.children = loop(key, max, level - 1)
+		}
+
+		list.push(treeNode)
+	}
+	return list
+}
+function test(item: any) {
+	// console.log(item,'test')
+}
+function loadData(level: number, index: number, data: any) {
+	console.log(level, index, data)
+	let test = loop('0', 6, 3)
+	return new Promise((res) => {
+		dlist.value[level[0]].children = test[level[0]].children
+		// dlist.value =test
+		uni.showLoading({ title: '...' })
+		setTimeout(function () {
+			uni.hideLoading()
+			textCascader.value?.reFresh()
+			res(true)
+		}, 1500)
+	})
+}
+</script>

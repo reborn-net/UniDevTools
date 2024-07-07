@@ -1,0 +1,32 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-radio-group v-model="modeltype">
+				<tm-radio value="password" label="密码"></tm-radio>
+				<tm-radio value="card" color="red" label="身份证"></tm-radio>
+				<tm-radio value="car" color="blue" label="车牌"></tm-radio>
+				<tm-radio value="number" color="green" label="数字键盘"></tm-radio>
+			</tm-radio-group>
+		</tm-sheet>
+
+		<tm-cell @click="showdate = true" title="弹出键盘" rightColor="primary" :right-text="dateStr"></tm-cell>
+		<tm-keyboard decimal :type="modeltype" v-model="dateStr" v-model:show="showdate"></tm-keyboard>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed, watch } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmKeyboard from '@/tmui/components/tm-keyboard/tm-keyboard.vue'
+const modeltype = ref('password')
+const dateStr = ref('')
+const showdate = ref(false)
+</script>

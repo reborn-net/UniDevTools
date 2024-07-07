@@ -1,0 +1,132 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-data-table :height="0" :width="tableWidth" unit="px" :data="tableData" :columns="columns" @sorter="handleSort">
+				<template v-slot:operationSlot="{ record, index, rowIndex }">
+					<view class="flex flex-row">
+						<tm-button label="编辑" size="small" unit="px" @click="handleButton('edit', record, index, rowIndex)" />
+						<tm-button
+							label="删除"
+							color="red"
+							style="margin-left: 10px"
+							size="small"
+							unit="px"
+							@click="handleButton('del', record, index, rowIndex)"
+						/>
+					</view>
+				</template>
+				<template v-slot:amountSlot="{ record, index, rowIndex }">
+					<tm-text :label="record.amount" unit="px" :fontSize="13" :color="record.amount > 0 ? 'green' : 'red'" />
+				</template>
+				<template v-slot:statusSlot="{ record, index, rowIndex }">
+					<tm-tag color="green" size="s" label="已审核" v-if="record.status == 1"></tm-tag>
+					<tm-tag color="red" size="s" label="待审核" v-else></tm-tag>
+				</template>
+				<template v-slot:showSlot="{ record, index, rowIndex }">
+					<tm-switch
+						size="mini"
+						color="green"
+						:defaultValue="record.show === 1"
+						:margin="[12, 0]"
+						@change="handleSwitch($event, record, index, rowIndex)"
+					></tm-switch>
+				</template>
+			</tm-data-table>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import TmApp from '@/tmui/components/tm-app/tm-app.vue'
+import TmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import TmText from '@/tmui/components/tm-text/tm-text.vue'
+import TmDataTable from '@/tmui/components/tm-data-table/tm-data-table.vue'
+import TmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import TmButton from '@/tmui/components/tm-button/tm-button.vue'
+import TmTag from '@/tmui/components/tm-tag/tm-tag.vue'
+import TmSwitch from '@/tmui/components/tm-switch/tm-switch.vue'
+
+const columns = ref([
+	{ title: '操作', bgColor: 'grey-4', width: 140, unit: 'px', key: 'operation', cellColor: 'grey-4', slot: 'operationSlot' },
+	{ title: '未付订金', bgColor: 'blue', width: 120, key: 'unpayamount', cellColor: 'blue', sort: true },
+	{ title: '备注', bgColor: 'grey-4', minWidth: 100, key: 'desc', ellipsis: true },
+	{ title: '审核', bgColor: 'grey-4', width: 120, key: 'status', sort: true, slot: 'statusSlot' },
+	{ title: '显示', bgColor: 'grey-4', width: 120, key: 'show', sort: true, slot: 'showSlot' },
+	{ title: '已付订金', bgColor: 'grey-4', width: 150, key: 'amount', slot: 'amountSlot' },
+	{ title: '支付时间', bgColor: 'grey-4', width: 160, key: 'createTime', sort: true }
+])
+const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync()
+const tableWidth = computed(() => {
+	return windowWidth - uni.upx2px(55) * 2
+})
+const tableData = computed(() => {
+	let data = []
+	return [
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 1,
+			show: 0,
+			createTime: '2020-08-02 18:11:00'
+		},
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: -Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 0,
+			show: 1,
+			createTime: '2020-08-01 13:25:00'
+		},
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 0,
+			show: 0,
+			createTime: '2020-08-02 18:11:00'
+		},
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: -Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 0,
+			show: 1,
+			createTime: '2020-08-01 13:25:00'
+		},
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 1,
+			show: 1,
+			createTime: '2020-08-02 18:11:00'
+		},
+		{
+			unpayamount: Math.floor(Math.random() * 1000),
+			amount: -Math.floor(Math.random() * 1000),
+			desc: `我是描述`,
+			status: 0,
+			show: 1,
+			createTime: '2020-08-01 13:25:00'
+		}
+	]
+})
+
+//点击按钮
+function handleButton(type: string, record: any, index: number, rowIndex: number) {
+	console.log(record)
+	uni.$tm.u.toast(`按钮类型：${type},行：${String(index)}，列：${String(rowIndex)}`)
+}
+function handleSwitch(value: boolean, record: any, index: number, rowIndex: number) {
+	record.show = value ? 1 : 0
+	uni.$tm.u.toast(`点击了：开关按钮,行：${String(index)}，列：${String(rowIndex)}`)
+}
+function handleSort(options) {
+	console.log(options)
+	// 远程数据重新赋值tableData即可
+}
+</script>

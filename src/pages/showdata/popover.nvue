@@ -1,0 +1,69 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<view class="mx-32">
+					<tm-popover position="tl">
+						<tm-text label="汽泡上左"></tm-text>
+					</tm-popover>
+				</view>
+				<view class="mx-32">
+					<tm-popover defaultShow color="red">
+						<tm-text label="汽泡上中"></tm-text>
+					</tm-popover>
+				</view>
+				<view class="mx-32">
+					<tm-popover position="tr" color="primary" text>
+						<tm-text label="汽泡上右"></tm-text>
+					</tm-popover>
+				</view>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="不同的位置，颜色渐变等十余种属性见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<view class="mx-32">
+					<tm-popover position="bl" linear="bottom" color="green">
+						<tm-text label="汽泡底左"></tm-text>
+					</tm-popover>
+				</view>
+				<view class="mx-32">
+					<tm-popover position="bc" color="black">
+						<tm-text label="汽泡底中"></tm-text>
+					</tm-popover>
+				</view>
+				<view class="mx-32">
+					<tm-popover position="br" color="primary">
+						<tm-text label="汽泡底右"></tm-text>
+					</tm-popover>
+				</view>
+			</view>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="自定义弹出内容,实现更复杂的布局"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-popover position="bl" :width="400" linear="bottom" color="primary">
+				<tm-text color="primary" label="点我弹出更多菜单"></tm-text>
+				<template v-slot:label>
+					<view class="flex flex-row flex-row-center-center">
+						<tm-tag label="删除订单"></tm-tag>
+						<tm-tag label="申请发票"></tm-tag>
+					</view>
+				</template>
+			</tm-popover>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmPopover from '@/tmui/components/tm-popover/tm-popover.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmTag from '@/tmui/components/tm-tag/tm-tag.vue'
+</script>

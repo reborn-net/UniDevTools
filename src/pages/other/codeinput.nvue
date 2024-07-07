@@ -1,0 +1,37 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例，更多属性和功能见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-codeinput :border="2" :round="4" @click="show = true" :value="str"></tm-codeinput>
+			<view class="py-24"></view>
+			<tm-codeinput :text="false" outlined :round="4" @click="show = true" :value="str"></tm-codeinput>
+			<view class="py-24"></view>
+			<tm-codeinput :show-line="false" :border="0" :round="4" @click="show = true" :value="str"></tm-codeinput>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-codeinput type="dot" :border="0" :size="80" :round="16" :count="4" color="green" @click="show = true" :value="str"></tm-codeinput>
+		</tm-sheet>
+		<tm-keyboard @success="ok" :maxLength="4" v-model:show="show" v-model="str"></tm-keyboard>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCodeinput from '@/tmui/components/tm-codeinput/tm-codeinput.vue'
+import tmKeyboard from '@/tmui/components/tm-keyboard/tm-keyboard.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const show = ref(false)
+const str = ref('')
+
+function ok() {
+	uni.showToast({
+		title: '验证成功',
+		icon: 'none'
+	})
+	show.value = false
+}
+</script>

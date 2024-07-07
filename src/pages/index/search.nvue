@@ -1,0 +1,155 @@
+<template>
+	<tm-app>
+		<tm-sheet darkBgColor="#050505" :margin="[0, 0]">
+			<view class="flex-row flex-row-center-start pb-10">
+				<tm-image :width="108" :height="67.5" :src="logoimg"></tm-image>
+				<view class="pl-16">
+					<tm-text _class="text-weight-b" :font-size="36" label="TMUI 3.0.0"></tm-text>
+					<tm-text color="grey" label="全端兼容vue3 TypeScript pinia组件库"></tm-text>
+				</view>
+			</view>
+			<tm-input
+				placeholder="组件中文/英文名称"
+				:border="1"
+				showClear
+				prefix="tmicon-search"
+				v-model="str"
+				@search="search"
+				@clear="search"
+				searchLabel="搜索组件"
+			></tm-input>
+		</tm-sheet>
+		<tm-result v-if="result.length === 0" :showBtn="false" subTitle="请重新输入关键词"></tm-result>
+
+		<view v-if="result.length > 0" class="ma-32 round-3 overflow">
+			<tm-cell v-for="(item, index) in result" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title">
+			</tm-cell>
+		</view>
+
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+		<tm-message ref="msg"></tm-message>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance, nextTick } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmMessage from '@/tmui/components/tm-message/tm-message.vue'
+import tmInput from '@/tmui/components/tm-input/tm-input.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmResult from '@/tmui/components/tm-result/tm-result.vue'
+
+import logoimg from '@/static/logo.png'
+const { proxy } = getCurrentInstance()
+const totalList = [
+	{ path: '/pages/showdata/avatar', title: '头像 Avatar' },
+	{ path: '/pages/showdata/qrcode', title: '二维码 Qrcode' },
+	{ path: '/pages/showdata/badge', title: '徽标 Badge' },
+	{ path: '/pages/showdata/card', title: '卡片 Card' },
+	{ path: '/pages/showdata/carousel', title: '轮播 Carousel' },
+	{ path: '/pages/showdata/collapse', title: '折叠面板 Collapse' },
+	{ path: '/pages/showdata/comment', title: '评论 Comment' },
+	{ path: '/pages/showdata/cell', title: '单元格 Cell' },
+	{ path: '/pages/showdata/countdown', title: '倒计时 Countdown' },
+	{ path: '/pages/showdata/descriptions', title: '描述 Descriptions' },
+	{ path: '/pages/showdata/image', title: '图片 Image' },
+	{ path: '/pages/showdata/indexes', title: '列表索引 Indexes' },
+	{ path: '/pages/showdata/more', title: '显示更多 More' },
+	{ path: '/pages/showdata/result', title: '结果页 Result' },
+	{ path: '/pages/showdata/popover', title: '汽泡卡片 Popover' },
+	{ path: '/pages/showdata/statistic', title: '数值显示 Statistic' },
+	{ path: '/pages/showdata/table', title: '表格 Table' },
+	{ path: '/pages/showdata/tabs', title: '选项卡 Tabs' },
+	{ path: '/pages/showdata/tag', title: '标签 Tag' },
+	{ path: '/pages/showdata/timeline', title: '时间轴 Timeline' },
+	{ path: '/pages/showdata/tree', title: '树 Tree' },
+	{ path: '/pages/showdata/virtual', title: '虚拟列表 Virtual' },
+	{ path: '/pages/showdata/waterfall', title: '瀑布流 Waterfall' },
+	{ path: '/pages/other/codeinput', title: '验证码输入框 Codeinput' },
+	{ path: '/pages/other/cropimg', title: '图片裁剪 Cropimg' },
+	{ path: '/pages/other/floatButton', title: '悬浮按钮 FloatButton' },
+	{ path: '/pages/other/sticky', title: '吸顶 Sticky' },
+	{ path: '/pages/layout/divider', title: '分割线 Divider' },
+	{ path: '/pages/layout/grid', title: '宫格 Grid' },
+	{ path: '/pages/layout/row', title: '布局 Row' },
+	{ path: '/pages/layout/sheet', title: '基础容器 Sheet' },
+	{ path: '/pages/form/cascader', title: '级联器(点选) Cascader' },
+	{ path: '/pages/form/checkbox', title: '复选框 Checkbox' },
+	{ path: '/pages/form/calendar', title: '日历 Calendar' },
+	{ path: '/pages/form/city', title: '城市选择 City' },
+	{ path: '/pages/form/form', title: '表单 Form' },
+	{ path: '/pages/form/input', title: '输入框 Input' },
+	{ path: '/pages/form/keyborad', title: '键盘 Keyborad' },
+	{ path: '/pages/form/picker', title: '选择器 Picker' },
+	{ path: '/pages/form/rate', title: '评分 Rate' },
+	{ path: '/pages/form/radio', title: '单选框 Radio' },
+	{ path: '/pages/form/stepper', title: '步进器 Stepper' },
+	{ path: '/pages/form/slider', title: '滑块 Slider' },
+	{ path: '/pages/form/switch', title: '开关 Switch' },
+	{ path: '/pages/form/time', title: '时间选择器 Time' },
+	{ path: '/pages/form/upload', title: '图片上传 Upload' },
+	{ path: '/pages/form/weekbar', title: '时间周 Weekbar' },
+	{ path: '/pages/fankui/alert', title: '警告提示 Alert' },
+	{ path: '/pages/fankui/drawer', title: '抽屉 Drawer' },
+	{ path: '/pages/fankui/darglist', title: '列表拖动排序 DragList' },
+	{ path: '/pages/fankui/modal', title: '对话框 Modal' },
+	{ path: '/pages/fankui/message', title: '全局提示 Message' },
+	{ path: '/pages/fankui/overlay', title: '遮罩 Overlay' },
+	{ path: '/pages/fankui/progress', title: '进度条 Progress' },
+	{ path: '/pages/fankui/spin', title: '加载中 Spin' },
+	{ path: '/pages/fankui/skeleton', title: '骨架屏 Skeleton' },
+	{ path: '/pages/fankui/translate', title: '动效 Translate' },
+	{ path: '/pages/fankui/notification', title: '通知提醒 Notificat, nextTickion', nextTick },
+	{ path: '/pages/fankui/slideSwitch', title: '左滑操作栏 slideSwitch' },
+	{ path: '/pages/daohang/actionMenu', title: '底部操作栏 ActionMenu' },
+	{ path: '/pages/daohang/dropdown', title: '下拉选项 Dropdown' },
+	{ path: '/pages/daohang/pagination', title: '分页 Pagination' },
+	{ path: '/pages/daohang/segtab', title: '分段器 Segtab' },
+	{ path: '/pages/daohang/steps', title: '步骤条 Steps' },
+	{ path: '/pages/changyong/app', title: '根节点 App' },
+	{ path: '/pages/changyong/button', title: '按钮 Button' },
+	{ path: '/pages/changyong/icon', title: '图标 Icon' },
+	{ path: '/pages/changyong/text', title: '文本标签 Text' },
+	{ path: '/pages/daohang/navbar', title: '标题导航栏 Navbar' },
+	{ path: '/pages/daohang/tabbar', title: '底部导航 Tabbar' },
+	{ path: '/pages/other/signBoard', title: '签名板 SignBoard' },
+	{ path: '/pages/fankui/rollNotice', title: '滚动通知 RollNotice' },
+	{ path: '/pages/other/barCode', title: '条形码 BarCode' },
+	{ path: '/pages/other/html', title: '富文本 Html' },
+	{ path: '/pages/form/timebetween', title: '时间范围 Timebetween' }
+]
+const result = ref([])
+const str = ref('')
+onLoad((obj: any) => {
+	if (typeof obj?.key === 'string' && obj?.key != '') {
+		str.value = obj?.key
+		setTimeout(function () {
+			search()
+		}, 300)
+	}
+})
+function search() {
+	if (str.value.trim() == '') {
+		result.value = []
+		return
+	}
+	let _str = str.value.toLocaleLowerCase()
+	let list = totalList.filter((el) => {
+		let _lsttr = el.title.toLocaleLowerCase()
+		return _lsttr.indexOf(_str) > -1
+	})
+	if (list.length === 0) {
+		proxy.$refs.msg.show({ model: 'error', text: '请换个关键词' })
+	} else {
+		proxy.$refs.msg.show({ model: 'success', text: `已查询到${list.length}个` })
+	}
+	result.value = [...list]
+}
+</script>

@@ -1,0 +1,80 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="32" label="横向滚动"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-text label="抹平了平台差异,适用于希望内容横向滚动的场景."></tm-text>
+			<tm-text label="使用时一定要注意scrollx的宽度和内部的宽度一定要设置,否则会失效,同时也要注意高度的设置,留出底部导航条的间距."></tm-text>
+		</tm-sheet>
+		<tm-sheet :padding="[0, 0]" _class="overflow">
+			<tm-scrollx :width="686" :height="300">
+				<tm-grid :col="7" :width="1340">
+					<tm-grid-item v-for="(item, index) in list" :key="index" :height="140" :count="item.count">
+						<tm-image :width="110" :height="79" :src="item.path"></tm-image>
+						<view style="white-space: normal">
+							<tm-text _class="text-overflow-1" :font-size="24" :label="item.title"></tm-text>
+						</view>
+					</tm-grid-item>
+				</tm-grid>
+			</tm-scrollx>
+		</tm-sheet>
+		<tm-sheet :padding="[0, 0]" _class="overflow">
+			<tm-scrollx align="between" :width="686" :height="300">
+				<template v-slot:barll>
+					<tm-text _class="pl-24" color="primary" :font-size="24" label="新闻关键词,营销信息"></tm-text>
+				</template>
+				<tm-grid :col="7" :width="1340">
+					<tm-grid-item v-for="(item, index) in list" :key="index" :height="140" :count="item.count">
+						<tm-image :width="110" :height="79" :src="item.path"></tm-image>
+						<view style="white-space: normal">
+							<tm-text _class="text-overflow-1" :font-size="24" :label="item.title"></tm-text>
+						</view>
+					</tm-grid-item>
+				</tm-grid>
+			</tm-scrollx>
+		</tm-sheet>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import tmApp from '../../tmui/components/tm-app/tm-app.vue'
+import tmScrollx from '../../tmui/components/tm-scrollx/tm-scrollx.vue'
+import tmGrid from '../../tmui/components/tm-grid/tm-grid.vue'
+import tmGridItem from '../../tmui/components/tm-grid-item/tm-grid-item.vue'
+import tmIcon from '../../tmui/components/tm-icon/tm-icon.vue'
+import tmImage from '../../tmui/components/tm-image/tm-image.vue'
+import tmText from '../../tmui/components/tm-text/tm-text.vue'
+import tmDivider from '../../tmui/components/tm-divider/tm-divider.vue'
+import tmSheet from '../../tmui/components/tm-sheet/tm-sheet.vue'
+const list = ref([
+	{ path: 'https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg', title: '天猫新品', count: '热销' },
+	{
+		path: 'https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg',
+		title: '今日爆款今日爆款今日爆款',
+		count: 0
+	},
+	{ path: 'https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg', title: '天猫国际', count: 0 },
+	{ path: 'https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg', title: '飞猪旅行', count: 0 },
+	{ path: 'https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg', title: '天猫超市', count: 0 },
+	{
+		path: 'https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp',
+		title: '冬奥公益',
+		count: 0
+	},
+	{ path: 'https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg', title: '飞猪旅行', count: 99 },
+	{ path: 'https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg', title: '天猫超市', count: 0 },
+	{
+		path: 'https://gw.alicdn.com/imgextra/i4/O1CN01VuRfwH1muSbsJFxoM_!!6000000005014-2-tps-183-144.png_q90.jpg_.webp',
+		title: '冬奥公益',
+		count: 0
+	},
+	{ path: 'https://gw.alicdn.com/imgextra/i4/O1CN01XCiY1B1px9ivHkDGm_!!6000000005426-2-tps-183-144.png_q90.jpg', title: '天猫新品', count: 6 },
+	{ path: 'https://gw.alicdn.com/imgextra/i3/O1CN01FgQFp81spmBXqQMtA_!!6000000005816-2-tps-183-144.png_q90.jpg', title: '今日爆款', count: 0 },
+	{ path: 'https://gw.alicdn.com/imgextra/i1/O1CN01tsk5OY1q0MUo5PJga_!!6000000005433-2-tps-183-144.png_q90.jpg', title: '天猫国际', count: 0 },
+	{ path: 'https://gw.alicdn.com/imgextra/i2/O1CN01yK3Cxn1sTnAx1fOjq_!!6000000005768-2-tps-183-144.png_q90.jpg', title: '飞猪旅行', count: 0 },
+	{ path: 'https://gw.alicdn.com/imgextra/i1/O1CN01iZIGkz1URSOUdRHqS_!!6000000002514-2-tps-183-144.png_q90.jpg', title: '天猫超市', count: 0 }
+])
+</script>
+
+<style></style>

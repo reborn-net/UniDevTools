@@ -1,0 +1,25 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-city-cascader></tm-city-cascader>
+		</tm-sheet>
+		<tm-cell @click="showdate = true" title="请选择所在区域" :right-text="dateStr || '请选择'"></tm-cell>
+		<tm-city-picker v-model:show="showdate" v-model="citydate" v-model:model-str="dateStr"></tm-city-picker>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmCityCascader from '@/tmui/components/tm-city-cascader/tm-city-cascader.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmCityPicker from '@/tmui/components/tm-city-picker/tm-city-picker.vue'
+const dateStr = ref('')
+const citydate = ref([])
+const showdate = ref(false)
+</script>

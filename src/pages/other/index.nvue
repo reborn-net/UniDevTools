@@ -1,0 +1,35 @@
+<template>
+	<tm-app>
+		<view class="ma-32 overflow">
+			<tm-cell :round="index==0?[3,3]:(index==list.length-1?[0,0,3,3]:0)"  v-for="(item, index) in list" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title"> </tm-cell>
+		</view>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import logoimg from '@/static/logo.png'
+const list = ref([
+	{ path: '/pages/other/codeinput', title: '验证码输入框 Codeinput' },
+	{ path: '/pages/other/cropimg', title: '图片裁剪 Cropimg' },
+	{ path: '/pages/other/floatButton', title: '悬浮按钮 FloatButton' },
+	{ path: '/pages/other/sticky', title: '吸顶 Sticky' },
+	{ path: '/pages/other/signBoard', title: '签名板 SignBoard' },
+	{ path: '/pages/other/barCode', title: '条形码 BarCode' },
+	{ path: '/pages/other/scrollx', title: '横向滚动 Scrollx' },
+	{ path: '/pages/other/scrolly', title: '纵向滚动 Scrolly' },
+	{ path: '/pages/other/watermark', title: '水印 Watermark' },
+	{ path: '/pages/other/html', title: '富文本解析 Html' },
+	{ path: '/pages/other/colorPicker', title: '颜色选择器 colorView' },
+	{ path: '/pages/other/adsorb', title: '吸附器 Adsorb' },
+	{ path: '/pages/other/sort', title: '宫格排序 Sort' },
+	{ path: '/pages/other/flyView', title: '飞元素 tmFlyView' }
+])
+</script>

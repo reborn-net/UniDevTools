@@ -1,0 +1,114 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text label="这是tmui作者自编的一个轻量级渲染库,主要适用于uniapp一些营销的动画渲染.3.1.03首次发布"></tm-text>
+			<tm-text label="目前还未开放文档,请参考示例制作你想的交互营销动画."></tm-text>
+			
+		</tm-sheet>
+		
+		<tm-sheet :round="5" color="black" :padding="[0, 0]" :height="716">
+			<tm-render ref="dom" :width="686" :height="716"></tm-render>
+		</tm-sheet>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref, getCurrentInstance, onMounted, nextTick, onUnmounted } from 'vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmRender from '../../tmui/components/tm-render/tm-render.vue'
+import tmText from '../../tmui/components/tm-text/tm-text.vue'
+import { tmRoundRect } from '@/tmui/components/tm-render/tmCv/shape/roundRect'
+import { tmRect } from '@/tmui/components/tm-render/tmCv/shape/rect'
+import { tmTextColor } from '@/tmui/components/tm-render/tmCv/shape/textColor'
+import { tmTextLabel } from '@/tmui/components/tm-render/tmCv/shape/text'
+import { tmImages } from '@/tmui/components/tm-render/tmCv/shape/image'
+import { tmCv } from '@/tmui/components/tm-render/tmCv'
+import { onLoad, onShow, onUnload } from '@dcloudio/uni-app'
+let tmcv: tmCv | null = null
+const dom = ref<InstanceType<typeof tmRender> | null>(null)
+const haibaoimgurl = ref("")
+
+onShow(()=>{
+	setTimeout(function() {
+		draw()
+	}, 100);
+})
+onUnload(()=>{
+	if(!tmcv) return;
+	tmcv.destory()
+})
+
+async function draw() {
+	if (!dom.value) return
+	tmcv = await dom.value.getTmCv()
+	
+	if (!tmcv) return
+	const text = new tmTextColor(tmcv, {
+		x: 90,
+		fillStyle: 'red',
+		y: 150,
+		text: [
+			{ text: 'OhMyGa', color: 'white' },
+			{ text: '动画交互', color: 'yellow', fontSize: 24 },
+			{ text: '超6的库', color: 'white' }
+		],
+		textAlign: 'left'
+	})
+	const Logo = new tmImages(
+		tmcv,
+		{
+			x: (tmcv.opts.width - 100) / 2,
+			y: 30,
+			width: 100,
+			height: 100,
+			radius: [10, 10, 10, 10],
+			strokeStyle: 'white',
+			lineWidth: 6
+		},
+		'https://cdn.tmui.design/public/design/testImg.jpg'
+	)
+	const Logo2 = new tmImages(
+		tmcv,
+		{
+			x: (tmcv.opts.width - 60) / 2,
+			y: 300,
+			width: 60,
+			height: 60,
+			radius: [30, 30, 30, 30],
+			strokeStyle: 'white',
+			lineWidth: 6
+		},
+		'https://tmui.design/images/logoGreat.png'
+	)
+
+	const Line = new tmRect(tmcv, { x: 0, fillStyle: 'red', y: 190, width: 100, height: 6 })
+	const roundRect = new tmRoundRect(tmcv, {
+		x: 10,
+		strokeStyle: 'red',
+		y: 10,
+		width: tmcv.opts.width - 20,
+		height: tmcv.opts.height - 20,
+		radius: [6, 6, 6, 6],
+		fillStyle:'#24231f'
+	})
+	const textlabel = new tmTextLabel(tmcv, {
+		x: 8,
+		fillStyle: 'red',
+		y: 240,
+		text: '同名自定义',
+		textAlign: 'center',
+		fontSize: 30
+	})
+	const Line2 = new tmRect(tmcv, { x: (tmcv.opts.width - 100) / 2, fillStyle: 'red', y: 280, width: 100, height: 3 })
+	tmcv.add([roundRect,Logo, Logo2, text, textlabel, Line, Line2, ])
+	Logo.animate({ width: 110, height: 110 }, { yoyo: true, repeat: Infinity })
+	Line.animate({ x: tmcv.opts.width - 100 }, { yoyo: true, repeat: Infinity, duration: 1200 })
+	textlabel.animate({ fontSize: 18,fillStyle:"yellow" }, { yoyo: true, repeat: Infinity, duration: 1200 })
+	tmcv.draw()
+}
+
+</script>
+
+<style></style>

@@ -1,0 +1,34 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :fontSize="24" _class="text-weight-b" label="基础属性,更多玩法请前往文档。"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-between flex-row px-32">
+				<tm-dropdown position="bl" color="grey-darken-4" :width="220" :list="list">
+					<tm-text label="显示菜单"></tm-text>
+				</tm-dropdown>
+				<tm-dropdown :width="220" color="red" :list="list">
+					<tm-text label="样式1"></tm-text>
+				</tm-dropdown>
+				<tm-dropdown position="br" :width="220" color="primary" linear="bottom" linearDeep="accent" :list="list">
+					<tm-text label="右对齐"></tm-text>
+				</tm-dropdown>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDropdown from '@/tmui/components/tm-dropdown/tm-dropdown.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+
+const list = ref([
+	{ text: '苹果', id: '1', icon: 'tmicon-collection' },
+	{ text: '菠萝', id: '2', icon: 'tmicon-account-plus' },
+	{ text: '电话', id: '3', icon: 'tmicon-phone' }
+])
+</script>

@@ -1,0 +1,72 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="pb-24">
+				<tm-text :label="radiolist ? radiolist : '请选择'"></tm-text>
+			</view>
+
+			<tm-radio-group v-model="radiolist" :defaultValue="radiolist">
+				<tm-radio outlined value="apple" label="苹果基础示例"></tm-radio>
+				<tm-radio color="orange" value="banner" label="香蕉"></tm-radio>
+				<tm-radio color="pink" value="test" label="测试项"></tm-radio>
+				<tm-radio color="green" value="other" label="其它水果"></tm-radio>
+			</tm-radio-group>
+			<tm-radio-group direction="customCol" v-model="radiolist"  :defaultValue="radiolist">
+				<tm-radio outlined value="apple" label="苹果基础示例苹果基础示例苹果基础示例苹果基础示例苹果基础示例"></tm-radio>
+				<tm-radio color="orange" value="banner" label="香蕉示例苹果基础示例苹示例苹果基础示例苹示例苹果基础示例苹"></tm-radio>
+				<tm-radio color="pink" value="test" label="测试项示例苹果基础示例苹示例苹果基础示例苹"></tm-radio>
+				<tm-radio color="green" value="other" label="其它水果示例苹果基础示例苹示例苹果基础示例苹"></tm-radio>
+			</tm-radio-group>
+		</tm-sheet>
+
+		<tm-sheet :margin="[32, 0]">
+			<tm-text :font-size="24" _class="text-weight-b" label="其它属性和checkbox一样，拥有丰富的属性设置"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="pb-24">
+				<tm-text :label="radiolist ? radiolist : '请选择'"></tm-text>
+			</view>
+			<tm-radio-group v-model="radiolist"  :defaultValue="radiolist">
+				<tm-radio :beforeChecked="beforeChecked" value="apple" label="苹果异步选中"></tm-radio>
+				<tm-radio color="orange" value="banner" label="香蕉"></tm-radio>
+				<tm-radio disabled color="pink" value="test" label="测试项"></tm-radio>
+				<tm-radio border-style="dashed" color="green" value="other" label="其它水果"></tm-radio>
+			</tm-radio-group>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="按钮样式"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-radio-group model="button" v-model="radio"  :defaultValue="radio">
+				<tm-radio :value="true" label="选我呀"></tm-radio>
+				<tm-radio :value="false" label="不要选我呀"></tm-radio>
+				<tm-radio :value="false" label="不要选我呀"></tm-radio>
+				<tm-radio :value="false" label="选我"></tm-radio>
+				<tm-radio :value="false" label="不要选我呀"></tm-radio>
+				<tm-radio :value="false" label="不要选我呀"></tm-radio>
+			</tm-radio-group>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+const radio = ref(null)
+
+const radiolist = ref(undefined)
+
+function beforeChecked(e:any) {
+	return new Promise((res) => {
+		setTimeout(function () {
+			res(true)
+		}, 1000)
+	})
+}
+</script>

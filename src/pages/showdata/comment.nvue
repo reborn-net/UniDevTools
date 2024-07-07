@@ -1,0 +1,84 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础评论"></tm-text>
+		</tm-sheet>
+		<tm-comment
+			author="同名自定义"
+			avatar="https://picsum.photos/200/200"
+			time="2022/5/20 13:25"
+			content="这是一条最简单的评论内容。"
+		></tm-comment>
+		<tm-comment author="同名自定义" avatar="https://picsum.photos/200/200" time="2022/5/20 13:25" content="这是一条最简单的评论内容。">
+			<template v-slot:actions>
+				<view class="flex flex-row norwap">
+					<view class="flex flex-row flex-center pl-16">
+						<tm-icon :font-size="24" name="tmicon-comment-dots"></tm-icon>
+						<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+					</view>
+					<view class="flex flex-row flex-center pl-16">
+						<tm-icon :font-size="24" name="tmicon-md-heart"></tm-icon>
+						<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+					</view>
+				</view>
+			</template>
+		</tm-comment>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="可以通过插槽，样式属性配置更个性化"></tm-text>
+		</tm-sheet>
+		<tm-comment author="同名自定义" avatar="https://picsum.photos/200/200" time="2022/5/20 13:25" content="这是一条最简单的评论内容。">
+			<tm-comment
+				:border="1"
+				:margin="[0, 8]"
+				author="同名自定义"
+				avatar="https://picsum.photos/200/200"
+				time="2022/5/20 13:25"
+				content="这是一条最简单的评论内容。"
+			>
+				<tm-comment
+					color="grey"
+					linear="left"
+					text
+					:border="1"
+					:margin="[0, 8]"
+					author="同名自定义"
+					avatar="https://picsum.photos/200/200"
+					time="2022/5/20 13:25"
+					content="这是一条最简单的评论内容。"
+				>
+					<template v-slot:actions>
+						<view class="flex flex-row norwap">
+							<view class="flex flex-row flex-center pl-16">
+								<tm-icon :font-size="24" name="tmicon-comment-dots"></tm-icon>
+								<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+							</view>
+							<view class="flex flex-row flex-center pl-16">
+								<tm-icon :font-size="24" name="tmicon-md-heart"></tm-icon>
+								<tm-text _class="pl-10" :font-size="24" label="125"></tm-text>
+							</view>
+						</view>
+					</template>
+				</tm-comment>
+			</tm-comment>
+		</tm-comment>
+		<tm-comment author="同名自定义" avatar="https://picsum.photos/200/200" time="2022/5/20 13:25" content="您也可配置输入框进行回复操作。">
+			<tm-input></tm-input>
+			<view class="flex flex-row flex-row-center-end">
+				<tm-button color="red" :margin="[24, 0]" label="确认评论" :font-size="24" :width="160" :height="60"></tm-button>
+				<tm-button color="white" label="取消" :font-size="24" :width="120" :height="60"></tm-button>
+			</view>
+		</tm-comment>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmComment from '@/tmui/components/tm-comment/tm-comment.vue'
+import tmInput from '@/tmui/components/tm-input/tm-input.vue'
+</script>

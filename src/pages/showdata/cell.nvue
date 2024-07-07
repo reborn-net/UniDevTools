@@ -1,0 +1,48 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+		</tm-sheet>
+		<view class="mb-32 mx-32 round-3 overflow">
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="头像 Avatar"> </tm-cell>
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="徽标 Badge"> </tm-cell>
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="卡片 Card"> </tm-cell>
+		</view>
+		<view class="mb-32 mx-32 round-3 overflow">
+			<tm-cell :round="3" :margin="[0, 0, 0, 16]" :titleFontSize="30" title="头像 Avatar"> </tm-cell>
+			<tm-cell :round="3" :margin="[0, 0, 0, 16]" rightText="简单组件简单组件" :titleFontSize="30" title="徽标 Badge"> </tm-cell>
+			<tm-cell :round="3" :margin="[0, 0, 0, 16]" rightColor="red" rightText="2个" :titleFontSize="30" title="卡片 Card"> </tm-cell>
+		</view>
+		<view class="mb-32 mx-32 round-3 overflow">
+			<tm-cell bottomBorder :margin="[0, 0]" :titleFontSize="30" title="头像 Avatar"> </tm-cell>
+			<tm-cell bottomBorder :margin="[0, 0]" :titleFontSize="30" title="徽标 Badge"> </tm-cell>
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="卡片 Card"> </tm-cell>
+		</view>
+		<view class="mb-32 mx-32 round-3 overflow">
+			<tm-cell
+				showAvatar
+				avatar="https://picsum.photos/200"
+				rightText="简单组件简单组件"
+				:margin="[0, 0]"
+				:titleFontSize="30"
+				title="头像 Avatar"
+			>
+			</tm-cell>
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="徽标 Badge">
+				<template v-slot:right>
+					<tm-checkbox :round="12"></tm-checkbox>
+				</template>
+			</tm-cell>
+			<tm-cell :margin="[0, 0]" :titleFontSize="30" title="卡片 Card"> </tm-cell>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCheckbox from '@/tmui/components/tm-checkbox/tm-checkbox.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+</script>

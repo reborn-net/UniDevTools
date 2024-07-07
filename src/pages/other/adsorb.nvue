@@ -1,0 +1,32 @@
+<template>
+	<tm-app>
+		<tm-sheet :followDark="false">
+			<tm-text :font-size="26" label="吸附器,自动吸附在屏幕两边边缘"></tm-text>
+		</tm-sheet>
+		<tm-adsorb :adsorb="false" :offset="[left / 2, top / 2]" :width="300" :height="150">
+			<view class="flex flex-row flex-row-center-center" style="width: 300rpx; height: 150rpx; background: green; border-radius: 10rpx">
+				<tm-text color="white" label="随意拖动"></tm-text>
+			</view>
+		</tm-adsorb>
+		<tm-adsorb :offset="[left, top]" :width="120" :height="120">
+			<view class="flex flex-row flex-row-center-center" style="width: 120rpx; height: 120rpx; background: red; border-radius: 120rpx">
+				<tm-text color="white" label="拖动吸附"></tm-text>
+			</view>
+		</tm-adsorb>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmAdsorb from '@/tmui/components/tm-adsorb/tm-adsorb.vue'
+const sys = uni.getSystemInfoSync()
+const left = ref(uni.$tm.u.torpx(sys.windowWidth) - 160)
+const top = ref(uni.$tm.u.torpx(sys.windowHeight) - 160)
+</script>

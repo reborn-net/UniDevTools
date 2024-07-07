@@ -1,0 +1,25 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="32"
+				_class="text-weight-b"
+				label="页面示例表达为:在安卓端点击输入框,点击事件无法穿透冒泡到下层view元素(ios端可以,没有此问题)."
+			></tm-text>
+			<!-- https://ask.dcloud.net.cn/question/145692 -->
+			<view @click="test">
+				<input placeholder="请点击我输入框" style="background: red" :disabled="true" />
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+function test() {
+	console.log('我被点击了。')
+	uni.showToast({
+		title: '我被点击了'
+	})
+}
+</script>

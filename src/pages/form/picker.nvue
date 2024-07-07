@@ -1,0 +1,110 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-picker-view map-key="word" :columns="citydate"></tm-picker-view>
+		</tm-sheet>
+		<tm-cell @click="showdate = true" title="请选择水果种类" :right-text="dateStr || '请选择'"></tm-cell>
+		<tm-cell @click="showdateq = true" title="这里联动上边" :right-text="dateStr2 || '请选择'"></tm-cell>
+		<tm-picker
+			:defaultValue="pickydata"
+			@confirm="pickok"
+			v-model:show="showdate"
+			:columns="citydate3"
+			v-model="pickydata"
+			v-model:model-str="dateStr"
+		>
+		</tm-picker>
+
+		<tm-picker v-model:show="showdateq" :columns="citydate3" v-model="pickydata2" v-model:model-str="dateStr2"> </tm-picker>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="多级联动,更多属性请自行看文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-picker-view :columns="citydate2"></tm-picker-view>
+		</tm-sheet>
+		<view class="py-32"></view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, computed, nextTick } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmPickerView from '@/tmui/components/tm-picker-view/tm-picker-view.vue'
+import tmPicker from '@/tmui/components/tm-picker/tm-picker.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+const dateStr = ref('')
+const dateStr2 = ref('')
+const pickydata = ref([1, 1])
+const pickydata2 = ref([])
+const citydate = ref([
+	{ word: '苹果', id: 0 },
+	{ word: '香蕉', id: 1 },
+	{ word: '其它水果', id: 2 },
+	{ word: '越南水果', id: 4 }
+])
+const citydate2 = ref([
+	{
+		text: '苹果',
+		id: 0,
+		children: [
+			{ text: '香蕉', id: 10 },
+			{ text: '香蕉2', id: 122 }
+		]
+	},
+	{
+		text: '子级',
+		id: 1,
+		children: [
+			{ text: '香蕉', id: 10 },
+			{ text: '香蕉2', id: 122 }
+		]
+	},
+	{
+		text: '越南水果',
+		id: 2,
+		children: [
+			{ text: '苹果2222', id: 10 },
+			{ text: '香蕉', id: 12 }
+		]
+	}
+])
+const citydate3 = ref([
+	{
+		text: '苹果',
+		id: 0,
+		children: [
+			{ text: '香蕉', id: 10 },
+			{ text: '香蕉2', id: 122 }
+		]
+	},
+	{
+		text: '苹果',
+		id: 1,
+		children: [
+			{ text: '香蕉', id: 10 },
+			{ text: '香蕉2', id: 122 }
+		]
+	},
+	{
+		text: '越南水果',
+		id: 3,
+		children: [
+			{ text: '苹果2222', id: 10 },
+			{ text: '香蕉', id: 12 }
+		]
+	}
+])
+const showdate = ref(false)
+const showdateq = ref(false)
+
+function pickok() {
+	nextTick(() => {
+		pickydata2.value = []
+	})
+}
+</script>

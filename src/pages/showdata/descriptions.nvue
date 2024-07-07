@@ -1,0 +1,46 @@
+<template>
+	<tm-app>
+		<tm-sheet :padding="[0]" :margin="[32, 16]">
+			<tm-descriptions :data="list"></tm-descriptions>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0]" :padding="[0]">
+			<tm-descriptions :label-width="100" :width="686" :column="3" transprent :round="3" text title="展示3列属性">
+				<tm-descriptions-item
+					:font-size="24"
+					v-for="(item, index) in list2"
+					:key="index"
+					:label="item.label"
+					:value="item.value"
+				></tm-descriptions-item>
+				<tm-descriptions-item :font-size="24" color="red" label="工具" value="vscode">
+					<tm-sheet color="red" text :border="1" :margin="[6, 0]" :padding="[4]" :round="2">
+						<tm-text :font-size="24" label="vscode"></tm-text>
+					</tm-sheet>
+				</tm-descriptions-item>
+			</tm-descriptions>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDescriptions from '@/tmui/components/tm-descriptions/tm-descriptions.vue'
+import tmDescriptionsItem from '@/tmui/components/tm-descriptions-item/tm-descriptions-item.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+
+const list = [
+	{ label: '同步时间', value: '2022/5/12' },
+	{ label: '同步时间', value: '2022/5/12' },
+	{ label: '同步时间', value: '2022/5/12' },
+	{ label: '同步时间', value: '2022/5/12' }
+]
+const list2 = [
+	{ label: '客户', value: '同名自定义' },
+	{ label: '金额', value: '￥256' },
+	{ label: '状态', value: '正常' },
+	{ label: '禁用', value: '否' }
+]
+</script>

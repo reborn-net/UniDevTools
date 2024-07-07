@@ -1,0 +1,50 @@
+<template>
+	<tm-app ref="app">
+		<tm-navbar color="blue" linear="right" title="设置更多主题"></tm-navbar>
+		<view class="mx-32 flex flex-row flex-wrap">
+			<tm-sheet
+				@click="setTheme(item.name)"
+				:round="3"
+				:margin="[4, 15]"
+				:color="item.name"
+				v-for="(item, index) in list"
+				:key="index"
+				:width="285"
+				:height="130"
+			>
+				<tm-sheet :userInteractionEnabled="false" :round="3" blur :margin="[0, 0]" :height="80">
+					<tm-text :label="item.name"></tm-text>
+				</tm-sheet>
+			</tm-sheet>
+		</view>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref, getCurrentInstance, nextTick, computed, onMounted } from 'vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmNavbar from '@/tmui/components/tm-navbar/tm-navbar.vue'
+import { onLoad, onInit } from '@dcloudio/uni-app'
+import { useTmpiniaStore } from '@/tmui/tool/lib/tmpinia'
+const app = ref<InstanceType<typeof tmApp> | null>(null)
+const store = useTmpiniaStore()
+const { proxy } = getCurrentInstance()
+const list = ref([])
+onMounted(() => showlist())
+
+function showlist() {
+	list.value = [...store.tmStore.colorList]
+}
+
+function setTheme(colorname: string) {
+	app.value?.setTheme(colorname)
+}
+onLoad(() => {
+	console.log('--------')
+})
+</script>
+
+<style></style>

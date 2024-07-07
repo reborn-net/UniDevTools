@@ -1,0 +1,61 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="30"
+				color="red"
+				_class="text-weight-b"
+				label="3.0.89开始真正的实现了所有平台的兼容，特别是在nvue下面更为流畅，性能是最好的。"
+			></tm-text>
+			<tm-text
+				:font-size="24"
+				label="这里只展示部分，更多请见Echarts(5.3.2)官网示例，官网所有示例均可用。包大小可以自行裁剪。以下示例，为官网复制过来,样式可能不太好看，请自行配置属性。webpc也兼容 "
+			></tm-text>
+			<tm-text
+				:font-size="24"
+				color="red"
+				label="特别强调：组件从3.0.89开始已经兼容了nvue端echarts(5.4.3)，丝滑展示图表。但因为nvue是我映射的api接口，因此只提供部分接口供你使用。具体映射的接口数量见文档。"
+			></tm-text>
+			<!-- #ifdef MP -->
+			<tm-text color="red" label="小程序包超过大小,不演示,请前往h5或者app中预览效果."></tm-text>
+			<!-- #endif -->
+		</tm-sheet>
+		<!-- #ifndef MP -->
+		<tm-chart ref="chartDom" :height="600" @onInit="chartInit"></tm-chart>
+		<!-- #endif -->
+	</tm-app>
+</template>
+<script lang="ts" setup>
+/**
+ * 由于采用了es6 import，所以按需裁剪变得更为简单，无需去官网下载压缩包，想要用到什么就导入什么。
+ * 按需裁剪包大小见官网配置：https://echarts.apache.org/zh/api.html#echarts.use
+ */
+import { ref, getCurrentInstance, onMounted } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+// #ifndef MP
+import tmChart from '@/tmui/components/tm-chart/tm-chart.vue'
+import { ECharts } from 'echarts'
+import { chartdata } from './chartdata'
+const chartDom = ref<InstanceType<typeof tmChart>>(null)
+let chartdataAny: any = chartdata
+const dkey = ref('lineChart')
+onLoad((obj: any) => {
+	if (obj?.key !== '' && typeof obj?.key != 'undefined') {
+		dkey.value = obj?.key ?? 'lineChart'
+	}
+})
+function chartInit(chart: ECharts) {
+	chart.setOption(chartdata[dkey.value])
+	setTimeout(() => {
+		chartDom.value.getImg().then((e) => {
+			// 打印图表图片，记得要等动画结束再截取，这里只是演示，具体以你的情况为例做调整。
+			console.log(e)
+		})
+	}, 200)
+}
+
+// #endif
+</script>

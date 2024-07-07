@@ -1,0 +1,182 @@
+<template>
+	<tm-app>
+		<view class="pa-32">
+			<tm-button
+				@click="show = true"
+				label="打开购买窗口"
+				block
+				linear="left"
+				linear-deep="accent"
+				color="red"
+				:font-size="32"
+				:round="24"
+			></tm-button>
+		</view>
+		<tm-sheet>
+			<tm-text label="这个sku组件，商品的可选属性是不限制的，不管是显示尺码，颜色，型号，还是就显示一个颜色。可以随意的控制。"></tm-text>
+		</tm-sheet>
+		<tm-sku
+			:value="'a-a-b'"
+			@buy="buy"
+			:num="num"
+			:height="900"
+			:sku-map="[
+				{ key: 'size', value: '商品尺码' },
+				{ key: 'color', value: '商品颜色' },
+				{ key: 'model', value: '商品型号' }
+			]"
+			:list="list"
+			v-model:show="show"
+		></tm-sku>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import tmSku from '@/tmui/components/tm-sku/tm-sku.vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+
+import { Ref, ref } from 'vue'
+const show = ref(false)
+const list = ref({
+	data: [
+		{
+			title: '颜色类型',
+			id: 'test',
+			children: [
+				{
+					title: '白色',
+					id: 'a',
+					num: 5
+				},
+				{
+					title: '黑色',
+					id: 'b',
+					num: 5
+				}
+			]
+		},
+		{
+			title: '尺码表',
+			id: 'model',
+			children: [
+				{
+					title: 'XS',
+					id: 'a',
+					num: 5
+				},
+				{
+					title: 'S',
+					id: 'b',
+					num: 5
+				}
+			]
+		},
+		{
+			title: '款式',
+			id: 'style',
+			children: [
+				{
+					title: '套装',
+					id: 'a',
+					num: 5
+				},
+				{
+					title: '单件',
+					id: 'b',
+					num: 5
+				}
+			]
+		}
+	],
+	product: [
+		{
+			id: 'a-a-a',
+			title: '白色-XS-套装',
+			num: 2,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/2328862868/O1CN01b5pglN1X3ahprbU9P_!!2328862868.jpg'
+		},
+		{
+			id: 'a-a-b',
+			title: '白色-XS-单件',
+			num: 5,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i3/2328862868/O1CN01UBMJfy1X3af4Lc3ME_!!2328862868.jpg'
+		},
+		{
+			id: 'a-b-a',
+			title: '白色-S-套装',
+			num: 3,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/TB1fw40oAvoK1RjSZPfSutPKFXa.jpg'
+		},
+		{
+			id: 'a-b-b',
+			title: '白色-S-单件',
+			num: 5,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/398719215/O1CN01zgD6Xi2HwWY8U589Z_!!398719215.jpg'
+		},
+
+		{
+			id: 'b-a-a',
+			title: '黑色-XS-套装',
+			num: 0,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/TB1fw40oAvoK1RjSZPfSutPKFXa.jpg'
+		},
+		{
+			id: 'b-a-b',
+			title: '黑色-XS-单件',
+			num: 5,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i3/2328862868/O1CN01UBMJfy1X3af4Lc3ME_!!2328862868.jpg'
+		},
+		{
+			id: 'b-b-a',
+			title: '黑色-S-套装',
+			num: 0,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/2328862868/O1CN01b5pglN1X3ahprbU9P_!!2328862868.jpg'
+		},
+		{
+			id: 'b-b-b',
+			title: '黑色-S-单件',
+			num: 5,
+			max_buy: 3,
+			price: 56.9,
+			salePrice: 54,
+			tip: '当前可省10元',
+			img: 'https://gw.alicdn.com/bao/uploaded/i1/TB1fw40oAvoK1RjSZPfSutPKFXa.jpg'
+		}
+	]
+})
+
+const num = ref(2)
+function buy(e: any) {
+	console.log(e)
+}
+</script>

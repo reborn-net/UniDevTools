@@ -1,0 +1,178 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :fontSize="24" _class="text-weight-b" label="通过与cell组件组合可滑动列表"></tm-text>
+		</tm-sheet>
+		<tm-sheet :padding="[0, 0]" :margin="[32, 0, 32, 0]">
+			<tm-slide-switch @click="cellClick" :rightMenu="action" :width="686" :height="84">
+				<tm-cell :margin="[0, 0]" title="向左滑动,并点击底部按钮"></tm-cell>
+				<template v-slot:right>
+					<view class="flex flex-row flex-row-center-end">
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="red"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="收藏"></tm-text>
+						</tm-sheet>
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="primary"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="删除"></tm-text>
+						</tm-sheet>
+					</view>
+				</template>
+			</tm-slide-switch>
+			<tm-slide-switch disabled :width="686" :height="84">
+				<tm-cell :margin="[0, 0]" title="我被禁用了"></tm-cell>
+				<template v-slot:right>
+					<view class="flex flex-row flex-row-center-end">
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="red"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="收藏"></tm-text>
+						</tm-sheet>
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="primary"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="删除"></tm-text>
+						</tm-sheet>
+					</view>
+				</template>
+			</tm-slide-switch>
+			<tm-slide-switch v-for="item in 3" :key="item" :width="686" :height="84">
+				<tm-cell :margin="[0, 0]" :title="'向左滑动试' + item"></tm-cell>
+				<template v-slot:right>
+					<view class="flex flex-row flex-row-center-end">
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="green"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="哈哈"></tm-text>
+						</tm-sheet>
+						<tm-sheet
+							_class="flex flex-row flex-row-center-center"
+							:width="w"
+							:height="84"
+							color="primary"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="删除"></tm-text>
+						</tm-sheet>
+					</view>
+				</template>
+			</tm-slide-switch>
+		</tm-sheet>
+
+		<tm-sheet>
+			<tm-text :fontSize="24" _class="text-weight-b" label="利用插槽放置其它组件"></tm-text>
+		</tm-sheet>
+		<view class="mx-32 round-2 overflow">
+			<tm-slide-switch :right-width="220" v-model:open-status="isopen" :width="686" :height="300" :round="0" :action="action">
+				<tm-card
+					:margin="[0, 0]"
+					:shadow="0"
+					status="2022-5-2"
+					title="向左滑动试下"
+					content="这是一个基础卡片示例，非常简单且实用。这是一个基础卡片示例，非常简单且实用。"
+				>
+					<template v-slot:action>
+						<view class="flex flex-1 flex-row flex-row-center-end">
+							<tm-button :margin="[24, 0]" label="确认" :font-size="24" :width="120" :height="50"></tm-button>
+							<tm-button color="white" label="取消" :font-size="24" :width="120" :height="50"></tm-button>
+						</view>
+					</template>
+				</tm-card>
+				<template v-slot:right>
+					<view class="flex flex-row flex-row-center-end">
+						<tm-sheet
+							:width="110"
+							_class="flex flex-row flex-row-center-center"
+							:height="300"
+							color="red"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="收藏"></tm-text>
+						</tm-sheet>
+						<tm-sheet
+							@click="onclick"
+							:width="110"
+							_class="flex flex-row flex-row-center-center"
+							:height="300"
+							color="primary"
+							no-level
+							:margin="[0]"
+							:padding="[0]"
+						>
+							<tm-text :userInteractionEnabled="false" label="删除"></tm-text>
+						</tm-sheet>
+					</view>
+				</template>
+			</tm-slide-switch>
+		</view>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import tmSlideSwitch from '@/tmui/components/tm-slide-switch/tm-slide-switch.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmCard from '@/tmui/components/tm-card/tm-card.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const w = 110
+const isopen = ref(false)
+const action = ref([
+	{ text: '操作', color: 'black' },
+	{ text: '删除按钮', color: 'green', icon: 'tmicon-delete' }
+])
+setTimeout(() => {
+	isopen.value = true
+}, 1000)
+function onclick() {
+	isopen.value = false
+	console.log(6)
+}
+function cellClick() {
+	uni.showToast({
+		title: `点击了内容区域`,
+		icon:'none'
+	})
+}
+</script>
+
+<style></style>

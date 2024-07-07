@@ -1,0 +1,49 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="下面是基础演示属性,更多玩法请前往文档。"></tm-text>
+			<tm-text
+				color="red"
+				_class="text-weight-b"
+				label="一共6组动效，每组动效都可以反向播放。手动或者自动控制详见文档。本组件库所有动效都是由下面6组动效完成。"
+			></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-translate name="fade">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"> </tm-sheet>
+				</tm-translate>
+				<tm-translate name="zoom">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"></tm-sheet>
+				</tm-translate>
+				<tm-translate name="left">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"></tm-sheet>
+				</tm-translate>
+				<tm-translate name="right">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"></tm-sheet>
+				</tm-translate>
+			</view>
+			<view class="flex flex-row flex-wrap">
+				<tm-translate ref="translate" name="down">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"></tm-sheet>
+				</tm-translate>
+				<tm-translate name="up">
+					<tm-sheet color="blue" :padding="[0, 0]" :width="100" :height="100"></tm-sheet>
+				</tm-translate>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, nextTick } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmTranslate from '@/tmui/components/tm-translate/tm-translate.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const translate = ref<InstanceType<typeof tmTranslate> | null>(null)
+const test = ref(false)
+setTimeout(() => {
+	test.value = true
+}, 1500)
+</script>

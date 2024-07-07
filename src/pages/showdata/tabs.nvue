@@ -1,0 +1,87 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-tabs @change="tabschange" showTabsLineAni :list="tabsTitle" :item-width="180" :width="636" default-name="2"></tm-tabs>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="下面的示例为单独使用"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-tabs :list="tabsTitle" :width="636" default-name="1"> </tm-tabs>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="其它一些属性特性"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-tabs
+				:list="tabsTitle"
+				:border="1"
+				:width="636"
+				default-name="1"
+				:round="2"
+				color="grey"
+				text
+				activeFontColor="primary"
+				unSelectedColor="grey-darken-2"
+			>
+			</tm-tabs>
+			<tm-divider></tm-divider>
+			<tm-text :font-size="24" _class="text-weight-b" label="渐变背景"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-tabs :list="tabsTitle" :width="636" default-name="1" :round="2" color="red" activeFontColor="yellow" linear="left">
+			</tm-tabs>
+			<tm-divider></tm-divider>
+			<tm-text :font-size="24" _class="text-weight-b" label="卡片式"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-tabs
+				@change="tabschange"
+				:list="tabsTitle"
+				align="center"
+				:width="636"
+				:height="300"
+				default-name="1"
+				:round="2"
+				color="black"
+				itemModel="card"
+				activeColor="yellow"
+				activeFontColor="black"
+			>
+			</tm-tabs>
+			<tm-divider></tm-divider>
+			<tm-text :font-size="24" _class="text-weight-b" label="线式"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-tabs
+				:list="tabsTitle"
+				align="center"
+				:width="636"
+				:height="300"
+				default-name="1"
+				itemModel="line"
+				activeColor="primary"
+				activeFontColor="primary"
+			>
+			</tm-tabs>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmTabs from '@/tmui/components/tm-tabs/tm-tabs.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmTabsPane from '@/tmui/components/tm-tabs-pane/tm-tabs-pane.vue'
+const tabsTitle = ref([
+	{ key: '1', title: '选项1', icon: 'tmicon-ios-leaf' },
+	{ key: '2', title: '选项2', icon: 'tmicon-ios-umbrella' },
+	{ key: '3', title: '选项3', dot: true, dotColor: 'yellow', icon: 'tmicon-ios-rocket' },
+	{ key: '4', title: '选项4', dot: false, count: '3', icon: 'tmicon-ios-partly-sunny' }
+])
+const tabsTitle2 = ref([
+	{ key: '1', title: '选项1', icon: 'tmicon-ios-leaf' },
+	{ key: '2', title: '选项2', icon: 'tmicon-ios-umbrella' },
+])
+function tabschange(key: string | number) {
+	console.log(key)
+}
+</script>

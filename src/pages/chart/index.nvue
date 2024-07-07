@@ -1,0 +1,46 @@
+<template>
+	<tm-app>
+		<!-- #ifdef MP-WEIXIN -->
+		<view class="px-32">
+			<ad unit-id="adunit-d6c90eaaa098bf4d"></ad>
+		</view>
+		<!-- #endif -->
+		<view class="ma-32">
+			<tm-row :width="686" :column="2" transprent :gutter="10">
+				<tm-col @click="navto(index)" v-for="(item, index) in list" _class="mb-10 round-2" :key="index" :height="280">
+					<tm-image :src="item.img" :width="310" :height="220"></tm-image>
+					<tm-text :label="'图表' + item.title" _class="py-12"></tm-text>
+				</tm-col>
+				<tm-col _class="mb-10 round-2" :height="280">
+					<tm-icon name="tmicon-plus"></tm-icon>
+					<tm-text label="更多见Echarts官网" _class="py-12"></tm-text>
+				</tm-col>
+			</tm-row>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance, onMounted } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmRow from '@/tmui/components/tm-row/tm-row.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmCol from '@/tmui/components/tm-col/tm-col.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+const list = ref([
+	{ path: '/pages/chart/chart?key=lineChart', title: 'lineChart', img: 'https://cdn.tmui.design/public/echart/lineChart.jpg' },
+	{ path: '/pages/chart/chart?key=areaChart', title: 'areaChart', img: 'https://cdn.tmui.design/public/echart/areaChart.jpg' },
+	{ path: '/pages/chart/chart?key=areaChart2', title: 'areaChart2', img: 'https://cdn.tmui.design/public/echart/areaChart2.jpg' },
+	{ path: '/pages/chart/chart?key=bar', title: 'bar', img: 'https://cdn.tmui.design/public/echart/bar.jpg' },
+	{ path: '/pages/chart/chart?key=pie', title: 'pie', img: 'https://cdn.tmui.design/public/echart/pie.jpg' },
+	{ path: '/pages/chart/chart?key=sca', title: 'sca', img: 'https://cdn.tmui.design/public/echart/sca.jpg' },
+	{ path: '/pages/chart/chart?key=gau', title: 'gau', img: 'https://cdn.tmui.design/public/echart/gau.jpg' }
+])
+
+function navto(index: number) {
+	uni.navigateTo({
+		url: list.value[index].path
+	})
+}
+</script>

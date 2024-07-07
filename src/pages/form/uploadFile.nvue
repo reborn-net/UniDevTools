@@ -1,0 +1,27 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+			<tm-text :font-size="24" _class="text-weight-b" label="更多属性见文档：注意这里不支持nvue,不支持app平台,且也仅支持微信,qq,h5,web,部分支持飞书,字节平台.这里的兼容性是跟随uniapp sdk的兼容来的"></tm-text>
+			<tm-text :font-size="24" >这个组件是新增的useUploadFile vue3组合式hooks函数的一个界面化组件.核心是这个函数.因此如果界面不符合你的预期,你可以自行布局界面调用函数方法实现.方法中已经包含了所有功能,因此你只要关心你的界面就行.功能我已经兼容并实现了.主要整合了wx.chooseImage,wx.chooseVideo,wx.chooseMedia方法.因此兼容有限.</tm-text>
+			<tm-divider></tm-divider>
+			<tm-text class="my-24" :font-size="28" _class="text-weight-b" :label="uploading?'当前上传状态:上传中':'当前上传状态:已结束上传'"></tm-text>
+			<tm-upload-file :config="{hostUrl:'https://mockapi.eolink.com/tNYKNA7ac71aa90bcbe83c5815871a5b419601e96a5524d/upload'}" v-model:uploading="uploading" v-model="list" :defaultValue="list"></tm-upload-file>
+		</tm-sheet>
+
+	</tm-app>
+</template>
+<script lang="ts" setup>
+	import { ref, computed, getCurrentInstance, nextTick } from 'vue'
+	import { onShow, onLoad } from '@dcloudio/uni-app'
+	import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+	import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+	import tmText from '@/tmui/components/tm-text/tm-text.vue'
+	import tmUploadFile from '@/tmui/components/tm-upload-file/tm-upload-file.vue'
+	import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+	import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+	
+	const list = ref(["https://cdn.tmui.design/gds2023628-2024628.jpg"]);
+	const uploading = ref(false);
+	
+</script>

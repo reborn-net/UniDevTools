@@ -1,0 +1,60 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text label="优惠券样例"></tm-text>
+		</tm-sheet>
+		<tm-coupon extra thumb="https://picsum.photos/200/300">
+			<template v-slot:extra>
+				<tm-text :font-size="22" _class="opacity-7" label="1.使用不受限制"></tm-text>
+				<tm-text :font-size="22" _class="opacity-7" label="2.使用不受限制使用"></tm-text>
+				<tm-text :font-size="22" _class="opacity-7" label="3.使用不受限制使用"></tm-text>
+			</template>
+		</tm-coupon>
+		<tm-coupon extra :show-right="false">
+			<template v-slot:extra>
+				<tm-text :font-size="22" _class="opacity-7" label="1.使用不受限制"></tm-text>
+				<tm-text :font-size="22" _class="opacity-7" label="2.使用不受限制"></tm-text>
+			</template>
+		</tm-coupon>
+		<tm-coupon mainColor="pink"></tm-coupon>
+		<tm-coupon mainColor="pink">
+			<template v-slot:btn>
+				<tm-checkbox color="pink" :round="24"></tm-checkbox>
+			</template>
+		</tm-coupon>
+		<tm-coupon disable btn-label="已经使用"></tm-coupon>
+		<tm-sheet>
+			<tm-text label="其它样式设定"></tm-text>
+		</tm-sheet>
+		<tm-coupon
+			color="orange"
+			linear="right"
+			linear-deep="accent"
+			mainColor="orange"
+			font-color=""
+			thumb="https://picsum.photos/200/300"
+		></tm-coupon>
+		<tm-coupon color="pink" linear="right" linear-deep="accent" mainColor="yellow" font-color="" extra>
+			<template v-slot:extra>
+				<tm-text :font-size="22" _class="opacity-7" label="1.使用不受限制"></tm-text>
+				<tm-text :font-size="22" _class="opacity-7" label="2.使用不受限制"></tm-text>
+			</template>
+		</tm-coupon>
+		<tm-coupon color="yellow" mainColor="pink" font-color="" extra>
+			<template v-slot:extra>
+				<tm-text :font-size="22" _class="opacity-7" label="1.使用不受限制"></tm-text>
+				<tm-text :font-size="22" _class="opacity-7" label="2.使用不受限制"></tm-text>
+			</template>
+		</tm-coupon>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmCoupon from '../../tmui/components/tm-coupon/tm-coupon.vue'
+import tmText from '../../tmui/components/tm-text/tm-text.vue'
+import tmCheckbox from '../../tmui/components/tm-checkbox/tm-checkbox.vue'
+</script>
+
+<style></style>

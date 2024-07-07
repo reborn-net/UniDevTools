@@ -1,0 +1,120 @@
+<template>
+	<tm-app>
+		<tm-sheet :margin="[32, 32, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" label="基本示例"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-icon :font-size="50" name="tmicon-playcircle-fill"></tm-icon>
+				<tm-icon color="primary" :font-size="50" name="tmicon-user-fill"></tm-icon>
+				<tm-icon color="red" :font-size="50" name="tmicon-minus-circle-fill"></tm-icon>
+			</view>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" label="图片图标"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-icon color="red" :font-size="80" name="https://roundicons.com/wp-content/uploads/2017/09/PIzza-freebie-icon.png"></tm-icon>
+				<tm-icon color="red" :font-size="80" name="https://roundicons.com/wp-content/uploads/2017/09/Rheindeer-freebie-icon.png"></tm-icon>
+				<tm-icon color="red" :font-size="80" name="https://roundicons.com/wp-content/uploads/2017/09/Donut-freebie-icon.png"></tm-icon>
+			</view>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" label="自定义图标"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-wrap">
+				<tm-icon customicon name="myicon-music-e617"></tm-icon>
+				<tm-icon customicon name="myicon-news-e618"></tm-icon>
+				<tm-icon customicon name="myicon-phone-e619"></tm-icon>
+			</view>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" label="spin 旋转图标"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-icon @click="spin = !spin" :spin="spin" :font-size="50" name="tmicon-shuaxin"></tm-icon>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" label="rotate-deg 旋转图标角度与spin不能混用"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row">
+				<tm-button :margin="[24, 0]" @click="deg += 90" label="+90deg"></tm-button>
+				<tm-button :shadow="0" text :border="2" outlined :margin="[24, 0]" @click="deg -= 90" label="-90deg"></tm-button>
+			</view>
+			<view class="pa-32">
+				<tm-icon rotate :rotate-deg="deg" :font-size="50" name="tmicon-angle-down"></tm-icon>
+			</view>
+		</tm-sheet>
+		<tm-sheet :margin="[32, 0, 32, 16]">
+			<tm-text :font-size="24" _class="text-weight-b" :label="`部分参考图标(共${fontList.glyphs.length}个)，前缀【tmicon-】`"></tm-text>
+			<tm-divider></tm-divider>
+
+			<tm-grid :col="4" :width="630">
+				<tm-grid-item @click="onclick(item)" :height="140" v-for="(item, index) in list" :key="index">
+					<tm-icon :font-size="42" :name="item.name"></tm-icon>
+					<tm-text :label="item.text" :font-size="22"></tm-text>
+				</tm-grid-item>
+			</tm-grid>
+			<!-- #ifndef MP -->
+			<tm-button v-if="!showAll" block label="展示所有图标(过多会卡)" @click="onShowAll"></tm-button>
+			<!-- #endif -->
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, onMounted, onBeforeUnmount, onBeforeMount } from 'vue'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmGridItem from '@/tmui/components/tm-grid-item/tm-grid-item.vue'
+import tmGrid from '@/tmui/components/tm-grid/tm-grid.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import fontList from '@/tmui/tool/tmicon/iconfont.json'
+// #ifdef APP-NVUE || APP-PLUS-NVUE
+import { customfont } from './customIcon/customiconfont'
+var domModule = weex.requireModule('dom')
+const animation = uni.requireNativePlugin('animation')
+// #endif
+const spin = ref(true)
+let showAll = ref(false)
+const deg = ref(0)
+const list = ref([])
+
+//演示自定义图标
+// #ifdef APP-PLUS-NVUE
+onBeforeMount(() => {
+	domModule.addRule('fontFace', {
+		fontFamily: 'myicon', //注意这里必须是驼峰命名，跟上面的css样式对照
+		src: "url('data:font/ttf;charset=utf-8;base64," + customfont + "')"
+	})
+})
+// #endif
+onBeforeUnmount(() => {
+	list.value = []
+})
+onMounted(() => {
+	uni.showLoading({ title: '...', mask: true })
+	let ls_list = fontList.glyphs.slice(0, 30)
+	setTimeout(() => {
+		for (let i = 0; i < ls_list.length; i++) {
+			list.value.push({ name: fontList.css_prefix_text + ls_list[i].font_class, text: ls_list[i].name })
+		}
+		uni.hideLoading()
+	}, 100)
+})
+
+//显示全部图标
+const onShowAll = () => {
+	showAll.value = true
+	let ls_list = fontList.glyphs //全部显示
+	list.value = []
+	uni.showLoading({ title: '...', mask: true })
+	for (let i = 0; i < ls_list.length; i++) {
+		list.value.push({ name: fontList.css_prefix_text + ls_list[i].font_class, text: ls_list[i].name })
+	}
+	uni.hideLoading()
+}
+function onclick(item) {
+	uni.setClipboardData({ data: item.name }).then(() => uni.showToast({ title: '复制成功', icon: 'none' }))
+}
+</script>

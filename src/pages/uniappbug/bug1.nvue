@@ -1,0 +1,25 @@
+<template>
+	<tm-app>
+		<!-- https://ask.dcloud.net.cn/question/144303 -->
+		<tm-sheet>
+			<tm-text
+				:font-size="32"
+				_class="text-weight-b"
+				label="运行本页面你将发现如下bug:在ios端首次运行看不到蓝色方块,滑动后可见,其它平台正常.本bug与css:sticky有关."
+			></tm-text>
+		</tm-sheet>
+		<view style="height: 50px; background-color: orange"></view>
+		<tm-sticky>
+			<template v-slot:sticky>
+				<!-- 此处ios上这个蓝色定位一开始看不到的，偏移量就是上方的橙色50px+上方的abc的偏移量 -->
+				<!-- 其它平台都正常，只有ios不正常。 -->
+				<view style="height: 50px; background-color: blue"></view>
+			</template>
+			<view style="height: 1200px; background-color: red"></view>
+		</tm-sticky>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+</script>

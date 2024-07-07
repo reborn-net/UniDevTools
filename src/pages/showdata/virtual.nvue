@@ -1,0 +1,67 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="30"
+				_class="text-weight-b"
+				label="基础示例,更多见文档，以下是展示你可以无限加载图片列表，你将看不到任何卡顿或者阻塞。超高性能的虚拟列表。"
+			></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-col flex-col-top-center">
+				<tm-virtual-list :scrollViewInTo="test" :load="getdata" :width="626" :height="900" :data="imglist" :itemHeight="160">
+					<template v-slot:default="{ data }">
+						<tm-sheet
+							:border="1"
+							borderDirection="bottom"
+							:height="160"
+							:width="626"
+							_class="flex flex-row flex-row-center-start"
+							:padding="[0, 0]"
+							:margin="[0, 0]"
+							v-for="(item, index) in data"
+							:key="index"
+						>
+							<view class="flex flex-row flex-row-center-between flex-1">
+								<tm-image :width="200" :height="100" :src="item.src"></tm-image>
+								<tm-text :label="'image-Row-' + item.index"></tm-text>
+							</view>
+						</tm-sheet>
+					</template>
+				</tm-virtual-list>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmImageGroup from '@/tmui/components/tm-image-group/tm-image-group.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+import tmVirtualList from '@/tmui/components/tm-virtual-list/tm-virtual-list.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const imglist = ref([])
+const test = ref("")
+const getdata = (e: string) => {
+	return new Promise((res, rej) => {
+		setTimeout(function () {
+			if (e == 'top') {
+				imglist.value = []
+				for (let i = 0; i < 10; i++) {
+					imglist.value.push({ src: 'https://i0.pickpik.com/photos/298/434/513/beach-dawn-dusk-ocean-thumb.jpg', index: i })
+				}
+			} else if (e == 'bottom') {
+				let len = imglist.value.length
+				for (let i = len; i < 10 + len; i++) {
+					imglist.value.push({ src: 'https://i0.pickpik.com/photos/298/434/513/beach-dawn-dusk-ocean-thumb.jpg', index: i })
+				}
+			}
+			res(true)
+		}, 2500)
+	})
+}
+
+
+</script>

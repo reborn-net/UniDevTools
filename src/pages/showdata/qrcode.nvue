@@ -1,0 +1,69 @@
+<template>
+	<tm-app>
+		<tm-sheet _class="flex-col">
+			<tm-text :font-size="30" _class="text-weight-b" label="基础示例,更多玩法见文档"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-input :border="1" v-model="str" @search="changeStr" searchLabel="生成"></tm-input>
+			<tm-divider></tm-divider>
+			<tm-radio-group v-model="vsd" defaultValue="0" @change="change">
+				<tm-radio value="0" label="基础"></tm-radio>
+				<tm-radio value="1" label="红码"></tm-radio>
+				<tm-radio value="2" label="渐变"></tm-radio>
+				<tm-radio value="3" label="彩色背景"></tm-radio>
+				<tm-radio value="4" label="加logo"></tm-radio>
+				<tm-radio value="5" label="改变边距"></tm-radio>
+				<tm-radio value="6" label="背景图"></tm-radio>
+			</tm-radio-group>
+			<tm-divider></tm-divider>
+			<tm-qrcode ref="qrcode" :option="cfig"></tm-qrcode>
+
+			<tm-button block @click="saveImg" label="获取图片数据"></tm-button>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+import tmQrcode from '@/tmui/components/tm-qrcode/tm-qrcode.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmInput from '@/tmui/components/tm-input/tm-input.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+const qrcode = ref<InstanceType<typeof tmQrcode> | null>(null)
+const str = ref('我爱你tmui.design')
+const cfig = ref({ str: str.value })
+const vsd = ref('0')
+
+function change(e) {
+	let type = Number(e)
+	if (type === 0) {
+		cfig.value = { baseColor: '#FFFFFF', forgroundColor: '#000000', str: str.value }
+	} else if (type === 1) {
+		cfig.value = { baseColor: '#FFFFFF', forgroundColor: '#FF0000', str: str.value }
+	} else if (type === 2) {
+		cfig.value = { baseColor: '#FFFFFF', forgroundColor: ['#FF0000', '#FFFF00'], str: str.value }
+	} else if (type === 3) {
+		cfig.value = { baseColor: ['#FF0000', '#FFFF00'], forgroundColor: '#000000', str: str.value }
+	} else if (type === 4) {
+		cfig.value = { logoImage: 'https://cdn.tmui.design/public/design/logoCir.png', str: str.value, logoWidth: 30, logoHeight: 30 }
+	} else if (type === 5) {
+		cfig.value = { border: 0.1, str: str }
+	} else if (type === 6) {
+		cfig.value = { forgroundColor: '#FFFFFF', str: str, backgroundImage: 'https://cdn.tmui.design/public/echart/qrbg.jpg' }
+	}
+}
+function changeStr() {
+	cfig.value = { baseColor: '#FFFFFF', forgroundColor: '#000000', str: str.value }
+	vsd.value = '0'
+}
+function saveImg() {
+	qrcode.value?.save().then((img) => {
+		uni.$tm.u.toast('获取成功')
+		console.log(img)
+	})
+}
+</script>

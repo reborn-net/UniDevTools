@@ -1,0 +1,44 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				:font-size="26"
+				label="一个抛物线组件，从触发位置，把目标元素以抛物线的效果抛至目标点位，主要场景交互有：购物车添加商品，收藏夹等 一些交互效果的元素"
+			></tm-text>
+		</tm-sheet>
+		<view class="flex flex-row flex-row-center-between px-24">
+			<view></view>
+			<view class="pr-50">
+				<tm-fly-view :width="150" :height="150" :x="left" :y="top">
+					<tm-button label="向左下抛"></tm-button>
+					<template v-slot:content><tm-button :round="24" color="red" :width="50" :height="50"></tm-button></template>
+				</tm-fly-view>
+			</view>
+		</view>
+		<view class="flex flex-row flex-row-center-between pl-50">
+			<tm-fly-view :width="150" :x="left2" :y="top2">
+				<tm-button label="向右下抛"></tm-button>
+				<template v-slot:content><tm-button :round="24" :width="50" :height="50"></tm-button></template>
+			</tm-fly-view>
+			<view></view>
+		</view>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmFlyView from '@/tmui/components/tm-fly-view/tm-fly-view.vue'
+const sys = uni.getSystemInfoSync()
+// 如果是h5y坐标要加上导航的高度。
+const left = ref(60)
+const top = ref(sys.windowHeight - 60)
+
+const left2 = ref(sys.windowWidth - 85)
+const top2 = ref(sys.windowHeight - 60)
+</script>

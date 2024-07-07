@@ -1,0 +1,61 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="应用在其它任何元素上"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-between">
+				<tm-badge dot color="red">
+					<tm-sheet no-level :shadow="2" :width="100" :height="100" :margin="[6, 6]" :padding="[0, 0]"></tm-sheet>
+				</tm-badge>
+				<tm-badge :count="99999" :maxCount="99" color="red" linear="top">
+					<tm-sheet no-level :shadow="2" :width="100" :height="100" :margin="[6, 6]" :padding="[0, 0]"></tm-sheet>
+				</tm-badge>
+				<tm-badge count="热门" color="pink" linear="right" linearDeep="accent">
+					<tm-sheet no-level :shadow="2" :width="100" :height="100" :margin="[6, 6]" :padding="[0, 0]"></tm-sheet>
+				</tm-badge>
+				<tm-badge icon="tmicon-check" color="green">
+					<tm-sheet no-level :shadow="2" :width="100" :height="100" :margin="[6, 6]" :padding="[0, 0]"></tm-sheet>
+				</tm-badge>
+			</view>
+		</tm-sheet>
+
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基础示例"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-between">
+				<tm-badge dot color="red">
+					<tm-text label="文本模式"></tm-text>
+				</tm-badge>
+				<tm-badge dot color="green">
+					<tm-text label="文本模式"></tm-text>
+				</tm-badge>
+				<tm-badge dot color="blue">
+					<tm-text label="文本模式"></tm-text>
+				</tm-badge>
+				<tm-badge dot color="pink">
+					<tm-text label="文本模式"></tm-text>
+				</tm-badge>
+			</view>
+		</tm-sheet>
+
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="作为文本状态使用"></tm-text>
+			<tm-divider></tm-divider>
+			<view class="flex flex-row flex-between">
+				<tm-badge status dot label="未处理好" color="red"></tm-badge>
+				<tm-badge status dot label="正确处理" color="green"></tm-badge>
+				<tm-badge status dot label="正常" color="primary"></tm-badge>
+				<tm-badge status dot label="非常nice" color="orange"></tm-badge>
+			</view>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmBadge from '@/tmui/components/tm-badge/tm-badge.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+</script>

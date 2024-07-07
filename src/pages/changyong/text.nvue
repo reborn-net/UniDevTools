@@ -1,0 +1,35 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="基本示例"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-text label="这是文本标签，文本显示必需要使用此标签"></tm-text>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="其它示例"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-text color="red" label="颜色，这是文本标签，文本显示必需要使用此标签"></tm-text>
+			<tm-text color="grey" :font-size="24" label="文字大小，这是文本标签，文本显示必需要使用此标签"></tm-text>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text _class="text-overflow-1" label="1行带省略，这是文本标签，文本显示必需要使用此标签，文本显示必需要使用此标"></tm-text>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text
+				_class="text-overflow-2"
+				label="2行带省略，这是文本标签，文本显示必需要使用此标签，文本显示必需要使用此标示必需要使用此标签，文本显示必需要使用此标"
+			></tm-text>
+		</tm-sheet>
+		<tm-sheet>
+			<tm-text selectable label="长按文本可以复制"></tm-text>
+		</tm-sheet>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+</script>

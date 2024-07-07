@@ -1,0 +1,27 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text
+				label="颜色选择器,全端兼容.因实现兼容有点小复杂,故属性上我虽然提供了宽和高.但实际上没有用处.也请不要随意赋值.固定值即可.如果确实需要更改宽和高,请自行修改源码."
+			></tm-text>
+			<tm-text color="red" label="暂时还未实现双向绑定定位颜色位置功能."></tm-text>
+			<tm-text :label="colorName"></tm-text>
+			<tm-divider></tm-divider>
+		</tm-sheet>
+		<view class="pa-32 flex flex-row flex-row-center-center">
+			<tm-color-view v-model="colorName"></tm-color-view>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCodeinput from '@/tmui/components/tm-codeinput/tm-codeinput.vue'
+import tmKeyborad from '@/tmui/components/tm-keyborad/tm-keyborad.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import tmColorView from '@/tmui/components/tm-color-view/tm-color-view.vue'
+const colorName = ref('#00FF00')
+</script>

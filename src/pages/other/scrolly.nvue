@@ -1,0 +1,41 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="32" label="纵向滚动,也可称之为下拉,触底刷新组件"></tm-text>
+			<tm-divider></tm-divider>
+			<tm-text label="不支持在pc端使用.请在移动端查看效果,在nvue端使用的是原生高性能下拉组件,非nvue端使用自定下拉组件."></tm-text>
+			<tm-scrolly :refresher="false" v-model="pull" v-model:bottom-value="bottomFresh" @refresh="refresh" @bottom="refreshBottom">
+				<tm-text label="触摸区域,体验下拉刷新操作."></tm-text>
+				<view v-for="(item, index) in 50" :key="index" style="height: 40px" class="px-36">
+					<text>{{ item }}</text>
+				</view>
+			</tm-scrolly>
+		</tm-sheet>
+	</tm-app>
+</template>
+
+<script lang="ts" setup>
+import tmApp from '../../tmui/components/tm-app/tm-app.vue'
+import tmScrolly from '../../tmui/components/tm-scrolly/tm-scrolly.vue'
+import tmText from '../../tmui/components/tm-text/tm-text.vue'
+import tmDivider from '../../tmui/components/tm-divider/tm-divider.vue'
+import tmSheet from '../../tmui/components/tm-sheet/tm-sheet.vue'
+import { onMounted, ref } from 'vue'
+const pull = ref(false)
+const bottomFresh = ref(false)
+function refresh() {
+	setTimeout(function () {
+		pull.value = false
+	}, 1500)
+}
+function refreshBottom() {
+	bottomFresh.value = true
+	uni.showLoading({ title: '...', mask: true })
+	setTimeout(function () {
+		bottomFresh.value = false
+		uni.hideLoading()
+	}, 1500)
+}
+</script>
+
+<style></style>

@@ -1,0 +1,44 @@
+<template>
+	<tm-app>
+		<view class="ma-32 overflow">
+			<tm-cell :round="index==0?[3,3]:(index==list.length-1?[0,0,3,3]:0)" v-for="(item, index) in list" :key="index" :url="item.path" :margin="[0, 0]" :titleFontSize="30" :title="item.title"> </tm-cell>
+		</view>
+		<view class="py-32 mx-32">
+			<tm-divider color="grey-2" label="tmui 3.0.0 原生渲染，全端兼容"></tm-divider>
+		</view>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, getCurrentInstance } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmCell from '@/tmui/components/tm-cell/tm-cell.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+import logoimg from '@/static/logo.png'
+const list = ref([
+	{ path: '/pages/showdata/avatar', title: '头像 Avatar' },
+	{ path: '/pages/showdata/qrcode', title: '二维码 Qrcode' },
+	{ path: '/pages/showdata/badge', title: '徽标 Badge' },
+	{ path: '/pages/showdata/card', title: '卡片 Card' },
+	{ path: '/pages/showdata/carousel', title: '轮播 Carousel' },
+	{ path: '/pages/showdata/collapse', title: '折叠面板 Collapse' },
+	{ path: '/pages/showdata/comment', title: '评论 Comment' },
+	{ path: '/pages/showdata/cell', title: '单元格 Cell' },
+	{ path: '/pages/showdata/countdown', title: '倒计时 Countdown' },
+	{ path: '/pages/showdata/descriptions', title: '描述 Descriptions' },
+	{ path: '/pages/showdata/image', title: '图片 Image' },
+	{ path: '/pages/showdata/indexes', title: '列表索引 Indexes' },
+	{ path: '/pages/showdata/more', title: '显示更多 More' },
+	{ path: '/pages/showdata/result', title: '结果页 Result' },
+	{ path: '/pages/showdata/popover', title: '汽泡卡片 Popover' },
+	{ path: '/pages/showdata/statistic', title: '数值显示 Statistic' },
+	{ path: '/pages/showdata/table', title: '表格 Table' },
+	{ path: '/pages/showdata/tabs', title: '选项卡 Tabs' },
+	{ path: '/pages/showdata/tag', title: '标签 Tag' },
+	{ path: '/pages/showdata/datatable', title: '数据表格 DataTable' },
+	{ path: '/pages/showdata/timeline', title: '时间轴 Timeline' },
+	{ path: '/pages/showdata/tree', title: '树 Tree' },
+	{ path: '/pages/showdata/virtual', title: '虚拟列表 Virtual' },
+	{ path: '/pages/showdata/waterfall', title: '瀑布流 Waterfall' }
+])
+</script>

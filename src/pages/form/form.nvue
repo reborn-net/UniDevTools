@@ -1,0 +1,213 @@
+<template>
+	<tm-app ref="app" color="grey-5">
+		<tm-form @submit="confirm" ref="form" v-model="show" :label-width="190" >
+			<tm-form-item
+				desc="你可以点击提交表单来验证"
+				required
+				label="身份证号码"
+				field="nameuser.a"
+				:rules="[
+					{ required: true, message: '不能为空', validator: (val) => val.length > 0 },
+					{ required: true, message: '请输入66', validator: (val) => val == '66' }
+				]"
+			>
+				<!-- 不要问我为什么用v-model.lazy，我很受伤。 -->
+				<tm-input :inputPadding="[0, 0]" v-model.lazy="show.nameuser.a" :transprent="true" :showBottomBotder="false"> </tm-input>
+			</tm-form-item>
+			<tm-form-item required label="选择日期" field="cale" :rules="[{ required: true, message: '请选择日期哦' }]">
+				<view @click="showCal = !showCal" class="flex flex-row flex-row-center-between">
+					<tm-text :userInteractionEnabled="false" :label="caleStr || '请选择有效日期'"></tm-text>
+					<tm-icon :userInteractionEnabled="false" :font-size="24" name="tmicon-angle-right"></tm-icon>
+				</view>
+			</tm-form-item>
+			<tm-form-item
+				:padding="[0, 0]"
+				requiredTitleChangeColor
+				label="选择地区"
+				field="city"
+				required
+				:rules="[{ required: true, message: '请选择地区' }]"
+			>
+				<view @click="testClick" class="flex flex-row flex-row-center-between">
+					<tm-text :userInteractionEnabled="false" :label="show.cityStr || '请选择所在地区地址'"></tm-text>
+					<tm-icon :userInteractionEnabled="false" :font-size="24" name="tmicon-angle-right"></tm-icon>
+				</view>
+			</tm-form-item>
+			<tm-form-item required label="时间选择" field="time" :rules="[{ required: true, message: '请选择时间+++' }]">
+				<view @click="showTimePickerView = !showTimePickerView" class="flex flex-row flex-row-center-between">
+					<tm-text :userInteractionEnabled="false" :label="timeStr || '请选择时间'"></tm-text>
+					<tm-icon :userInteractionEnabled="false" :font-size="24" name="tmicon-angle-right"></tm-icon>
+				</view>
+			</tm-form-item>
+
+			<tm-form-item required label="弹出选择" field="pickerStr" :rules="[{ required: true, message: '请选择水果种类' }]">
+				<view @click="showPicker = !showPicker" class="flex flex-row flex-row-center-between">
+					<tm-text :userInteractionEnabled="false" :label="show.pickerStr || '请选择水果呀'"></tm-text>
+					<tm-icon :userInteractionEnabled="false" :font-size="24" name="tmicon-angle-right"></tm-icon>
+				</view>
+			</tm-form-item>
+			<tm-form-item required label="选择水果" field="radio" :rules="[{ required: true, message: '请选择水果' }]">
+				<tm-radio-group v-model="show.radio">
+					<tm-radio label="苹果" value="apple"></tm-radio>
+					<tm-radio label="香焦" value="bonaer"></tm-radio>
+				</tm-radio-group>
+			</tm-form-item>
+
+			<tm-form-item required label="多选水果种类" field="checkbox" :rules="[{ required: true, message: '请选择' }]">
+				<tm-checkbox-group v-model="show.checkbox">
+					<tm-checkbox label="苹果" value="apple"></tm-checkbox>
+					<tm-checkbox label="香焦" value="bonaer"></tm-checkbox>
+					<tm-checkbox label="香焦" value="bonaer2"></tm-checkbox>
+					<tm-checkbox label="香焦" value="bonaer3"></tm-checkbox>
+					<tm-checkbox label="香焦" value="bonaer4"></tm-checkbox>
+				</tm-checkbox-group>
+			</tm-form-item>
+
+			<tm-form-item required label="评分" field="rate" :rules="[{ required: true, message: '请选择' }]">
+				<tm-rate v-model="show.rate" :default-value="show.rate"></tm-rate>
+			</tm-form-item>
+
+			<tm-form-item
+				required
+				label="价格选择"
+				field="slider"
+				:rules="[{ required: true, message: '请选择', validator: (val) => val.reduce((a, b) => Math.abs(a - b)) !== 0 }]"
+			>
+				<tm-slider :width="450" v-model="show.slider" :default-value="show.slider"></tm-slider>
+			</tm-form-item>
+
+			<tm-form-item required label="分割选择" field="segtab" :rules="[{ required: true, message: '请选择' }]">
+				<tm-segtab :width="420" :list="[{ text: '苹果' }, { text: '香蕉' }]" v-model="show.segtab" :default-value="show.segtab"></tm-segtab>
+			</tm-form-item>
+
+			<tm-form-item label="开关" field="switch" :rules="{ required: true, message: '没有选中哦' }">
+				<tm-switch v-model="show.switch" :default-value="show.switch" selected="hehe"></tm-switch>
+			</tm-form-item>
+
+			<tm-form-item required label="上传截图" field="upload" :rules="{ required: true, message: '请上传' }">
+				<tm-upload
+					:rows="3"
+					:width="420"
+					:default-value="show.upload"
+					url="https://mockapi.eolink.com/tNYKNA7ac71aa90bcbe83c5815871a5b419601e96a5524d/upload"
+					v-model="show.upload"
+				></tm-upload>
+			</tm-form-item>
+
+			<tm-form-item :border="false">
+				<view class="flex flex-row">
+					<view class="flex-1 mr-32">
+						<tm-button form-type="submit" label="提交表单" block></tm-button>
+					</view>
+					<view class="flex-1">
+						<tm-button :shadow="0" text form-type="reset" label="重置表单" block></tm-button>
+					</view>
+				</view>
+			</tm-form-item>
+		</tm-form>
+
+		<tm-calendar v-model="show.cale" v-model:show="showCal" :default-value="show.cale"></tm-calendar>
+		<tm-city-picker v-model="show.city" v-model:model-str="show.cityStr" v-model:show="showCity" :default-value="show.city"></tm-city-picker>
+		<tm-time-picker
+			v-model="show.time"
+			v-model:show="showTimePickerView"
+			:show-detail="{ year: false, month: false, day: true, hour: true }"
+		></tm-time-picker>
+
+		<tm-picker
+			:columns="pickerlist"
+			v-model:model-str="show.pickerStr"
+			v-model:show="showPicker"
+			:default-value="show.pickerIndex"
+			v-model="show.pickerIndex"
+		></tm-picker>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, nextTick, getCurrentInstance, computed } from 'vue'
+import * as dayjs from '@/tmui/tool/dayjs/esm/index'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmInput from '@/tmui/components/tm-input/tm-input.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmRadioGroup from '@/tmui/components/tm-radio-group/tm-radio-group.vue'
+import tmRadio from '@/tmui/components/tm-radio/tm-radio.vue'
+import tmCheckboxGroup from '@/tmui/components/tm-checkbox-group/tm-checkbox-group.vue'
+import tmCheckbox from '@/tmui/components/tm-checkbox/tm-checkbox.vue'
+import tmRate from '@/tmui/components/tm-rate/tm-rate.vue'
+import tmSlider from '@/tmui/components/tm-slider/tm-slider.vue'
+import tmSegtab from '@/tmui/components/tm-segtab/tm-segtab.vue'
+import tmSwitch from '@/tmui/components/tm-switch/tm-switch.vue'
+import tmUpload from '@/tmui/components/tm-upload/tm-upload.vue'
+import tmCalendar from '@/tmui/components/tm-calendar/tm-calendar.vue'
+import tmCityPicker from '@/tmui/components/tm-city-picker/tm-city-picker.vue'
+import tmTimePicker from '@/tmui/components/tm-time-picker/tm-time-picker.vue'
+import tmPicker from '@/tmui/components/tm-picker/tm-picker.vue'
+import tmImage from '@/tmui/components/tm-image/tm-image.vue'
+import tmButton from '@/tmui/components/tm-button/tm-button.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmIcon from '@/tmui/components/tm-icon/tm-icon.vue'
+import tmFormItem from '@/tmui/components/tm-form-item/tm-form-item.vue'
+import tmForm from '@/tmui/components/tm-form/tm-form.vue'
+const app = ref<InstanceType<typeof tmApp> | null>(null)
+const form = ref<InstanceType<typeof tmForm> | null>(null)
+const DayJs = dayjs.default
+const showCal = ref(false)
+const showCity = ref(false)
+const showTimePickerView = ref(false)
+const showPicker = ref(false)
+const pickerStr = ref('')
+const pickerlist = ref([
+	{
+		text: '苹果',
+		id: 1
+	},
+	{
+		text: '香蕉',
+		id: 2
+	},
+	{
+		text: '李子',
+		id: 3
+	},
+	{
+		text: '椰子',
+		id: 4
+	}
+])
+
+const show = ref({
+	cale: [],
+	caleStr: '',
+	time: '',
+	radio: '', //bonaer
+	pickerIndex: [],
+	pickerStr: '',
+	checkbox: [],
+	rate: 0,
+	slider: [0, 0],
+	segtab: '',
+	switch: '',
+	upload: [],
+	city: [],
+	cityStr: '',
+	nameuser: {
+		a: ''
+	},
+	testff: [],
+	ha: false
+})
+const timeStr = computed(() => (!show.value.time ? '' : DayJs(show.value.time).format('DD日 HH时')))
+const caleStr = computed(() => {
+	if (!show.value.cale || !Array.isArray(show.value.cale)) return ''
+	if (show.value.cale.length == 0) return ''
+	return DayJs(show.value.cale[0]).format('YYYY年MM月DD日')
+})
+
+const confirm = (e) => {
+	console.log(e)
+}
+
+const testClick = () => {
+	showCity.value = !showCity.value
+}
+</script>

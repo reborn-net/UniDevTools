@@ -1,0 +1,54 @@
+<template>
+	<tm-app>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="更多指示点位置，属性等请看文档"></tm-text>
+		</tm-sheet>
+		<tm-carousel autoplay :margin="[0, 16]" :round="3" :width="686" :height="300" :list="listimg"></tm-carousel>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="指示点对齐"></tm-text>
+		</tm-sheet>
+		<tm-carousel autoplay model="dot" :margin="[0, 16]" align="right" :round="3" :width="686" :height="300" :list="listimg2"></tm-carousel>
+		<tm-sheet>
+			<tm-text :font-size="24" _class="text-weight-b" label="指示位置，包含视频播放"></tm-text>
+		</tm-sheet>
+		<tm-carousel
+			rangKey="test"
+			autoplay
+			:margin="[0, 16]"
+			dotPosition="right"
+			vertical
+			model="rect"
+			:round="3"
+			:width="686"
+			:height="300"
+			:list="listvedio"
+		></tm-carousel>
+	</tm-app>
+</template>
+<script lang="ts" setup>
+import { ref, Ref } from 'vue'
+import { onShow, onLoad } from '@dcloudio/uni-app'
+import tmApp from '@/tmui/components/tm-app/tm-app.vue'
+import tmSheet from '@/tmui/components/tm-sheet/tm-sheet.vue'
+import tmText from '@/tmui/components/tm-text/tm-text.vue'
+import tmCarousel from '@/tmui/components/tm-carousel/tm-carousel.vue'
+import tmDivider from '@/tmui/components/tm-divider/tm-divider.vue'
+const listimg = [
+	'https://store.tmui.design/api_v2/public/random_picture?row=1&random=12',
+	'https://store.tmui.design/api_v2/public/random_picture?row=1&random=13',
+	'https://store.tmui.design/api_v2/public/random_picture?row=1&random=14'
+]
+const listimg2 = [
+	{url:'https://store.tmui.design/api_v2/public/random_picture?row=1&random=12',text:"测试提醒语信息"},
+	{url:'https://store.tmui.design/api_v2/public/random_picture?row=1&random=12',text:"南昌红谷滩区."},
+]
+const listvedio: Ref<any[]> = ref([
+	{ test: 'https://store.tmui.design/api_v2/public/random_picture?row=1&random=11' },
+	{
+		test: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+		img: 'https://store.tmui.design/api_v2/public/random_picture?row=1&random=18',
+		type: 'video'
+	},
+	'https://store.tmui.design/api_v2/public/random_picture?row=1&random=20'
+])
+</script>
