@@ -89,14 +89,17 @@ pnpm run dev:h5
     <img src="https://dev.api0.cn/qrCode/iosAppStore.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">苹果AppStore</div>
   </div>
+  <br><br><br>
   <div class="codeItem">
     <img src="https://dev.api0.cn/qrCode/androidYYB.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">安卓应用宝</div>
   </div>
+  <br><br><br>
   <div class="codeItem">
     <img src="https://dev.api0.cn/qrCode/wxmp.jpg" style="width: 160px;height: 160px;">
     <div class="codeTitle">微信小程序</div>
   </div>
+  <br><br><br>
   <div class="codeItem">
     <img src="https://dev.api0.cn/qrCode/web.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">H5</div>
