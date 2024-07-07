@@ -1,5 +1,9 @@
 # UniDevTools - UniApp调试工具
 
+## 在线文档 - 完整版使用教程
+[https://dev.api0.cn](https://dev.api0.cn)
+
+----
 
 不知道大家是否和我一样已经受够了使用Uniapp开发APP时需要插USB线连着HbuilderX才能看到console打印，各项指标数据全是黑盒，开发APP时无法选择调试节点等各类头疼问题。Uniapp官方一直没有一个标准的调试工具，为什么不能像Chrome调试工具一样调试App呢？为此我们开发了一个插件，把这些痛点问题依次解决！
 
@@ -33,10 +37,7 @@ UniDevTools是一个UniApp工具库，包含console打印日志、request请求�
 
 
 
-## 在线文档
-[https://dev.api0.cn](https://dev.api0.cn)
 
-----
 
 
 ## 下载运行本示例项目使用说明：
