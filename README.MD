@@ -84,21 +84,21 @@ pnpm run dev:h5
 >《斗图助手APP》表情包制作工具<br>
 >该项目基于Uniapp+Vue2，已集成DevTools工具<br>
 >打开APP后在搜索页输入` __devtools__ `即可打开调试弹窗查看请求和日志数据
-<div class="qrCodeList">
+<div class="qrCodeList" style="display: flex;flex-direction: row; align-items: center;gap: 30px;flex-wrap: wrap;">
   <div class="codeItem">
-    <img src="https://dev.api0.cn/qrCode/iosAppStore.png" class="codeImg">
+    <img src="https://dev.api0.cn/qrCode/iosAppStore.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">苹果AppStore</div>
   </div>
   <div class="codeItem">
-    <img src="https://dev.api0.cn/qrCode/androidYYB.png" class="codeImg">
+    <img src="https://dev.api0.cn/qrCode/androidYYB.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">安卓应用宝</div>
   </div>
   <div class="codeItem">
-    <img src="https://dev.api0.cn/qrCode/wxmp.jpg" class="codeImg">
+    <img src="https://dev.api0.cn/qrCode/wxmp.jpg" style="width: 160px;height: 160px;">
     <div class="codeTitle">微信小程序</div>
   </div>
   <div class="codeItem">
-    <img src="https://dev.api0.cn/qrCode/web.png" class="codeImg">
+    <img src="https://dev.api0.cn/qrCode/web.png" style="width: 160px;height: 160px;">
     <div class="codeTitle">H5</div>
   </div>
 </div>
