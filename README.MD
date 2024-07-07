@@ -1,7 +1,8 @@
 # UniDevTools - UniApp调试工具
 
 ><b>在线文档 - 完整版使用教程:<br>
-><a href="https://dev.api0.cn" target="_blank">https://dev.api0.cn</a> </b>
+><a href="https://dev.api0.cn" target="_blank">https://dev.api0.cn</a><br>
+>QQ群: 894584115 <a href="https://qm.qq.com/q/ynnDQGZ248" target="_blank">加入群聊</a></b>
 
 ----
 
@@ -70,8 +71,8 @@ pnpm run dev:h5
 1. 下载最新源码包`v3.4.5`
   >GitHub: [releases](https://github.com/1615958039/UniDevTools/releases) <br>
   >Gitee: [releases](https://gitee.com/t1zf/UniAppDevTools/releases/) <br>
-  >备用：[v3.4.5_r.zip]([123](https://dev.api0.cn/releases/v3.4.5_r.zip))
-2. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
+  >备用：[v3.4.5_r.zip](https://dev.api0.cn/releases/v3.4.5_r.zip)
+1. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
 
 ----
 
@@ -103,32 +104,3 @@ pnpm run dev:h5
 </div>
 
 
-
-
-<style>
-.swiperDiv{
-  border: 1px solid rgb(122, 122, 122);
-  border-radius: 15px;
-  overflow: hidden;
-}
-.qrCodeList{
-  display: flex;
-  flex-direction: row;
-  padding: 20px 0;
-  flex-wrap: wrap;
-}
-.codeItem{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.codeImg{
-  width: 120px;
-  height: 120px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  border: 1px solid #bbbbbb;
-}
-</style>
