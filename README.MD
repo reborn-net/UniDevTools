@@ -1,7 +1,7 @@
 # UniDevTools - UniApp调试工具
 
-## 在线文档 - 完整版使用教程
-[https://dev.api0.cn](https://dev.api0.cn)
+><b>在线文档 - 完整版使用教程:<br>
+><a href="https://dev.api0.cn" target="_blank">https://dev.api0.cn</a> </b>
 
 ----
 
