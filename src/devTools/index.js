@@ -23,7 +23,11 @@ const devTools = {
       that = vm;
       let _this = this;
 
-      vm.config.globalProperties.$logReport = logReport;
+      if(vm && vm.config && vm.config.globalProperties){
+        vm.config.globalProperties.$logReport = logReport;
+      }else{
+        vm.prototype.$logReport = logReport;
+      }
 
       //! 初始化配置项
       devOptions.setOptions(options)
@@ -35,7 +39,11 @@ const devTools = {
       }
 
       //! 挂载dev工具
-      vm.config.globalProperties.$devTools = devTools;
+      if(vm && vm.config && vm.config.globalProperties){
+        vm.config.globalProperties.$devTools = devTools;
+      }else{
+        vm.prototype.$devTools = devTools;
+      }
 
       if (options.error.status) {
 
@@ -167,13 +175,3 @@ const devTools = {
 
 
 export default devTools;
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,7 @@
 # UniDevTools - UniApp调试工具
 
 ><b>在线文档 - 完整版使用教程:<br>
-><a href="https://dev.api0.cn" target="_blank">https://dev.api0.cn</a><br>
->QQ群: 894584115 <a href="https://qm.qq.com/q/ynnDQGZ248" target="_blank">加入群聊</a></b>
+><a href="https://dev.api0.cn" target="_blank">https://dev.api0.cn</a>
 
 ----
 
@@ -68,10 +67,10 @@ pnpm run dev:h5
 
 
 ## 把调试工具引入自己项目：
-1. 下载最新源码包`v3.4.5`
+1. 下载最新源码包`v3.5.0`
   >GitHub: [releases](https://github.com/1615958039/UniDevTools/releases) <br>
   >Gitee: [releases](https://gitee.com/t1zf/UniAppDevTools/releases/) <br>
-  >备用：[v3.4.5_r.zip](https://dev.api0.cn/releases/v3.4.5_r.zip)
+  >备用：[v3.5.0_r.zip](https://dev.api0.cn/releases/v3.5.0_r.zip)
 1. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
 
 ----

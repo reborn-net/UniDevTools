@@ -89,7 +89,7 @@ function init(options, devTools) {
     isTouch = false;
     if (
       !touchStart.hasMove
-      || touchStart.time > (new Date().getTime() + 300)
+      || touchStart.time > (new Date().getTime() - 300)
     ) {// 单击事件
 
       let pages = getCurrentPages()
