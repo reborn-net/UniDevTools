@@ -1,7 +1,75 @@
 {
   "i18n-ally.localesPaths": [
-    "src/tmui/locale",
-    "src/tmui/tool/dayjs/locale",
-    "src/tmui/tool/dayjs/esm/locale"
-  ]
+    "locale"
+  ],
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "acea",
+    "Appplatform",
+    "Clientid",
+    "cruent",
+    "footerswitch",
+    "imei",
+    "invalidselete",
+    "Longpress",
+    "oaid",
+    "oppo",
+    "PAYPAY",
+    "Rakufun",
+    "RAKUMA",
+    "Rakumapic",
+    "RAKUTEN",
+    "rebornid",
+    "scoll",
+    "sitebutton",
+    "SURUGA",
+    "ZOZOTOWN"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "zh-Hans",
+  "vetur.format.defaultFormatter.html": "prettier", // prettyhtml
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.sass": "sass-formatter",
+  // vue 扩展的文件默认使用 prettier 进行格式化
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.printWidth": 120,
+  "prettier.singleAttributePerLine": true,
+  "prettier.vueIndentScriptAndStyle": false,
+  "prettier.resolveGlobalModules": false,
+  "prettier.bracketSameLine": false,
+  "prettier.semi": true,
+  "editor.tabSize": 2,
+  "vetur.format.options.tabSize": 2,
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "prettier.printWidth": 120,
+      "prettier.singleAttributePerLine": true,
+      "prettier.vueIndentScriptAndStyle": false,
+      "prettier.resolveGlobalModules": false,
+      "prettier.bracketSameLine": false,
+      "prettier.semi": true,
+    },
+    "tabSize": 2,
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
+    },
+    "prettyhtml": {
+      "printWidth": 100,
+      "singleQuote": false,
+      "wrapAttributes": false,
+      "sortAttributes": false
+    }
+  },
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.arrowParens": "always",
+  "prettier.endOfLine": "lf",
+  "prettier.htmlWhitespaceSensitivity": "css",
+  "prettier.jsxSingleQuote": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "es5",
+  "prettier.useEditorConfig": true
 }

@@ -1146,14 +1146,25 @@ export default {
           data = data.filter((x) => x.type == 2 || (x.type == 1 && x.responseStatus != 200));
         } else if (filterType == "其他") {
           data = data.filter((x) => x.method != "get" && x.method != "post");
+        } else if (filterType == "1s+") {
+          data = data.filter((x) => x.type != 0 && x.useTime > 1);
+        } else if (filterType == "5s+") {
+          data = data.filter((x) => x.type != 0 && x.useTime > 5);
         } else if (filterType == "10s+") {
           data = data.filter((x) => x.type != 0 && x.useTime > 10);
+        } else if (filterType == "get") {
+          data = data.filter((x) => x.method.toLocaleLowerCase() == "get");
+        } else if (filterType == "post") {
+          data = data.filter((x) => x.method.toLocaleLowerCase() == "post");
         } else if (filterType == "500KB+") {
           data = data.filter((x) => x.type == 1 && x.responseBodySize > 1024 * 500);
+        } else if (filterType == "1MB+") {
+          data = data.filter((x) => x.type == 1 && x.responseBodySize > 1024 * 1024);
         } else {
           data = data.filter((x) => x.method == filterType);
         }
       }
+      console.log("data", data);
       if (data.length > 30 && that.tabList[tabIndex].isLongList && !that.tabList[tabIndex].isLoadAll) {
         data.splice(30, data.length - 1);
       }

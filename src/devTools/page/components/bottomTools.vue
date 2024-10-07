@@ -44,11 +44,16 @@
       >
         <text class="miniBtnText">清空 x</text>
       </view>
-      <btnTabs
+      <MenuBtn
         :list="networkFilterType"
         :value="networkTypeListIndex"
         @indexChange="networkTypeIndexChange"
+        title="筛选:"
       />
+      <view class="mr"></view>
+      <RequestSpeedLimit />
+      <view class="mr"></view>
+      <RequestTimeoutMock />
     </template>
 
     <!-- Pages -->
@@ -189,7 +194,7 @@
             <radio-group
               @change="jsRunType = $event.detail.value"
               class="radiusList"
-              style="display: flex;flex-direction: row;"
+              style="display: flex; flex-direction: row"
             >
               <view
                 v-for="(item, index) in jsRunTypeList"
@@ -262,7 +267,6 @@
       />
     </template>
 
-
     <codeHisPicker ref="codeHisPicker" />
   </view>
 </template>
@@ -271,10 +275,16 @@ import devCache from "../../core/libs/devCache";
 import appDelDir from "./libs/appDelDir";
 import btnTabs from "./ui/btnTabs.vue";
 import codeHisPicker from "./ui/codeHisPicker.vue";
+import MenuBtn from "./ui/menuBtn.vue";
+import RequestSpeedLimit from "./ui/requestSpeedLimit.vue";
+import RequestTimeoutMock from "./ui/requestTimeoutMock.vue";
 export default {
   components: {
     btnTabs,
     codeHisPicker,
+    MenuBtn,
+    RequestSpeedLimit,
+    RequestTimeoutMock,
   },
   props: {
     /**
@@ -318,7 +328,7 @@ export default {
      */
     stateType: {
       type: String,
-      default: "vuex"
+      default: "vuex",
     },
   },
   data() {
@@ -366,13 +376,16 @@ export default {
        * 请求过滤类型
        */
       networkFilterType: [
-        { title: "全部", type: "" },
-        { title: "请求失败", type: "请求失败" },
-        { title: "10s+", type: "10s+" },
-        { title: "500KB+", type: "500KB+" },
-        { title: "get", type: "get" },
-        { title: "post", type: "post" },
-        { title: "other", type: "other" },
+        { title: "全部请求", type: "", msg: "不使用筛选" },
+        { title: "请求失败", type: "请求失败", msg: "仅展示请求失败的记录" },
+        { title: "1s+", type: "1s+", msg: "仅展示响应超过1秒的记录" },
+        { title: "5s+", type: "5s+", msg: "仅展示响应超过5秒的记录" },
+        { title: "10s+", type: "10s+", msg: "仅展示响应超过10秒的记录" },
+        { title: "500KB+", type: "500KB+", msg: "仅展示响应内容超过500KB的记录" },
+        { title: "1MB+", type: "1MB+", msg: "仅展示响应内容超过1MB的记录" },
+        { title: "get", type: "get", msg: "仅展示get请求" },
+        { title: "post", type: "post", msg: "仅展示post请求" },
+        { title: "other", type: "other", msg: "除了get和post的其他请求" },
       ],
       /**
        * uni bus 过滤类型
@@ -460,8 +473,8 @@ export default {
     /**
      * Vuex变量类型
      */
-    stateTypeListIndex(){
-      return this.stateTypeList.findIndex(x=>x.type == this.stateType)
+    stateTypeListIndex() {
+      return this.stateTypeList.findIndex((x) => x.type == this.stateType);
     },
   },
   methods: {
@@ -971,5 +984,7 @@ export default {
       background-color: rgba(0, 0, 0, 0.03);
     }
   }
+}
+.menuBtn {
 }
 </style>

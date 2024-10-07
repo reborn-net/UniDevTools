@@ -323,13 +323,15 @@ export default {
       }
 
       let header = {};
-      if (that.request.header != "") {
+      if (that.request.header) {
         try {
           header = JSON.parse(that.request.header);
         } catch (error) {
           return tw("请求头json解析失败！");
         }
       }
+
+      header["Devtoolssend"] = 1;
 
       that.send.t = 0;
       that.send.time = new Date().getTime();
