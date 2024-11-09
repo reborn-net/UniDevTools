@@ -7,8 +7,105 @@ export default {
    */
   compressObject(obj = {}, maxSize = 1024 * 10.24) {
     try {
-      let t = new Date().getTime()
       if (obj === undefined || obj === null) return obj;
+      if (typeof obj == "string") {
+        return this.truncateStrBySize(obj, maxSize);
+      }
+      if (typeof obj == "number") {
+        return obj;
+      }
+
+      let t = new Date().getTime()
+
+      const type = typeof obj;
+
+      if (type === 'symbol') {
+        obj = "Symbol->" + obj.toString();
+      } else if (type === 'bigint') {
+        obj = "bigint->" + obj.toString()
+      } else if (typeof Error != "undefined" && obj instanceof Error) {
+        obj = `Error->${obj.name}\n${obj.message}\n${obj.stack}`
+      } else if (typeof Date != "undefined" && obj instanceof Date) {
+        obj = "Date->" + obj.toISOString()
+      } else if (typeof obj == "function") {
+        obj = "Function->" + obj.toString()
+      } else if (typeof RegExp != "undefined" && obj instanceof RegExp) {
+        obj = "RegExp->" + obj.toString();
+      } else if (typeof Map != "undefined" && obj instanceof Map) {
+        obj = `Map->(${obj.size}) { ${Array.from(obj.entries()).map(([key, value]) => `${convertToString(key)} => ${convertToString(value)}`).join(', ')} }`;
+      } else if (typeof Set != "undefined" && obj instanceof Set) {
+        obj = `Set->(${obj.size}) { ${Array.from(obj.values()).map(value => convertToString(value)).join(', ')} }`;
+      } else if (typeof Blob != "undefined" && obj instanceof Blob) {
+        obj = `Blob->{ size: ${obj.size}, type: ${obj.type} }`;
+      } else if (typeof File != "undefined" && obj instanceof File) {
+        obj = `File->{ name: "${obj.name}", size: ${obj.size}, type: ${obj.type}, lastModified: ${new Date(obj.lastModified).toISOString()} }`;
+      } else if (typeof URL != "undefined" && obj instanceof URL) {
+        obj = `URL->{ href: "${obj.href}", protocol: "${obj.protocol}", host: "${obj.host}", pathname: "${obj.pathname}", search: "${obj.search}", hash: "${obj.hash}" }`;
+      } else if (typeof FormData != "undefined" && obj instanceof FormData) {
+        const entries = [];
+        obj.forEach((key, item) => {
+          entries.push(key)
+        })
+        obj = `FormData->{ ${entries.join(', ')} }`;
+      } else if (typeof Location != "undefined" && obj instanceof Location) {
+        obj = `Location->{ href: "${obj.href}", protocol: "${obj.protocol}", host: "${obj.host}", pathname: "${obj.pathname}", search: "${obj.search}", hash: "${obj.hash}" }`;
+      } else if (typeof Document != "undefined" && obj instanceof Document) {
+        obj = `Document->{ title: "${obj.title}", URL: "${obj.URL}" }`;
+      } else if (typeof Window !== "undefined" && obj instanceof Window) {
+        obj = `Window->{ location: ${this.compressObject(obj.location)}, document: ${this.compressObject(obj.document)} }`;
+      } else if (typeof Element != "undefined" && obj instanceof Element) {
+        obj = `Element->{ tagName: "${obj.tagName}", id: "${obj.id}", class: "${obj.className}" }`;
+      } else if (typeof HTMLCanvasElement != "undefined" && obj instanceof HTMLCanvasElement) {
+        obj = `Canvas->{ width: ${obj.width}, height: ${obj.height} }`;
+      } else if (typeof HTMLAudioElement != "undefined" && obj instanceof HTMLAudioElement) {
+        obj = `Audio->{ src: "${obj.src}", duration: ${obj.duration} }`;
+      } else if (typeof HTMLVideoElement != "undefined" && obj instanceof HTMLVideoElement) {
+        obj = `Video->{ src: "${obj.src}", width: ${obj.videoWidth}, height: ${obj.videoHeight}, duration: ${obj.duration} }`;
+      } else if (typeof Storage != "undefined" && obj instanceof Storage) {
+        obj = `Storage->{ length: ${obj.length} }`;
+      }
+      else if ((typeof Worker != "undefined" && typeof ServiceWorker != "undefined" && typeof SharedWorker != "undefined") && (obj instanceof Worker || obj instanceof ServiceWorker || obj instanceof SharedWorker)) {
+        obj = `Worker->${obj.constructor.name} { scriptURL: "${obj.scriptURL}" }`;
+      } else if (typeof WebSocket != "undefined" && obj instanceof WebSocket) {
+        obj = `WebSocket->{ url: "${obj.url}", readyState: ${obj.readyState} }`;
+      }
+      else if (typeof XMLHttpRequest != "undefined" && obj instanceof XMLHttpRequest) {
+        obj = `XMLHttpRequest->{ readyState: ${obj.readyState}, status: ${obj.status} }`;
+      }
+      else if (typeof EventSource != "undefined" && obj instanceof EventSource) {
+        obj = `EventSource->{ url: "${obj.url}", readyState: ${obj.readyState} }`;
+      }
+      else if (typeof MediaStream != "undefined" && obj instanceof MediaStream) {
+        obj = `MediaStream->{ id: "${obj.id}", active: ${obj.active} }`;
+      }
+      else if (typeof RTCPeerConnection != "undefined" && obj instanceof RTCPeerConnection) {
+        obj = `RTCPeerConnection->{ connectionState: "${obj.connectionState}" }`;
+      }
+      else if (typeof AudioContext != "undefined" && obj instanceof AudioContext) {
+        obj = `AudioContext->{ state: "${obj.state}" }`
+      }
+      else if (typeof Element != "undefined" && obj instanceof Element) {
+        obj = `Element->{ tagName: "${obj.tagName}", id: "${obj.id}", class: "${obj.className}" }`
+      }
+      else if (typeof HTMLCanvasElement != "undefined" && obj instanceof HTMLCanvasElement) {
+        obj = `Canvas->{ width: ${obj.width}, height: ${obj.height} }`
+      }
+      else if (typeof HTMLAudioElement != "undefined" && obj instanceof HTMLAudioElement) {
+        obj = `Audio->{ src: "${obj.src}", duration: ${obj.duration} }`;
+      }
+      else if (typeof HTMLVideoElement != "undefined" && obj instanceof HTMLVideoElement) {
+        obj = `Video->{ src: "${obj.src}", width: ${obj.videoWidth}, height: ${obj.videoHeight}, duration: ${obj.duration} }`;
+      }
+      else if (typeof Geolocation != "undefined" && obj instanceof Geolocation) {
+        obj = `Geolocation->{ }`;
+      }
+      else if (typeof Performance != "undefined" && obj instanceof Performance) {
+        obj = `Performance->{ now: ${obj.now()} }`
+      }
+      else if (typeof Event != "undefined" && obj instanceof Event) {
+        obj = `Event->{ type: "${obj.type}", target: "${obj.target}" }`;
+      }
+
       if (typeof obj == "string") {
         return this.truncateStrBySize(obj, maxSize);
       }
