@@ -42,7 +42,7 @@ UniDevTools 是一个 UniApp 工具库，包含 console 打印日志、request �
 1. 克隆项目到本地:
 
 ```cmd
-git clone https://github.com/1615958039/UniDevTools.git
+git clone https://github.com/reborn-net/UniDevTools.git
 ```
 
 2. 进入项目
@@ -67,11 +67,11 @@ pnpm run dev:h5
 
 ## 把调试工具引入自己项目：
 
-1. 下载最新源码包`v3.5.0`
+1. 下载最新源码包`v3.7`
    > GitHub: [releases](https://github.com/1615958039/UniDevTools/releases) <br>
    > Gitee: [releases](https://gitee.com/t1zf/UniAppDevTools/releases/) <br>
-   > 备用：[v3.5.0_r.zip](https://dev.api0.cn/releases/v3.5.0_r.zip)
-1. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
+   > 备用：[v3.7_r.zip](https://dev.api0.cn/releases/v3.7_r.zip)
+2. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
 
 ---
 
@@ -102,3 +102,19 @@ pnpm run dev:h5
     <div class="codeTitle">H5</div>
   </div>
 </div>
+
+<br><br><br>
+
+### 待办事项 - 未来开发计划
+
+- [ ] 完善 network 请求拦截，支持`uni.uploadFile`、`uni.downloadFile`、`fetch`
+- [ ] 支持`WebSocket`消息拦截，支持拦截 `uni.connectSocket`
+- [ ] 支持请求模拟(mock)、请求响应值拦截
+- [ ] 优化内置编辑器，引入 webIDE 查看编辑 json、js、html 等常见文本文件
+- [ ] H5 端支持 indexDB 管理
+- [ ] APP 端支持内存 CPU 占用分析
+- [ ] APP 端闪退崩溃日志分析
+- [ ] 服务端支持：数据日志上报分析，devtools 日志数据解析分析工具
+- [ ] 服务端支持：数据统计和用户行为分析
+- [ ] [未来]剥离 Uniapp 框架，支持更多跨平台框架如：rn、flutter 等
+- [x] ~~全面支持 Vue3+ts+pinia~~
