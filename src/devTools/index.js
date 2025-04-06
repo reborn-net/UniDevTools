@@ -6,6 +6,7 @@ import devOptions from "./core/libs/devOptions";
 import createH5Bubble from "./core/libs/createH5Bubble";
 import vueMixin from "./core/proxy/vueMixin";
 import devToolsProxyInstall from "./core/proxy/index";
+import pageLinkList from "./core/libs/pageLinkList";
 
 
 /**
@@ -16,16 +17,16 @@ let that;
 const devTools = {
   options: null,
   /**
-   * vue2挂载安装
+   * 挂载安装APP页面
    */
   install(vm, options) {
     try {
       that = vm;
       let _this = this;
 
-      if(vm && vm.config && vm.config.globalProperties){
+      if (vm && vm.config && vm.config.globalProperties) {
         vm.config.globalProperties.$logReport = logReport;
-      }else{
+      } else {
         vm.prototype.$logReport = logReport;
       }
 
@@ -39,9 +40,9 @@ const devTools = {
       }
 
       //! 挂载dev工具
-      if(vm && vm.config && vm.config.globalProperties){
+      if (vm && vm.config && vm.config.globalProperties) {
         vm.config.globalProperties.$devTools = devTools;
-      }else{
+      } else {
         vm.prototype.$devTools = devTools;
       }
 
@@ -110,6 +111,10 @@ const devTools = {
 
         uni.$emit("devTools_jsRunnerCallback", result)
       })
+
+      // ! 页面路由列表
+      pageLinkList.install()
+
     } catch (error) {
       console.log("devTools install error", error);
     }

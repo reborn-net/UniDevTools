@@ -1,6 +1,8 @@
 import devOptions from "../libs/devOptions";
 import logReport from "../libs/logReport";
+import pageLinkList from "../libs/pageLinkList";
 import pageStatisticsReport from "../libs/pageStatistics";
+
 
 
 /**
@@ -109,9 +111,13 @@ export default {
           }, 1000);
         }
       }
+
+      pageLinkList.pushPageRouteMap(pages)
+
     } catch (error) {
       console.log("devTools mixin onLoad error ", error);
     }
+
   },
   /**
    * *页面展示事件

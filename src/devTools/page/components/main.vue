@@ -495,6 +495,7 @@ import mp from "./mixins/mp";
 import jsRunnerItem from "./listItem/jsRunnerItem.vue";
 import routeItem from "./listItem/routeItem.vue";
 import routeDialog from "./dialog/routeDialog.vue";
+import pageLinkList from "../../core/libs/pageLinkList.js";
 
 // #ifndef APP-PLUS
 import h5Cell from "./ui/h5Cell.vue";
@@ -1023,31 +1024,7 @@ export default {
         return x;
       });
 
-      let pages = [];
-      // #ifdef H5 || APP-PLUS
-      try {
-        pages = __uniRoutes.map((item) => {
-          if (item.alias) {
-            item.path = item.alias;
-          }
-          return item;
-        });
-      } catch (error) {
-        pages = [];
-      }
-      // #endif
-      // #ifdef MP-WEIXIN
-      try {
-        let wxPages = __wxConfig.pages;
-        pages = wxPages.map((item) => {
-          return {
-            path: "/" + item,
-          };
-        });
-      } catch (error) {
-        pages = [];
-      }
-      // #endif
+      let pages = pageLinkList.getAllRoutes();
 
       setTimeout(() => {
         that.tabList[tabIndex].data = data;
