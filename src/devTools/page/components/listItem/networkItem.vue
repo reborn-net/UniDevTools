@@ -28,10 +28,7 @@
         @onLongpress="networkLongpress"
       />
       <view class="msgBar">
-        <text
-          class="data"
-          style="min-width: 90rpx"
-        >
+        <text class="data">
           {{ item.date }}
         </text>
         <text
@@ -273,7 +270,9 @@ export default {
           color: #333;
           font-size: 22rpx;
           line-height: 22rpx;
+          /* #ifndef APP-PLUS */
           max-width: 650rpx;
+          /* #endif */
           &.type-get {
             // color: #fff;
           }
@@ -284,7 +283,12 @@ export default {
       }
       .path {
         width: 620rpx;
+        /* #ifdef APP-PLUS */
+        width: 620rpx;
+        /* #endif */
+        /* #ifndef APP-PLUS */
         max-width: 620rpx;
+        /* #endif */
         lines: 1;
         margin-left: 6rpx;
         overflow: hidden;
@@ -312,6 +316,9 @@ export default {
       .data {
         font-size: 16rpx;
         color: #888;
+        /* #ifndef APP-PLUS */
+        min-width: 90rpx;
+        /* #endif */
       }
       .time {
         font-size: 16rpx;

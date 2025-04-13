@@ -236,6 +236,7 @@ export default {
   align-items: center;
   width: 750rpx;
   padding: 15rpx 0;
+  padding-right: 15rpx;
   .settingHead {
     display: flex;
     flex-direction: column;
@@ -265,7 +266,9 @@ export default {
     margin-right: 20rpx;
     margin-bottom: 20rpx;
     border-radius: 10rpx;
+    /* #ifndef APP-PLUS */
     min-width: 120rpx;
+    /* #endif */
     height: 60rpx;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.04);

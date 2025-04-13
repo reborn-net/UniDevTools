@@ -339,7 +339,9 @@ export default {
   padding: 0rpx 20rpx;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   width: 750rpx;
+  /* #ifndef APP-PLUS */
   min-height: 70rpx;
+  /* #endif */
   &:active {
     background-color: rgba(0, 0, 0, 0.05);
   }

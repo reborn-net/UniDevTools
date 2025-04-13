@@ -76,8 +76,7 @@ export default {
         let options = "";
         if (x.options) {
           Object.keys(x.options).map((key) => {
-            options =
-              options + (options == "" ? "" : "&") + key + "=" + x.options[key];
+            options = options + (options == "" ? "" : "&") + key + "=" + x.options[key];
           });
         }
         return {
@@ -169,9 +168,11 @@ export default {
         line-height: 30rpx;
         color: #333;
         width: 580rpx;
+        /* #ifndef APP-PLUS */
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: normal;
+        /* #endif */
       }
       .options {
         margin-top: 4rpx;
@@ -179,9 +180,11 @@ export default {
         line-height: 26rpx;
         color: #888;
         width: 580rpx;
+        /* #ifndef APP-PLUS */
         word-wrap: break-word;
         overflow-wrap: break-word;
         white-space: normal;
+        /* #endif */
       }
     }
   }

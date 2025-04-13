@@ -133,15 +133,22 @@ export default {
       font-size: 28rpx;
       line-height: 28rpx;
       color: #333;
-      max-width: 600rpx;
+      /* #ifndef APP-PLUS */
       word-wrap: break-word;
+      max-width: 600rpx;
+      /* #endif */
+      /* #ifdef APP-PLUS */
+      width: 600rpx;
+      /* #endif */
     }
     .textarea {
       margin-top: 20rpx;
       margin-bottom: 20rpx;
       width: 640rpx;
+      /* #ifndef APP-PLUS */
       min-height: 200rpx;
       max-height: 750rpx;
+      /* #endif */
       background-color: rgba(0, 0, 0, 0.02);
       padding: 10rpx;
     }

@@ -123,11 +123,9 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 8rpx;
-  overflow: hidden;
   height: 40rpx;
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 0 8rpx;
-  overflow: visible;
   &:active {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -167,7 +165,7 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    transition: all 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
     &:active {
       background-color: #dcdcdc;
     }
@@ -188,10 +186,12 @@ export default {
   overflow: hidden;
   .menuSelectItem {
     width: 710rpx;
+    /* #ifndef APP-PLUS */
     min-height: 80rpx;
+    /* #endif */
     padding: 15rpx 0;
     background-color: #fff;
-    transition: all 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;

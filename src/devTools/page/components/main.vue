@@ -13,7 +13,10 @@
           class="left"
           @click="back"
         >
-          <image src="@/devTools/page/static/fold.png" />
+          <image
+            class="foldIcon"
+            src="@/devTools/page/static/fold.png"
+          />
           <text class="margin-left-sm">返回</text>
         </view>
         <view
@@ -25,7 +28,10 @@
           <text :class="tabList[tabIndex].isRefreshing ? 'refreshing' : ''">
             {{ tabList[tabIndex].isRefreshing ? "刷新中" : "刷新" }}
           </text>
-          <image src="@/devTools/page/static/refresh.png" />
+          <image
+            class="refreshIcon"
+            src="@/devTools/page/static/refresh.png"
+          />
         </view>
       </view>
     </view>
@@ -1558,10 +1564,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+/* #ifndef APP-PLUS */
 view,
 text {
   box-sizing: border-box;
 }
+/* #endif */
 
 .devTools {
   /* #ifdef APP-PLUS */
@@ -1610,7 +1618,9 @@ text {
         width: 670rpx;
         display: flex;
         flex-direction: row;
+        /* #ifndef APP-PLUS */
         white-space: nowrap;
+        /* #endif */
         &.tab-h5 {
           width: 750rpx !important;
         }
@@ -1625,7 +1635,9 @@ text {
           justify-content: center;
           height: 80rpx;
           padding: 0 20rpx;
+          /* #ifndef APP-PLUS */
           min-width: 90rpx;
+          /* #endif */
           position: relative;
           .tabText {
             font-size: 28rpx;
@@ -1697,7 +1709,7 @@ text {
       align-items: center;
       font-size: 26rpx;
       line-height: 26rpx;
-      image {
+      .foldIcon {
         transform: rotate(-90deg);
         width: 30rpx;
         height: 30rpx;
@@ -1710,7 +1722,7 @@ text {
       font-size: 26rpx;
       line-height: 26rpx;
       color: #ff2d55;
-      image {
+      .refreshIcon {
         width: 30rpx;
         height: 30rpx;
         margin-left: 5rpx;
@@ -1787,7 +1799,9 @@ text {
     justify-content: space-between;
     .eventCountItem {
       width: 170rpx;
+      /* #ifndef APP-PLUS */
       max-width: 170rpx;
+      /* #endif */
       font-size: 20rpx;
       color: #333;
     }
@@ -1813,7 +1827,9 @@ text {
 }
 .listCenterView {
   width: 750rpx;
+  /* #ifndef APP-PLUS */
   min-height: 200rpx;
+  /* #endif */
   display: flex;
   flex-direction: row;
   align-items: center;

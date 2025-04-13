@@ -226,7 +226,9 @@ export default {
       .time {
         font-size: 16rpx;
         color: #888;
+        /* #ifndef APP-PLUS */
         min-width: 90rpx;
+        /* #endif */
       }
       .page {
         font-size: 16rpx;

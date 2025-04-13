@@ -855,9 +855,11 @@ export default {
   width: 710rpx;
   height: 34rpx;
   margin-bottom: 10rpx;
+  /* #ifndef APP-PLUS */
   white-space: nowrap;
+  /* #endif */
   .dirScrollItem {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     height: 34rpx;
@@ -940,7 +942,7 @@ export default {
       .hisText {
         font-size: 20rpx;
         color: #777;
-        list-style: 24rpx;
+        line-height: 24rpx;
         margin-right: 5rpx;
       }
       .unfold {

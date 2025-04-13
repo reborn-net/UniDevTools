@@ -295,7 +295,6 @@ export default {
     margin-top: 20rpx;
   }
   .delBtn {
-    all: initial;
     margin-top: 50rpx;
     border-radius: 8rpx;
     padding: 10rpx;

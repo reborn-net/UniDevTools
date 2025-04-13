@@ -207,16 +207,23 @@ export default {
       .time {
         font-size: 16rpx;
         color: #888;
+        /* #ifndef APP-PLUS */
         min-width: 90rpx;
+        /* #endif */
       }
       .page {
         font-size: 16rpx;
         color: #888;
         margin-left: 20rpx;
         lines: 1;
-        max-width: 450rpx;
         overflow: hidden;
+        /* #ifndef APP-PLUS */
+        max-width: 450rpx;
         white-space: nowrap;
+        /* #endif */
+        /* #ifdef APP-PLUS */
+        width: 450rpx;
+        /* #endif */
         text-overflow: ellipsis;
       }
       .logType {
