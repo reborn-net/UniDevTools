@@ -11,9 +11,7 @@ export default {
 		let allRoutes = this.getAllRoutes();
 
 		let pageRouteKeyMap = devCache.get("pageRouteKeyMap")
-		try {
-			pageRouteKeyMap = JSON.parse(pageRouteKeyMap)
-		} catch (error) {
+		if (!pageRouteKeyMap || typeof pageRouteKeyMap != "object") {
 			pageRouteKeyMap = {}
 		}
 
@@ -32,14 +30,12 @@ export default {
 			}
 		})
 
-		devCache.set("pageRouteKeyMap", JSON.stringify(pageRouteKeyMap))
+		devCache.set("pageRouteKeyMap", pageRouteKeyMap)
 		this.pageRouteKeyMap = pageRouteKeyMap;
 
 
 		let pageRouteMap = devCache.get("pageRouteMap");
-		try {
-			pageRouteMap = JSON.parse(pageRouteMap)
-		} catch (error) {
+		if (!pageRouteMap || typeof pageRouteMap != "object") {
 			pageRouteMap = {}
 		}
 
@@ -122,7 +118,7 @@ export default {
 	saveData() {
 		let that = this;
 		setTimeout(() => {
-			devCache.set("pageRouteMap", JSON.stringify(that.pageRouteMap))
+			devCache.set("pageRouteMap", that.pageRouteMap)
 			setTimeout(() => {
 				that.saveData()
 			}, 500);
