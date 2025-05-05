@@ -67,10 +67,10 @@ pnpm run dev:h5
 
 ## 把调试工具引入自己项目：
 
-1. 下载最新源码包`v3.7`
+1. 下载最新源码包`v3.8`
    > GitHub: [releases](https://github.com/1615958039/UniDevTools/releases) <br>
    > Gitee: [releases](https://gitee.com/t1zf/UniAppDevTools/releases/) <br>
-   > 备用：[v3.7_r.zip](https://dev.api0.cn/releases/v3.7_r.zip)
+   > 备用：[v3.7_r.zip](https://dev.api0.cn/releases/v3.8_r.zip)
 2. 引入项目(请移步至在线文档)：[https://dev.api0.cn/guide/install](https://dev.api0.cn/guide/install)
 
 ---
