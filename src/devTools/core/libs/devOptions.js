@@ -31,7 +31,7 @@ export default {
    * 默认配置项
    */
   defaultOptions: {
-    version: 3.8,
+    version: 3.81,
     status: false, //调试工具总开关
     route: "/devTools/page/index", // 调试页面的路由，不建议更改
     bubble: { //调试弹窗气泡设置
