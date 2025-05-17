@@ -128,6 +128,7 @@ const devTools = {
 
     //! 已经打开了调试工具，不要重复显示
     if (pages[pages.length - 1].route == this.options.devRoute) {
+      this.hide()
       return false;
     }
 
