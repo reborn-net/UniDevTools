@@ -181,14 +181,14 @@ export default {
       height: uni.getSystemInfoSync().windowHeight,
       dialogHeight: Math.ceil(uni.getSystemInfoSync().windowHeight * 0.85),
 
-      requestMethods: ["get", "post", "put", "delete", "connect", "head", "options", "trace"],
+      requestMethods: ["get", "post", "down", "upload", "put", "delete", "head", "options", "patch", "trace"],
       /**
        * 请求构建对象
        */
       request: {
         url: "", //请求地址
         header: "", //请求头
-        method: "get", //请求方式
+        method: "GET", //请求方式
         data: "", //请求参数
       },
       /**
@@ -338,6 +338,91 @@ export default {
       that.send.status = true;
       that.ajaxHasRes = false;
 
+      // 处理上传文件请求
+      if (that.request.method === "upload") {
+        // 检查是否有预设的文件路径（来自请求记录）
+        let filePath = data.filePath || (data.data && data.data.filePath);
+
+        // 直接使用记录中的文件路径
+        let uploadParams = {
+          url: that.request.url,
+          filePath: filePath,
+          name: data.name || "file",
+          header: header,
+          success(uploadRes) {
+            if (!that.send.status || !that.isShow) return;
+            that.send.status = false;
+            uploadRes["请求用时"] = new Date().getTime() - that.send.time + "ms";
+            uploadRes["文件路径"] = filePath;
+            that.$set(that, "ajaxRes", uploadRes);
+            that.ajaxHasRes = true;
+            uni.showToast({
+              title: "上传成功",
+              icon: "success",
+            });
+          },
+          fail(msg) {
+            if (!that.send.status || !that.isShow) return;
+            let uploadRes = {
+              fail: msg,
+              请求用时: new Date().getTime() - that.send.time + "ms",
+              文件路径: filePath,
+            };
+            that.send.status = false;
+            that.$set(that, "ajaxRes", uploadRes);
+            that.ajaxHasRes = true;
+            uni.showToast({
+              title: "上传失败",
+              icon: "error",
+            });
+          },
+        };
+
+        // 添加表单数据
+        if (data.formData) {
+          uploadParams.formData = data.formData;
+        }
+
+        uni.uploadFile(uploadParams);
+
+        return;
+      }
+
+      // 处理下载文件请求
+      if (that.request.method === "down") {
+        uni.downloadFile({
+          url: that.request.url,
+          header: header,
+          success(downloadRes) {
+            if (!that.send.status || !that.isShow) return;
+            that.send.status = false;
+            downloadRes["请求用时"] = new Date().getTime() - that.send.time + "ms";
+            that.$set(that, "ajaxRes", downloadRes);
+            that.ajaxHasRes = true;
+            uni.showToast({
+              title: "下载成功",
+              icon: "success",
+            });
+          },
+          fail(msg) {
+            if (!that.send.status || !that.isShow) return;
+            let downloadRes = {
+              fail: msg,
+              请求用时: new Date().getTime() - that.send.time + "ms",
+            };
+            that.send.status = false;
+            that.$set(that, "ajaxRes", downloadRes);
+            that.ajaxHasRes = true;
+            uni.showToast({
+              title: "下载失败",
+              icon: "error",
+            });
+          },
+        });
+        return;
+      }
+
+      // 处理普通请求
       uni.request({
         url: that.request.url,
         method: that.request.method,
