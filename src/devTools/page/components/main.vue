@@ -47,9 +47,7 @@
       @click.stop
       ref="panel"
       class="panel"
-      :style="{
-        height: panelHeight + 'px',
-      }"
+      :style="[panelStyle]"
     >
       <view class="head">
         <scroll-view
@@ -788,6 +786,17 @@ export default {
       // [1, 2, 3, 4, 5, 7, 9, 10].indexOf(tabIndex) != -1
       let item = this.tabList[this.tabIndex];
       return item.isShowBottomTools === true;
+    },
+    /**
+     * 面板样式
+     */
+    panelStyle() {
+      return {
+        height: this.panelHeight + "px",
+        // #ifdef APP-PLUS
+        transform: `translate(0px,${this.panelHeight}px)`,
+        // #endif
+      };
     },
   },
   mounted() {

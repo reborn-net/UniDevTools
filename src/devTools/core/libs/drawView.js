@@ -35,8 +35,21 @@ function init(options, devTools) {
     left: tagConfig.x + 'px',
     height: '24px',
     width: '70px',
-    backgroundColor: options.bubble.bgColor,
+    // backgroundColor: options.bubble.bgColor,
   });
+
+  view.drawRect({
+    color: options.bubble.bgColor,
+    // borderColor: "#222222",
+    // borderWidth: '1px',
+    radius: '6px',
+  }, {
+    top: '0px',
+    left: '0px',
+    height: '24px',
+    width: '70px',
+  })
+
   view.drawText(options.bubble.text, {}, {
     size: '12px',
     color: options.bubble.color,
