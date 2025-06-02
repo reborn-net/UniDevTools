@@ -1,6 +1,7 @@
 import devCache from "../libs/devCache";
 import devOptions from "../libs/devOptions";
 import jsonCompress from "../libs/jsonCompress";
+import { addReportQueue } from "../stat/reportQueue";
 
 export default {
   /**
@@ -153,6 +154,8 @@ export default {
               console.error("request拦截器success出错", error)
             }
 
+            addReportQueue('request', item)
+
             if (isFail) {
               err(response.data)
             } else {
@@ -171,6 +174,9 @@ export default {
             item.useTime = ((item.responseTime - item.sendTime) / 1000).toFixed(3);
 
             item.responseMsg = err.errMsg;
+
+            addReportQueue('request', item)
+
           } catch (error) {
             console.error("request拦截器fail出错", error)
           }
@@ -281,6 +287,9 @@ export default {
             } else {
               yes(response)
             }
+
+            addReportQueue('upload', item)
+
           })
         },
         fail(err, request) {
@@ -292,6 +301,9 @@ export default {
             item.responseTime = new Date().getTime();
             item.useTime = ((item.responseTime - item.sendTime) / 1000).toFixed(3);
             item.responseMsg = err.errMsg;
+
+            addReportQueue('upload', item)
+
           } catch (error) {
             console.error("uploadFile拦截器fail出错", error)
           }
@@ -399,6 +411,9 @@ export default {
             } else {
               yes(response)
             }
+
+            addReportQueue('download', item)
+
           })
         },
         fail(err, request) {
@@ -410,6 +425,9 @@ export default {
             item.responseTime = new Date().getTime();
             item.useTime = ((item.responseTime - item.sendTime) / 1000).toFixed(3);
             item.responseMsg = err.errMsg;
+
+            addReportQueue('download', item)
+
           } catch (error) {
             console.error("downloadFile拦截器fail出错", error)
           }

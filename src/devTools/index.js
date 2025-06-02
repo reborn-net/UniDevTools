@@ -7,6 +7,7 @@ import createH5Bubble from "./core/libs/createH5Bubble";
 import vueMixin from "./core/proxy/vueMixin";
 import devToolsProxyInstall from "./core/proxy/index";
 import pageLinkList from "./core/libs/pageLinkList";
+import { startReportQueue } from "./core/stat/reportQueue";
 
 
 /**
@@ -38,6 +39,9 @@ const devTools = {
       if (!options || !options.status) {
         return console.log("%c devTools 调试工具未运行！", 'padding: 4px;background-color: red;color: #fff;font-size: 15px;');
       }
+
+      // ! 初始化客户端ID
+      clientIdInit()
 
       //! 挂载dev工具
       if (vm && vm.config && vm.config.globalProperties) {
@@ -115,6 +119,9 @@ const devTools = {
       // ! 页面路由列表
       pageLinkList.install()
 
+      // ! 启动上报队列
+      setTimeout(startReportQueue, 1000);
+
     } catch (error) {
       console.log("devTools install error", error);
     }
@@ -180,3 +187,27 @@ const devTools = {
 
 
 export default devTools;
+
+
+/**
+ * 初始化客户端ID
+ */
+function clientIdInit() {
+  let clientId = uni.getStorageSync("devTools_clientId");
+  if (!clientId || clientId == "") {
+    uni.setStorageSync("devTools_clientId", randomString(64));
+  }
+}
+
+
+/**
+ * 生成随机字符串
+ */
+function randomString(length = 64) {
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}

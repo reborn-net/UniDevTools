@@ -57,6 +57,10 @@ let config = {
       rowSize: 1024 * 4,
     },
   },
+  stat: { // 统计上报
+    status: true,
+    api: "https://stat.api0.cn/v1/abcdefghijklmnopqrstuvwxyz0123456789",
+  }
 };
 
 export default config;
