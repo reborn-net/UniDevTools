@@ -556,6 +556,7 @@ export default {
               title: "处理中...",
             });
 
+            let ms = 500;
             if (type == "error") {
               devCache.set("errorReport", []);
             } else if (type == "console") {
@@ -572,18 +573,19 @@ export default {
               devCache.set("dayOnline", []);
             } else if (type == "storage") {
               that.delStorage();
+              ms += 4000;
             }
 
             setTimeout(() => {
               that.$emit("getPage");
-            }, 5500);
+            }, ms + 500);
             setTimeout(() => {
               uni.hideLoading();
               uni.showToast({
                 title: "清空成功！",
                 icon: "success",
               });
-            }, 5000);
+            }, ms);
           }
         },
       });
