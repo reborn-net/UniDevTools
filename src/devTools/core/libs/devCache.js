@@ -46,6 +46,13 @@ export default {
       }
       // #endif
 
+      // #ifdef APP-PLUS
+      // 直接走设置缓存
+      if (1) {
+        return uni.setStorageSync(key, value);
+      }
+      // #endif
+
       this.tempData[key] = value;
     } catch (error) {
       console.log("devCache.set error", error);
@@ -70,6 +77,13 @@ export default {
       let pages = getCurrentPages()
       if (pages[pages.length - 1].route == "devTools/page/index") {
         // devtools 页面直接走设置缓存
+        return uni.getStorageSync(key);
+      }
+      // #endif
+
+      // #ifdef APP-PLUS
+      // 直接走设置缓存
+      if (1) {
         return uni.getStorageSync(key);
       }
       // #endif
