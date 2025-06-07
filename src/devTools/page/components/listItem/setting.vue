@@ -337,7 +337,7 @@ export default {
 
       let keyDelFun = {
         errorReport() {
-          devCache.set("errorReport", []);
+          devCache.clearItem("errorReport");
         },
         console() {
           uni.$emit("devTools_delConsoleAll");
@@ -346,7 +346,7 @@ export default {
           uni.$emit("devTools_delNetworkAll");
         },
         logReport() {
-          devCache.set("logReport", []);
+          devCache.clearItem("logReport");
         },
         uniBus() {
           uni.$emit("devTools_delUniBusAll");
@@ -409,10 +409,10 @@ export default {
           // #endif
         },
         pageCount() {
-          devCache.set("pageCount", []);
+          devCache.clearItem("pageCount");
         },
         dayOnline() {
-          devCache.set("dayOnline", []);
+          devCache.clearItem("dayOnline");
         },
         cookie() {
           let keys = [];

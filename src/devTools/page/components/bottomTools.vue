@@ -556,34 +556,36 @@ export default {
               title: "处理中...",
             });
 
+            let ms = 500;
             if (type == "error") {
-              devCache.set("errorReport", []);
+              devCache.clearItem("errorReport");
             } else if (type == "console") {
               uni.$emit("devTools_delConsoleAll");
             } else if (type == "network") {
               uni.$emit("devTools_delNetworkAll");
             } else if (type == "logs") {
-              devCache.set("logReport", []);
+              devCache.clearItem("logReport");
             } else if (type == "UniBus") {
               uni.$emit("devTools_delUniBusAll");
             } else if (type == "pages_1") {
-              devCache.set("pageCount", []);
+              devCache.clearItem("pageCount");
             } else if (type == "pages_2") {
-              devCache.set("dayOnline", []);
+              devCache.clearItem("dayOnline");
             } else if (type == "storage") {
               that.delStorage();
+              ms = 2000;
             }
 
             setTimeout(() => {
               that.$emit("getPage");
-            }, 5500);
+            }, ms + 500);
             setTimeout(() => {
               uni.hideLoading();
               uni.showToast({
                 title: "清空成功！",
                 icon: "success",
               });
-            }, 5000);
+            }, ms);
           }
         },
       });

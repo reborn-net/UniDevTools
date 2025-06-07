@@ -45,7 +45,7 @@ export default {
     //! 清空console日志
     uni.$on("devTools_delConsoleAll", () => {
       that.logList = []
-      that.saveData()
+      devCache.clearItem("console");
     });
   },
   /**
