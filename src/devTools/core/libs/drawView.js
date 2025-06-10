@@ -16,7 +16,7 @@ function init(options, devTools) {
 
   tagConfig = Object.assign({
     show: options.bubble.status,
-    x: sysInfo.screenWidth - 90,
+    x: sysInfo.screenWidth - 95,
     y: sysInfo.screenHeight - 90,
   }, tagConfig)
   tagConfig.show = options.bubble.status;
@@ -25,7 +25,7 @@ function init(options, devTools) {
   let dragLimit = {
     min: { x: 0, y: 0, },
     max: {
-      x: sysInfo.screenWidth - 70,
+      x: sysInfo.screenWidth - 80,
       y: sysInfo.screenHeight - 24,
     }
   }
@@ -33,11 +33,11 @@ function init(options, devTools) {
   let view = new plus.nativeObj.View('debugTag', {
     top: tagConfig.y + 'px',
     left: tagConfig.x + 'px',
-    height: '24px',
-    width: '70px',
+    height: '26px',
+    width: '74px',
     // backgroundColor: options.bubble.bgColor,
   });
-
+  
   view.drawRect({
     color: options.bubble.bgColor,
     // borderColor: "#222222",
@@ -46,8 +46,8 @@ function init(options, devTools) {
   }, {
     top: '0px',
     left: '0px',
-    height: '24px',
-    width: '70px',
+    height: '26px',
+    width: '74px',
   })
 
   view.drawText(options.bubble.text, {}, {
