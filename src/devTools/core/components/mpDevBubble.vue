@@ -34,8 +34,8 @@ if (!tagConfig) {
 
 tagConfig = Object.assign(
   {
-    x: sysInfo.screenWidth - 155,
-    y: sysInfo.screenHeight - 240,
+    x: sysInfo.windowWidth - 95,
+    y: sysInfo.windowWidth - 45,
   },
   tagConfig
 );
@@ -44,8 +44,8 @@ tagConfig = Object.assign(
 let dragLimit = {
   min: { x: 0, y: 0 },
   max: {
-    x: sysInfo.screenWidth - 80,
-    y: sysInfo.screenHeight - 24,
+    x: sysInfo.windowWidth - 75,
+    y: sysInfo.windowHeight - 24,
   },
 };
 
