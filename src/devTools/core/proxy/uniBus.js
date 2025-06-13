@@ -122,6 +122,8 @@ export default {
       uni.$on("devTools_delUniBusAll", () => {
         that.logList = []
         that.busCount = []
+        devCache.clearItem("uniBus");
+        devCache.clearItem("busCount");
       })
     } catch (error) {
       console.log("devTools uniBus.install error", error);

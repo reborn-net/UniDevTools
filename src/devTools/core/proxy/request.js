@@ -428,7 +428,7 @@ export default {
       // ! 清空请求记录
       uni.$on("devTools_delNetworkAll", () => {
         this.ajaxData = []
-        this.saveData()
+        devCache.clearItem("request")
       })
     } catch (error) {
       console.log("request.install error", error);

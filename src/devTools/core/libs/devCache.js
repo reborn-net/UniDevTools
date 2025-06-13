@@ -86,6 +86,27 @@ export default {
       return "";
     }
   },
+  /**
+   * 向缓存内写入数据
+   */
+  clearItem(key) {
+    try {
+      if (['errorReport', 'logReport', 'console', 'request', 'uniBus'].indexOf(key) != -1) {
+        let setting = this.getLongListSetting(key)
+        if (!setting.status) return [];
+        if (!setting.cache.status) {
+          // !不使用缓存
+          delete this.tempData[key];
+          uni.removeStorageSync(key);
+        }
+      }
+      key = `${this.cacheKey}${key}`;
+      delete this.tempData[key];
+      uni.removeStorageSync(key);
+    } catch (error) {
+      console.log("devCache.clearItem error", JSON.stringify(error));
+    }
+  },
   getLongListSetting(key) {
     let optionsKey = {
       errorReport: 'error',
