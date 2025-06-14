@@ -35,6 +35,17 @@ if (!tagConfig) {
   tagConfig = {};
 }
 
+// #ifndef VUE3
+tagConfig = Object.assign(
+  {
+    x: sysInfo.screenWidth - 150,
+    y: sysInfo.screenHeight - 240,
+  },
+  tagConfig
+);
+// #endif
+
+// #ifdef VUE3
 tagConfig = reactive(Object.assign(
   {
     x: sysInfo.screenWidth - 150,
@@ -42,6 +53,7 @@ tagConfig = reactive(Object.assign(
   },
   tagConfig
 ));
+// #endif
 
 // 拖动范围限制
 let dragLimit = {
