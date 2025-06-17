@@ -6,6 +6,9 @@ let config = {
     text: "DevTools", // 气泡上展示的文字
     color: "#ffffff", // 气泡文字颜色
     bgColor: "rgba(250, 53, 52,0.7)", // 气泡背景颜色
+    height: "26px", // 气泡高度
+    width: "74px", // 气泡宽度
+    size: "12px", // 气泡宽度
   },
 
   // 注意： 以下配置不建议更改

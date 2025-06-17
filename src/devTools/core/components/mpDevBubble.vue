@@ -5,8 +5,11 @@
     :style="{
       left: `${tagConfig.x}px`,
       top: `${tagConfig.y}px`,
+      width: options.bubble.width,
+      height: options.bubble.height,
+      'font-size': options.bubble.size,
       'background-color': options.bubble.bgColor,
-      'box-shadow': `0px 0px 6px ${options.bubble.bgColor}`,
+      'box-shadow': `0px 0px 6px 1px ${options.bubble.bgColor}`,
     }"
     @touchstart.stop="touchstart"
     @touchmove.stop="touchmove"
@@ -15,8 +18,7 @@
     <text
       class="mpDevBubbleText"
       :style="{
-        color: options.bubble.color,
-        'font-size': '20rpx',
+        color: options.bubble.color
       }"
     >
       {{ options.bubble.text }}
@@ -35,8 +37,8 @@ if (!tagConfig) {
 
 tagConfig = Object.assign(
   {
-    x: sysInfo.screenWidth - 150,
-    y: sysInfo.screenHeight - 240,
+    x: sysInfo.windowWidth - 95,
+    y: sysInfo.windowHeight - 45,
   },
   tagConfig
 );
@@ -45,8 +47,8 @@ tagConfig = Object.assign(
 let dragLimit = {
   min: { x: 0, y: 0 },
   max: {
-    x: sysInfo.screenWidth - 70,
-    y: sysInfo.screenHeight - 24,
+    x: sysInfo.windowWidth - 75,
+    y: sysInfo.windowHeight - 24,
   },
 };
 
@@ -143,14 +145,11 @@ export default {
   box-sizing: border-box;
   position: fixed;
   z-index: 9999999;
-  width: 70px;
-  height: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4px;
   border-radius: 6px;
-  font-size: 10px;
 }
 </style>
