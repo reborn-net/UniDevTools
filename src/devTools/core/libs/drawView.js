@@ -33,8 +33,8 @@ function init(options, devTools) {
   let view = new plus.nativeObj.View('debugTag', {
     top: tagConfig.y + 'px',
     left: tagConfig.x + 'px',
-    height: '26px',
-    width: '74px',
+    height: options.bubble.height,
+    width: options.bubble.width,
     // backgroundColor: options.bubble.bgColor,
   });
 
@@ -46,12 +46,12 @@ function init(options, devTools) {
   }, {
     top: '0px',
     left: '0px',
-    height: '26px',
-    width: '74px',
+    height: options.bubble.height,
+    width: options.bubble.width,
   })
 
   view.drawText(options.bubble.text, {}, {
-    size: '12px',
+    size: options.bubble.size,
     color: options.bubble.color,
     weight: 'bold'
   });

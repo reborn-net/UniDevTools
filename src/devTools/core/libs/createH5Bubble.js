@@ -38,8 +38,8 @@ function createH5Bubble(options, devTools) {
     z-index: 9999999;
     left: ${tagConfig.x}px;
     top: ${tagConfig.y}px;
-    width: 74px;
-    height: 26px;
+    width: ${options.bubble.width};
+    height: ${options.bubble.height};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@ function createH5Bubble(options, devTools) {
     border-radius: 6px;
     background-color: ${options.bubble.bgColor};
     color: ${options.bubble.color};
-    font-size: 12px;
+    font-size: ${options.bubble.size};
     cursor: grab;
     box-shadow: 0px 0px 6px 1px ${options.bubble.bgColor};
   `;

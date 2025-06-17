@@ -5,6 +5,9 @@
     :style="{
       left: `${tagConfig.x}px`,
       top: `${tagConfig.y}px`,
+      width: options.bubble.width,
+      height: options.bubble.height,
+      'font-size': options.bubble.size,
       'background-color': options.bubble.bgColor,
       'box-shadow': `0px 0px 6px 1px ${options.bubble.bgColor}`,
     }"
@@ -142,14 +145,11 @@ export default {
   box-sizing: border-box;
   position: fixed;
   z-index: 9999999;
-  width: 74px;
-  height: 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 4px;
   border-radius: 6px;
-  font-size: 12px;
 }
 </style>
