@@ -23,7 +23,7 @@ function init(options, devTools) {
 
   // 拖动范围限制
   let dragLimit = {
-    min: { x: 0, y: 0, },
+    min: { x: 0, y: sysInfo.statusBarHeight, },
     max: {
       x: sysInfo.screenWidth - 70,
       y: sysInfo.screenHeight - 24,
