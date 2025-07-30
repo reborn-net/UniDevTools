@@ -11,6 +11,7 @@
     @touchstart.stop="touchstart"
     @touchmove.stop="touchmove"
     @touchend.stop="touchend"
+    @mousedown.stop="touchstart"
   >
     <text
       class="mpDevBubbleText"
@@ -25,6 +26,7 @@
 </template>
 <script>
 import devOptions from "../libs/devOptions";
+import { reactive } from 'vue'
 
 let options = devOptions.getOptions();
 let sysInfo = uni.getSystemInfoSync();
@@ -33,6 +35,7 @@ if (!tagConfig) {
   tagConfig = {};
 }
 
+// #ifndef VUE3
 tagConfig = Object.assign(
   {
     x: sysInfo.screenWidth - 150,
@@ -40,6 +43,17 @@ tagConfig = Object.assign(
   },
   tagConfig
 );
+// #endif
+
+// #ifdef VUE3
+tagConfig = reactive(Object.assign(
+  {
+    x: sysInfo.screenWidth - 150,
+    y: sysInfo.screenHeight - 240,
+  },
+  tagConfig
+));
+// #endif
 
 // 拖动范围限制
 let dragLimit = {
@@ -82,7 +96,16 @@ export default {
     };
   },
   mounted() {
-    // console.log("调试开始zzzzzzzzzzzzzzzz");
+    // #ifdef H5
+    document.addEventListener("mousemove", this.touchmove)
+    document.addEventListener("mouseup", this.touchend)
+    // #endif
+  },
+  beforeUnmount() {
+    // #ifdef H5
+    document.removeEventListener("mousemove", this.touchmove)
+    document.addEventListener("mouseup", this.touchend)
+    // #endif
   },
   methods: {
     touchstart(e) {
@@ -90,8 +113,8 @@ export default {
       if (e.preventDefault) {
         e.preventDefault();
       }
-      let clientX = e.touches[0].clientX;
-      let clientY = e.touches[0].clientY;
+      let clientX = e.clientX ? e.clientX : e.touches[0].clientX;
+      let clientY = e.clientY ? e.clientY : e.touches[0].clientY;
       touchStartPoint.clientX = clientX;
       touchStartPoint.clientY = clientY;
       touchStartPoint.tagX = tagConfig.x;
@@ -104,8 +127,8 @@ export default {
       if (e.preventDefault) {
         e.preventDefault();
       }
-      let clientX = e.touches[0].clientX;
-      let clientY = e.touches[0].clientY;
+      let clientX = e.clientX ? e.clientX : e.touches[0].clientX;
+      let clientY = e.clientY ? e.clientY : e.touches[0].clientY;
       touchStartPoint.hasMove = true;
       let offsetX = touchStartPoint.clientX - clientX;
       let offsetY = touchStartPoint.clientY - clientY;
@@ -152,5 +175,6 @@ export default {
   padding: 4px;
   border-radius: 6px;
   font-size: 10px;
+  cursor: grab;
 }
 </style>
