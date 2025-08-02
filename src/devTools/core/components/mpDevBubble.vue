@@ -55,9 +55,14 @@ tagConfig = reactive(Object.assign(
 ));
 // #endif
 
+let barHeight = sysInfo.statusBarHeight;
 // 获取小程序顶部安全距离
+// #ifdef MP
 let { top, height } = uni.getMenuButtonBoundingClientRect()
-const barHeight = top ? top + height : sysInfo.statusBarHeight;
+if (height) {
+  barHeight = top + height
+}
+// #endif
 // 拖动范围限制
 let dragLimit = {
   min: { x: 0, y: barHeight },
