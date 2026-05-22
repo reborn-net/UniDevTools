@@ -62,7 +62,11 @@ export default {
     try {
       __uniRoutes.map((item) => {
         let path = item.alias ? item.alias : item.path;
-        pages.push({ path })
+        let title = "";
+        if (item.meta && item.meta.navigationBar && item.meta.navigationBar.titleText) {
+          title = item.meta.navigationBar.titleText;
+        }
+        pages.push({ path, title })
       });
     } catch (error) {
       pages = [];
@@ -74,6 +78,7 @@ export default {
       wxPages.map((item) => {
         pages.push({
           path: "/" + item,
+          title: '',
         })
       });
     } catch (error) {

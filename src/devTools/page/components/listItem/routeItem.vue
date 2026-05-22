@@ -5,6 +5,7 @@
   >
     <view>
       <text class="routeText">{{ item.path }}</text>
+      <text class="routeTitle">{{ item.title }}</text>
     </view>
   </view>
 </template>
@@ -69,6 +70,13 @@ export default {
     font-size: 20rpx;
     line-height: 26rpx;
     color: #333;
+  }
+  .routeTitle {
+    color: #999;
+    width: 710rpx;
+    font-size: 10px;
+    margin-top: 6rpx;
+    line-height: 26rpx;
   }
 }
 .routeItem:active {
