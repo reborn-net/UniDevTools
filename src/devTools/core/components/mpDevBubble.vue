@@ -26,7 +26,9 @@
 </template>
 <script>
 import devOptions from "../libs/devOptions";
-import { reactive } from 'vue'
+// #ifdef VUE3
+import { reactive } from "vue";
+// #endif
 
 let options = devOptions.getOptions();
 let sysInfo = uni.getSystemInfoSync();
@@ -46,13 +48,15 @@ tagConfig = Object.assign(
 // #endif
 
 // #ifdef VUE3
-tagConfig = reactive(Object.assign(
-  {
-    x: sysInfo.screenWidth - 150,
-    y: sysInfo.screenHeight - 240,
-  },
-  tagConfig
-));
+tagConfig = reactive(
+  Object.assign(
+    {
+      x: sysInfo.screenWidth - 150,
+      y: sysInfo.screenHeight - 240,
+    },
+    tagConfig
+  )
+);
 // #endif
 
 // 拖动范围限制
@@ -97,14 +101,14 @@ export default {
   },
   mounted() {
     // #ifdef H5
-    document.addEventListener("mousemove", this.touchmove)
-    document.addEventListener("mouseup", this.touchend)
+    document.addEventListener("mousemove", this.touchmove);
+    document.addEventListener("mouseup", this.touchend);
     // #endif
   },
   beforeUnmount() {
     // #ifdef H5
-    document.removeEventListener("mousemove", this.touchmove)
-    document.addEventListener("mouseup", this.touchend)
+    document.removeEventListener("mousemove", this.touchmove);
+    document.addEventListener("mouseup", this.touchend);
     // #endif
   },
   methods: {
